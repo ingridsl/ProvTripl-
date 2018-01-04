@@ -1,14 +1,31 @@
 #include <stdio.h>
-#include <bson.h>
+/*#include <bson.h>
 #include <bcon.h>
 #include <mongoc.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "database.h"
+#include "database.h"*/
+#include <stdlib.h>
+#include "agent.h"
+#include "project.h"
+#include "experiment.h"
+
 
 int main (){
   char file[N];
+
+  agent *agents = NULL;
+  agents = insert_agent(agents);
+  project *projects = NULL;
+  projects = insert_project(projects);
+  experiment *experiments = NULL;
+  experiments = insert_experiment(experiments, projects);
+
+  //freedom_agent(agents);
+  //freedom_project(projects);
+  //freedom_experiment(experiments);
+
 
 /*
   //words *files = NULL;  //FAZER LISTA DE NOMES DE DOCUMENTOS. SEM REPETIR!
@@ -21,7 +38,7 @@ int main (){
   printf("\n%s", file);
   workflow *wf = NULL;
 */
-  wf = create_wf (NULL, getlogin(), os);
+  /*wf = create_wf (NULL, getlogin(), os);
  
 	
   wf = command1(file, wf, files);
@@ -45,7 +62,7 @@ int main (){
 
   freedom(wf);
   freedomWord(files);
-
+*/
 
   printf("\n");
   return 0;
