@@ -10,17 +10,22 @@
 #include "agent.h"
 #include "project.h"
 #include "experiment.h"
+#include "activity.h"
+#include "dataFile.h"
+#include "menu.h"
 
 
 int main (){
-  char file[N];
 
+  mainMenu();
+  char file[N];
+/*
   agent *agents = NULL;
   agents = insert_agent(agents);
   project *projects = NULL;
   projects = insert_project(projects);
   experiment *experiments = NULL;
-  experiments = insert_experiment(experiments, projects);
+  experiments = insert_experiment(experiments, projects);*/
 
   //freedom_agent(agents);
   //freedom_project(projects);
