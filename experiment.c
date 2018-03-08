@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "project.h"
 #include "experiment.h"
 
 experiment *create_experiment(){
