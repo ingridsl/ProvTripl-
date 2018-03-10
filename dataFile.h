@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "activity.h"
+#include "machine.h"
 #ifndef dataFile_h
 #define dataFile_h
 
@@ -11,18 +11,20 @@
 typedef struct dataFile{
 	int id;
 	char name[N];
+	char description[N];
+	char localization[N];
+	char annotation[N];
+	int size;
+	char insertion_date[N];
+	int machine_id;
 	char type[N];
-	char insert_date[N];
-	char end_date[N];
 	FILE *file;
-	float size;;
-	int activity_id;
 	struct dataFile *next;
 }dataFile;
 
 dataFile *create_dataFile();
-dataFile *insert_dataFile(dataFile *origin, activity *originAct);
+dataFile *insert_dataFile(dataFile *origin, machine *originAct);
 void freedom_dataFile(dataFile *origin);
-bool existsActivityId(int expIdAct, activity *originAct);
+bool existsMachineIdForFile(int expIdMac, machine *originMac);
 
 #endif

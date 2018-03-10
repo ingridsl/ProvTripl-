@@ -18,6 +18,10 @@ project *create_project(){
 	scanf("%s", new->name);
 	printf("Type project's description: ");
 	scanf("%s", new->description);
+	printf("Type project's institution funder: ");
+	scanf("%s", new->inst_funders);
+	printf("Type project's institution participants: ");
+	scanf("%s", new->inst_participants);
 	printf("Type project's coordinator: ");
 	scanf("%s", new->coordinator);
 	printf("Type project's start_date: ");

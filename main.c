@@ -1,19 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 /*#include <bson.h>
 #include <bcon.h>
 #include <mongoc.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "database.h"*/
-#include <stdlib.h>
-#include "agent.h"
+*/
+
 #include "project.h"
 #include "experiment.h"
 #include "activity.h"
+#include "agent.h"
 #include "dataFile.h"
+#include "provider.h"
+#include "cluster.h"
+#include "machine.h"
+//#include "database.h"
 #include "menu.h"
 
+#define N 300
 
 int main (){
 
@@ -72,5 +78,3 @@ int main (){
   printf("\n");
   return 0;
 }
-
-

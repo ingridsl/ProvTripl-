@@ -10,6 +10,8 @@ typedef struct project{
 	int id;
 	char name[N];
 	char description[N];
+	char inst_funders[N];
+	char inst_participants[N];
 	char coordinator[N];
 	char start_date[N];
 	char end_date[N];

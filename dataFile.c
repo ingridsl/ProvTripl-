@@ -2,9 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "project.h"
-#include "dataFile.h"
 
+#include "dataFile.h"
+#include "machine.h"
 dataFile *create_dataFile(){
 	dataFile *new = (dataFile*)malloc(sizeof(dataFile));
 
@@ -17,15 +17,21 @@ dataFile *create_dataFile(){
 	scanf("%d", &new->id);
 	printf("Type Data File's name: ");
 	scanf("%s", new->name);
+	printf("Type Data File's description: ");
+	scanf("%s", new->description);
+	printf("Type Data File's localization: ");
+	scanf("%s", new->localization);
+	printf("Type Data File's annotation: ");
+	scanf("%s", new->annotation);
 	printf("Type Data File's type: ");
 	scanf("%s", new->type);
 	printf("Type Data File's insert_date: ");
-	scanf("%s", new->insert_date);
-	printf("Type Data File's size: "); // tem que calcular
-	scanf("%f", &new->size);
-	printf("Type Data File's activity's id: "); // checar se existe
-	scanf("%d", &new->activity_id);
-
+	scanf("%s", new->insertion_date);
+	printf("Type Data File's size: "); // tem que pegar
+	scanf("%d", &new->size);
+	printf("Type Data File's machine's id: "); // checar se existe
+	scanf("%d", &new->machine_id);
+	//pegando e referenciando arquivo
 	new->file = fopen (new->name, "r");
 	if(!new->file){
 		printf("Failed to open file");
@@ -34,12 +40,12 @@ dataFile *create_dataFile(){
 }
 
 
-dataFile *insert_dataFile(dataFile *origin, activity *originAct){
+dataFile *insert_dataFile(dataFile *origin, machine *originMac){
 	dataFile *aux = origin;
     
-	dataFile *new = create_dataFile(new);
-	if(!existsActivityId(new->activity_id, originAct)){
-		printf("\nError: There is no activity with this name");
+	dataFile *new = create_dataFile();
+	if(!existsMachineIdForFile(new->machine_id, originMac)){
+		printf("\nError: There is no machine with this number");
 		return origin;
 	}
 	if(aux==NULL){
@@ -62,10 +68,10 @@ void freedom_dataFile(dataFile *origin){
     }
 }
 
-bool existsActivityId(int expIdAct, activity *originAct){
- 	activity *aux = originAct;
+bool existsMachineIdForFile(int expIdMac, machine *originMac){
+ 	machine *aux = originMac;
     while(aux!=NULL){
-    	if(expIdAct == aux->id)
+    	if(expIdMac == aux->id)
     		return true;
        	aux = aux->next;
     }

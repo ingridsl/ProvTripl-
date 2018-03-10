@@ -2,8 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "environment.h"
+
 #include "machine.h"
+//#include "cluster.h"
+
 #if defined(_WIN32) || defined(_WIN64)
         const char* operational_system = "Windows";
 #else
@@ -28,41 +30,44 @@ machine *create_machine(){
 	printf("Type machine's hostname: ");
 	scanf("%s", new->hostname);
 	printf("Type machine's ip: ");
-	scanf("%s", new->ip);
+	scanf("%ld", &new->ip);
 	printf("Type machine's type: ");
 	scanf("%s", new->type);
 	printf("Getting machine's operational system: ");
 	strcpy(new->operational_system,operational_system);
 	printf("Type machine's cpu: ");
-	scanf("%s", new->cpu);
+	scanf("%d", &new->cpu);
 	printf("Type machine's ram memory: ");
-	scanf("%f", &new->ram_memory);
-	printf("Type machine's disk quantity: ");
-	scanf("%d", &new->disk);
+	scanf("%d", &new->ram_memory);
+	printf("Type machine's disk: ");
+	scanf("%ld", &new->disk);
 	printf("Type machine's disk type: "); 
 	scanf("%s", new->disk_type);
-	printf("Type machine's localization: "); 
-	scanf("%s", new->localization);
-	printf("Type machine's price: ");
-	scanf("%f", &new->price);
-	printf("Type machine's billing type: "); 
-	scanf("%s", new->billing_type);
-	printf("Type machine's setup time: "); 
-	scanf("%s", new->setup_time);
-	printf("Type machine's setup cost: "); 
-	scanf("%f", &new->setup_cost);
-	printf("Type machine's environment id: "); //checar se existe
-	scanf("%d", &new->environment_id);
+	printf("Type machine's price: "); 
+	scanf("%ld", &new->price);
+	printf("Type machine's price type: "); 
+	scanf("%ld", &new->price_type);
+
+	//Localization
+	printf("Type machine's localization id: "); 
+	scanf("%d", &new->localization_id);
+	printf("Type machine's localization region: ");
+	scanf("%s", new->localization_region);
+	printf("Type machine's localization zone: ");
+	scanf("%s", new->localization_zone);
+
+	printf("Type machine's cluster id: "); //checar se existe
+	scanf("%d", &new->cluster_id);
 	return new;
 }
 
 
-machine *insert_machine(machine *origin, environment *originEnv){
+machine *insert_machine(machine *origin, cluster *originClu){
 	machine *aux = origin;
     
 	machine *new = create_machine(new);
-	if(!existsEnvironmentId(new->environment_id, originEnv)){
-		printf("\nError: There is no Environment with this id");
+	if(!existsClusterId(new->cluster_id, originClu)){
+		printf("\nError: There is no Cluster with this id");
 		return origin;
 	}
 	if(aux==NULL){
@@ -84,12 +89,12 @@ void freedom_machine(machine *origin){
     }
 }
 
-bool existsEnvironmentId(int expIdEnv, environment *originEnv){
- 	environment *auxEnv = originEnv;
-    while(auxEnv!=NULL){
-    	if(expIdEnv == auxEnv->id)
+bool existsClusterId(int expIdClu, cluster *originClu){
+ 	cluster *auxClu = originClu;
+    while(auxClu!=NULL){
+    	if(expIdClu == auxClu->id)
     		return true;
-       	auxEnv = auxEnv->next;
+       	auxClu = auxClu->next;
     }
 
 return false;

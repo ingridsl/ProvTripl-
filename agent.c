@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
 #include "agent.h"
 
 agent *create_agent(){
@@ -22,20 +23,22 @@ agent *create_agent(){
 	scanf("%s", new->instituition);
 	printf("Type agent's position: ");
 	scanf("%s", new->position);
-	printf("Type agent's role: ");
-	scanf("%s", new->role);
-	printf("Type agent's group: ");
-	scanf("%s", new->group);
-	printf("Type agent's note: ");
-	scanf("%s", new->note);
+	printf("Type agent's annotation: ");
+	scanf("%s", new->annotation);
+	printf("Type machine's activity id: "); //checar se existe
+	scanf("%d", &new->activity_id);
 	return new;
 }
 
 
-agent *insert_agent(agent *origin){
+agent *insert_agent(agent *origin, activity *originAct){
 	agent *aux = origin;
     
 	agent *new = create_agent();
+	if(!existsActivityId(new->activity_id, originAct)){
+		printf("\nError: There is no Activity with this id");
+		return origin;
+	}
 	if(aux==NULL){
 	    aux = new;
 	    new->next = NULL;
@@ -54,3 +57,15 @@ void freedom_agent(agent *origin){
         aux1 = aux1->next;
     }
 }
+
+bool existsActivityId(int expIdAct, activity *originAct){
+ 	activity *auxAct = originAct;
+    while(auxAct!=NULL){
+    	if(expIdAct == auxAct->id)
+    		return true;
+       	auxAct = auxAct->next;
+    }
+
+return false;
+}
+
