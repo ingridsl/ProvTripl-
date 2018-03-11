@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "project.h"
+#ifndef project_h
+#define project_h
 
 project *create_project(){
 
@@ -55,3 +56,4 @@ void freedom_project(project *origin){
     }
 }
 
+#endif

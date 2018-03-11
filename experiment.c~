@@ -4,8 +4,11 @@
 #include <stdbool.h>
 
 #include "experiment.h"
-#include "project.h"
+#ifndef project_h
+#define project_h
 
+#ifndef experiment_h
+#define experiment_h
 
 experiment *create_experiment(){
 	experiment *new = (experiment*)malloc(sizeof(experiment));
@@ -36,9 +39,9 @@ experiment *create_experiment(){
 	printf("Type experiment's project's id: "); // checar se existe
 	scanf("%d", &new->project_id);
 	printf("Type experiment's execution time: "); //deve ser calculado?
-	scanf("%f", &new->execution_cost);
+	scanf("%d", &new->execution_cost);
 	printf("Type experiment's execution cost: "); //deve ser calculado?
-	scanf("%f", &new->execution_cost);
+	scanf("%f", &new->configuration_cost);
 	return new;
 }
 
@@ -80,3 +83,6 @@ bool existsProjectId(int expIdPro, project *originPro){
 
 return false;
 }
+
+#endif
+#endif

@@ -2,24 +2,37 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#ifndef activity_h
+#define activity_h
 
-#include "project.h"
-#include "experiment.h"
-#include "activity.h"
-#include "agent.h"
-#include "dataFile.h"
-#include "provider.h"
-#include "cluster.h"
-#include "machine.h"
-#include "menu.h"
-#define RUN_ALL 0 // alterar para opção desejada no sistema
-#define RUN_USER -1
+#ifndef agent_h
+#define agent_h
 
-#define RUN_ALONE 1 //alterar para opção desejada no sistema
-#define value RUN_ALL
+#ifndef cluster_h
+#define cluster_h
+//#include "database.h"
+
+#ifndef dataFile_h
+#define dataFile_h
+
+#ifndef experiment_h
+#define experiment_h
+
+#ifndef menu_h
+#define menu_h
+
+#ifndef machine_h
+#define machine_h
+
+#ifndef project_h
+#define project_h
+
+#ifndef provider_h
+#define provider_h
+
 
 void secondMenu(){
-	int answer = value;
+	int answer = -1;
 	while(answer != 99){
 		printf("\n\t\t*---- MAIN MENU ----* ");
 		printf("\n\t0 - Run all commands");
@@ -93,3 +106,14 @@ void mainMenu (){
 		}
 	}
 }
+
+
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif

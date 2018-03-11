@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "project.h"
+
 #ifndef experiment_h
 #define experiment_h
 
@@ -12,15 +13,18 @@ typedef struct experiment{
 	int id;
 	char name[N];
 	char description[N];
+	char local[N];
 	char start_date[N];
 	char end_date[N];
-	char version[N];
+	char annotation[N];
+	int version;
 	char version_date[N];
-	char note[N];
-	int project_id;
+	int execution_time; // é referente a cada comando colocado no terminal?
 	float execution_cost;
-	float configuration_cost;
-	float total_cost;
+
+	//dentro de projeto
+	int project_id;
+
 	struct experiment *next;
 }experiment;
 
