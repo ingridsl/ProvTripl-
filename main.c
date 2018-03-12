@@ -1,13 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*#include <bson.h>
-#include <bcon.h>
-#include <mongoc.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-*/
-
 #include "project.h"
 #include "experiment.h"
 #include "activity.h"
@@ -34,12 +26,16 @@ int main (){
   cluster *clusters = NULL;
   clusters = insert_cluster(clusters, providers);
 
-  CreateDatabase(providers, clusters, NULL);
+  machine *machines = NULL;
+  machines = insert_machine(machines, clusters);
+
+  CreateDatabase(providers, clusters, machines);
   //montar documento arquivo
 
   //limpeza
   freedom_provider(providers);
   freedom_cluster(clusters);
+  freedom_machine(machines);
 
   printf("\n");
   return 0;

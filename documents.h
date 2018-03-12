@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#ifndef providerDoc_h
-#define providerDoc_h
+#ifndef documents_h
+#define documents_h
 #include "provider.h"
 #include "cluster.h"
 #include "machine.h"

@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "providerDoc.h"
+#include "documents.h"
 #include "provider.h"
 #include "cluster.h"
 #include "machine.h"
