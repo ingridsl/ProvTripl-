@@ -12,13 +12,13 @@ typedef struct activity{
 	int id;
 	char name[N];
 	char program_name[N];
-	char program_version[N];
+	int program_version;
 	char command_line[N];
 	char start_date[N];
 	char start_hour[N];
 	char end_date[N];
 	char end_hour[N];
-	char execution_status[N];
+	int execution_status;
 
 	//dentro de experimento
 	int experiment_id;

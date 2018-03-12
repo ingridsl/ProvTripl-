@@ -29,7 +29,19 @@ int main (){
   machine *machines = NULL;
   machines = insert_machine(machines, clusters);
 
-  CreateDatabase(providers, clusters, machines);
+  project *projects = NULL;
+  projects = insert_project(projects);
+
+  experiment *experiments = NULL;
+  experiments = insert_experiment(experiments, projects);
+
+  activity *activitys = NULL;
+  activitys = insert_activity(activitys, experiments, machines);
+
+  agent *agents = NULL;
+  agents = insert_agent(agents, activitys);
+
+  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);
   //montar documento arquivo
 
   //limpeza

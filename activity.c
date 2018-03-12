@@ -19,7 +19,7 @@ activity *create_activity(){
 	printf("Type activity's program name: ");
 	scanf("%s", new->program_name);
 	printf("Type activity's program version: "); // pegar a versao
-	scanf("%s", new->program_version);
+	scanf("%d", &new->program_version);
 	printf("Type activity's command line: "); // pegar o comando
 	scanf("%s", new->command_line);
 	printf("Type activity's start_date: ");
@@ -31,7 +31,7 @@ activity *create_activity(){
 	printf("Type activity's end_hour: ");
 	scanf("%s", new->end_hour);
 	printf("Type activity's execution status: ");
-	scanf("%s", new->execution_status);
+	scanf("%d", &new->execution_status);
 	printf("Type activity's experiment id: "); // checar se existe
 	scanf("%d", &new->experiment_id);
 	/*printf("Type activity's agent id: "); // checar se existe

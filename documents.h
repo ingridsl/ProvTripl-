@@ -9,7 +9,12 @@
 #include "provider.h"
 #include "cluster.h"
 #include "machine.h"
+#include "project.h"
+#include "experiment.h"
+#include "activity.h"
+#include "agent.h"
 
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal);
+bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal);
 
 #endif
