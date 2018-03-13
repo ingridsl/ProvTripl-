@@ -4,8 +4,6 @@
 #include <stdbool.h>
 #include "activity.h"
 
-
-
 files *used_files = NULL;
 
 activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta incluir aquivos na lista de arquivos
@@ -34,7 +32,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 		    strcat(command, outputFile);
 
 		    printf("\n\t:::::: COMANDO 1 :::::: \n%s \n", command);
-   			printf("\t\t::::::");
+   			printf("::::::");
    			getchar();
    			getchar();
 			//system(command); descomentar

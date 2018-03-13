@@ -103,7 +103,7 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 
 
 bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal){
-	bson_t   *project, experiment, activity, agent;
+	bson_t   *project, experiment, agent;
 	char     *project_str;
 	bson_oid_t oid;
 
@@ -127,9 +127,6 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 
 	char str_exp_execution_cost[24];
 	sprintf(str_exp_execution_cost, "%f", expOriginal->execution_cost);
-
-	char str_act_id[15];
-	sprintf(str_act_id, "%d", actOriginal->id);
 
 	char str_act_execution_status[15];
 	sprintf(str_act_execution_status, "%d", actOriginal->execution_status);
@@ -161,34 +158,43 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 	BSON_APPEND_UTF8 (&experiment, "execution_time", str_exp_execution_time);
 	BSON_APPEND_UTF8 (&experiment, "execution_cost", str_exp_execution_cost);
 
-	//comandos daqui
-	BSON_APPEND_DOCUMENT_BEGIN(&experiment, "activity", &activity);
-	BSON_APPEND_UTF8 (&activity, "id", str_act_id);
-	BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
-	BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
-	BSON_APPEND_UTF8 (&activity, "local", actOriginal->program_version);
-	BSON_APPEND_UTF8 (&activity, "command_line", actOriginal->command_line);
-	BSON_APPEND_UTF8 (&activity, "start_date", actOriginal->start_date);
-	BSON_APPEND_UTF8 (&activity, "start_hour", actOriginal->start_hour);
-	BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
-	BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
-	BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);
+		//comandos daqui
+	while(actOriginal->next !=NULL){
+		bson_t activity;
+
+		char str_act_id[15];
+		sprintf(str_act_id, "%d", actOriginal->id);
+
+		BSON_APPEND_DOCUMENT_BEGIN(&experiment, "activity", &activity);
+		BSON_APPEND_UTF8 (&activity, "id", str_act_id);
+		BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
+		BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
+		BSON_APPEND_UTF8 (&activity, "program version", actOriginal->program_version);
+		BSON_APPEND_UTF8 (&activity, "command_line", actOriginal->command_line);
+		/*BSON_APPEND_UTF8 (&activity, "start_date", actOriginal->start_date);
+		BSON_APPEND_UTF8 (&activity, "start_hour", actOriginal->start_hour);
+		BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
+		BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
+		BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);*/
 
 
-	BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
-	BSON_APPEND_UTF8 (&agent, "id", str_age_id);
-	BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
-	BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
-	BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
-	BSON_APPEND_UTF8 (&agent, "position", ageOriginal->position);
-	BSON_APPEND_UTF8 (&agent, "role", ageOriginal->role);
-	BSON_APPEND_UTF8 (&agent, "annotation", ageOriginal->annotation);
-	bson_append_document_end(&activity, &agent);
+		BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
+		BSON_APPEND_UTF8 (&agent, "id", str_age_id);
+		BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
+		BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
+		BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
+		BSON_APPEND_UTF8 (&agent, "position", ageOriginal->position);
+		BSON_APPEND_UTF8 (&agent, "role", ageOriginal->role);
+		BSON_APPEND_UTF8 (&agent, "annotation", ageOriginal->annotation);
+		bson_append_document_end(&activity, &agent);
+		bson_append_document_end(&experiment, &activity);
+		actOriginal = actOriginal->next;
+	}
 	//até aqui
-	bson_append_document_end(&experiment, &activity);
 	bson_append_document_end(project, &experiment);
    /*
-    * Print the document as a JSON string.
+    * Print the document as a JSO
+    N string.
     */
 	project_str = bson_as_json (project, NULL);
 	printf ("%s\n", project_str);

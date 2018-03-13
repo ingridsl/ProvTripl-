@@ -18,7 +18,7 @@ int main (){
   //mainMenu();
   //char file[N];
 
-  /*provider *providers = NULL;
+  provider *providers = NULL;
   providers = insert_provider(providers);
 
   cluster *clusters = NULL;
@@ -32,7 +32,7 @@ int main (){
 
   experiment *experiments = NULL;
   experiments = insert_experiment(experiments, projects);
-*/
+
 
   char fileBaseName[N];
 
@@ -43,27 +43,26 @@ int main (){
 
   activity *activitys = NULL;
   while(activityNumber < 7){
-    activitys = insert_activity(activitys,NULL, NULL, &activityNumber, fileBaseName);
+    activitys = insert_activity(activitys, experiments, machines, &activityNumber, fileBaseName);
   }
   //insert_activity(activitys);
-/*
+
   agent *agents = NULL;
   agents = insert_agent(agents, activitys);
 
-  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);*/
+  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);
   //montar documento arquivo
 
   //limpeza
-  /*freedom_provider(providers);
+  freedom_provider(providers);
   freedom_cluster(clusters);
   freedom_machine(machines);
-  freedom_provider(projects);
-  freedom_experiments(experiments);
+  freedom_project(projects);
+  freedom_experiment(experiments);
   freedom_activity(activitys);
-  freedom_agent(agents);*/
+  freedom_agent(agents);
 
-
-  freedom_activity(activitys);
+  //freedom_activity(activitys);
 
   printf("\n");
   return 0;
