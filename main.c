@@ -12,6 +12,7 @@
 #include "menu.h"
 #define N 300
 
+int activityNumber = 1;
 int main (){
 
   //mainMenu();
@@ -32,8 +33,18 @@ int main (){
   experiment *experiments = NULL;
   experiments = insert_experiment(experiments, projects);
 */
+
+  char fileBaseName[N];
+
+
+  printf("Write fasta file name: ");
+  scanf("%s", fileBaseName);
+  printf("\n%s", fileBaseName);
+
   activity *activitys = NULL;
-  activitys = insert_activity(activitys,NULL, NULL);
+  while(activityNumber < 7){
+    activitys = insert_activity(activitys,NULL, NULL, &activityNumber, fileBaseName);
+  }
   //insert_activity(activitys);
 /*
   agent *agents = NULL;
@@ -47,9 +58,12 @@ int main (){
   freedom_cluster(clusters);
   freedom_machine(machines);
   freedom_provider(projects);
-  freedom_cluster(experimentss);
-  freedom_machine(activitys);
-  freedom_machine(agentss);*/
+  freedom_experiments(experiments);
+  freedom_activity(activitys);
+  freedom_agent(agents);*/
+
+
+  freedom_activity(activitys);
 
   printf("\n");
   return 0;

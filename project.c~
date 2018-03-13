@@ -36,11 +36,6 @@ project *insert_project(project *origin){
 	project *aux = origin;
     
 	project *new = create_project(new);
-	if(aux==NULL){
-	    aux = new;
-	    new->next = NULL;
-	    return new;
-	}
 	while(aux->next!=NULL){
 		aux = aux->next;
 	}

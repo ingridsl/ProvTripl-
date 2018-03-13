@@ -44,12 +44,9 @@ provider *insert_provider(provider *origin){
 	    new->next = NULL;
 	    return new;
 	}
-	while(aux->next!=NULL){
-		aux = aux->next;
-	}
 	aux->next = new;
 	new->next = NULL;
-	return origin;
+	return aux;
 }
 
 void freedom_provider(provider *origin){

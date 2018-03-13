@@ -56,21 +56,17 @@ experiment *insert_experiment(experiment *origin, project *originPro){
 	    new->next = NULL;
 	    return new;
 	}
-	while(aux->next!=NULL){
-		aux = aux->next;
-	}
 	aux->next = new;
 	new->next = NULL;
-	return origin;
+	return aux;
 }
 
 void freedom_experiment(experiment *origin){
     experiment *aux1 = origin;
 
     while(aux1!=NULL){
-    	experiment *aux2 = aux1->next;
         free(aux1);
-        aux1 = aux2;
+        aux1 = aux1->next;
     }
 }
 

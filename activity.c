@@ -4,11 +4,11 @@
 #include <stdbool.h>
 #include "activity.h"
 
-int activityNumber = 1;
+
 
 files *used_files = NULL;
 
-activity *define_activity(){ //falta incluir aquivos na lista de arquivos
+activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta incluir aquivos na lista de arquivos
 	activity *original = (activity*)malloc(sizeof(activity));
 
     if(!original){
@@ -16,15 +16,9 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 	    exit(1);
 	}
 
-	char fileBaseName[N];
 	char inputFile1[N], outputFile[N], inputFile2[N], inputFile[N];
 	char command[N] = "";
-
-	printf("Write fasta file name: ");
-	scanf("%s", fileBaseName);
-	printf("\n%s", fileBaseName);
-	while(activityNumber<7){
-	switch(activityNumber){
+	switch((*activityNumber)){
 		case 1: 
 			strcpy(command, " ");
 			strcpy(inputFile, fileBaseName);
@@ -45,7 +39,8 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
    			getchar();
 			//system(command); descomentar
 
-			original->id = activityNumber;
+			original->id = *activityNumber;
+			printf("\n\n %d", original->id);
 			strcpy(original->name, "nome");
 			strcpy(original->program_name, hisat);
 			strcpy(original->program_version, hisatversion);
@@ -55,7 +50,8 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 			strcpy(original->end_date,);
 			strcpy(original->end_hour,);*/
 			//original->execution_status;
-			activityNumber++;
+			(*activityNumber)++;
+			printf("antes de sair\n\n:%d", *activityNumber);
 			break;
 		case 2: 
 			strcpy(command, " ");
@@ -79,6 +75,11 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 		    printf("\n:::::: COMANDO 2 :::::: \n%s \n", command);
    			printf("::::::");
    			getchar();
+			original->id = *activityNumber;
+			strcpy(original->name, "nome");
+			strcpy(original->program_name, hisat);
+			strcpy(original->program_version, hisatversion);
+			strcpy(original->command_line,command);
 
 			/*original->id = activityNumber;
 			strcpy(original->name);
@@ -90,7 +91,7 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 			original->end_date[N];
 			original->end_hour[N];
 			original->execution_status;*/
-			activityNumber++;
+			(*activityNumber)++;
 			break;
 		case 3: 
 			strcpy(command, " ");
@@ -107,6 +108,11 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
    			printf("::::::");
    			getchar();
 
+			original->id = *activityNumber;
+			strcpy(original->name, "nome");
+			strcpy(original->program_name, hisat);
+			strcpy(original->program_version, hisatversion);
+			strcpy(original->command_line,command);
 			/*original->id = activityNumber;
 			strcpy(original->name);
 			original->program_name[N];
@@ -117,7 +123,7 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 			original->end_date[N];
 			original->end_hour[N];
 			original->execution_status;*/
-			activityNumber++;
+			(*activityNumber)++;
 			break;
 		case 4: 
 			strcpy(command, " ");
@@ -133,6 +139,11 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
    			printf("::::::");
    			getchar();
 
+			original->id = *activityNumber;
+			strcpy(original->name, "nome");
+			strcpy(original->program_name, hisat);
+			strcpy(original->program_version, hisatversion);
+			strcpy(original->command_line,command);
 			/*original->id = activityNumber;
 			strcpy(original->name);
 			original->program_name[N];
@@ -143,7 +154,7 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 			original->end_date[N];
 			original->end_hour[N];
 			original->execution_status;*/
-			activityNumber++;
+			(*activityNumber)++;
 			break;
 		case 5: 
 
@@ -162,6 +173,11 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
    			printf("::::::");
    			getchar();
 
+			original->id = *activityNumber;
+			strcpy(original->name, "nome");
+			strcpy(original->program_name, hisat);
+			strcpy(original->program_version, hisatversion);
+			strcpy(original->command_line,command);
 			/*original->id = activityNumber;
 			strcpy(original->name);
 			original->program_name[N];
@@ -172,7 +188,7 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 			original->end_date[N];
 			original->end_hour[N];
 			original->execution_status;*/
-			activityNumber++;
+			(*activityNumber)++;
 			break;
 		case 6: 
 
@@ -191,6 +207,11 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
    			printf("::::::");
    			getchar();
 
+			original->id = *activityNumber;
+			strcpy(original->name, "nome");
+			strcpy(original->program_name, hisat);
+			strcpy(original->program_version, hisatversion);
+			strcpy(original->command_line,command);
 			/*original->id = activityNumber;
 			strcpy(original->name);
 			original->program_name[N];
@@ -201,15 +222,13 @@ activity *define_activity(){ //falta incluir aquivos na lista de arquivos
 			original->end_date[N];
 			original->end_hour[N];
 			original->execution_status;*/
-			activityNumber++;
+			(*activityNumber)++;
 			break;
 		default: 
-			activityNumber++;
+			(*activityNumber)++;
 			break;
-
-}
 	}
-
+	return original;
 }
 // cria o node
 activity *create_activity(){
@@ -250,36 +269,38 @@ activity *create_activity(){
 }
 
 //insere o node
-activity *insert_activity(activity *origin, experiment *originExp, machine *originMac){
+activity *insert_activity(activity *origin, experiment *originExp, machine *originMac, int *activityNumber, char fileBaseName[N]){
 	activity *aux = origin;
-    
 	//activity *new = create_activity(); //trocar
 
-	activity *new = define_activity(); 
-	if(!existsExperimentId(new->experiment_id, originExp)){
+	activity *new = define_activity(activityNumber, fileBaseName); 
+	/*if(!existsExperimentId(new->experiment_id, originExp)){
 		printf("\nError: There is no experiment with this number");
 		return origin;
 	}
 	if(!existsMachineIdForActivity(new->machine_id, originMac)){
 		printf("\nError: There is no machine with this number");
 		return origin;
-	}
+	}*/
 	if(aux==NULL){
 	    aux = new;
 	    new->next = NULL;
 	    return new;
 	}
+	while(aux->next!=NULL){
+		aux = aux->next;
+	}
 	aux->next = new;
 	new->next = NULL;
-	return aux;
+	return origin;
 }
 
 void freedom_activity(activity *origin){
     activity *aux1 = origin;
-
     while(aux1!=NULL){
+    	activity *aux2 = aux1->next;
         free(aux1);
-        aux1 = aux1->next;
+        aux1 = aux2;
     }
 }
 

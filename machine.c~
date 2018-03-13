@@ -70,11 +70,6 @@ machine *insert_machine(machine *origin, cluster *originClu){
 		printf("\nError: There is no Cluster with this id");
 		return origin;
 	}
-	if(aux==NULL){
-	    aux = new;
-	    new->next = NULL;
-	    return new;
-	}
 	while(aux->next!=NULL){
 		aux = aux->next;
 	}
