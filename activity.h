@@ -8,11 +8,35 @@
 
 #define N 300
 
+#define hisatversion "2.0.5"
+#define hisat "hisat2"
+
+#define htseqversion "0.7.2"
+#define htseq "htsqeq"
+
+#define samtoolsversion "1.4.4"
+#define samtools "samtools"
+
+typedef struct files{
+  char file_name[N];
+  struct files *next;
+}files;
+
+typedef struct instruction{
+   char command[N];
+   char initial_time[N];
+   char final_time[N];
+   struct files *input_files;
+   struct files *output_files;
+   struct instruction *next;
+
+}instruction;
+
 typedef struct activity{
 	int id;
 	char name[N];
 	char program_name[N];
-	int program_version;
+	char program_version[N];
 	char command_line[N];
 	char start_date[N];
 	char start_hour[N];

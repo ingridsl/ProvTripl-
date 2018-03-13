@@ -15,12 +15,9 @@
 int main (){
 
   //mainMenu();
-  char file[N];
+  //char file[N];
 
-  //montar documento project -> experiment -> activity -> agent
-  //ao montar activity, roda os programas
-  //montar documento provedor -> cluster -> maquina
-  provider *providers = NULL;
+  /*provider *providers = NULL;
   providers = insert_provider(providers);
 
   cluster *clusters = NULL;
@@ -34,20 +31,25 @@ int main (){
 
   experiment *experiments = NULL;
   experiments = insert_experiment(experiments, projects);
-
+*/
   activity *activitys = NULL;
-  activitys = insert_activity(activitys, experiments, machines);
-
+  //activitys = insert_activity(activitys, experiments, machines);
+  define_activity(activitys);
+/*
   agent *agents = NULL;
   agents = insert_agent(agents, activitys);
 
-  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);
+  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);*/
   //montar documento arquivo
 
   //limpeza
-  freedom_provider(providers);
+  /*freedom_provider(providers);
   freedom_cluster(clusters);
   freedom_machine(machines);
+  freedom_provider(projects);
+  freedom_cluster(experimentss);
+  freedom_machine(activitys);
+  freedom_machine(agentss);*/
 
   printf("\n");
   return 0;

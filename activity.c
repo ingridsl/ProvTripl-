@@ -3,6 +3,206 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "activity.h"
+
+int activityNumber = 1;
+
+files *used_files = NULL;
+
+activity *define_activity(activity *original){ //falta incluir aquivos na lista de arquivos
+	char fileBaseName[N];
+	char inputFile1[N], outputFile[N], inputFile2[N], inputFile[N];
+	char command[N] = "";
+
+	printf("Write fasta file name: ");
+	scanf("%s", fileBaseName);
+	printf("\n%s", fileBaseName);
+	while(activityNumber<7){
+	switch(activityNumber){
+		case 1: 
+			strcpy(command, " ");
+			strcpy(inputFile, fileBaseName);
+		   	strcpy(outputFile, fileBaseName);
+
+		   	strcat(inputFile, ".fa");
+		   	strcat(outputFile, ".hisat2.idx");
+			strcat(outputFile, "_snp");
+
+			strcpy(command, "hisat2-build -p 30 ");
+		    strcat(command, fileBaseName);
+		    strcat(command, ".fa ");
+		    strcat(command, outputFile);
+
+		    printf("\n:::::: COMANDO 1 :::::: \n%s \n", command);
+   			printf("::::::");
+   			getchar();
+			//system(command); descomentar
+/*
+			original->id = activityNumber;
+			strcpy(original->name, "nome");
+			strcpy(original->program_name, hisat);
+			strcpy(original->program_version, hisatversion);
+			strcpy(original->command_line,command);
+			*//*strcpy(original->start_date,);
+			strcpy(original->start_hour,);
+			strcpy(original->end_date,);
+			strcpy(original->end_hour,);*/
+			//original->execution_status;
+			activityNumber++;
+			break;
+		case 2: 
+			strcpy(command, " ");
+
+			strcpy(inputFile, fileBaseName);
+
+		   	strcat(inputFile, ".hisat2.idx");
+		   	strcpy(inputFile1, "file_1.fq");
+		   	strcpy(inputFile2, "file_2.fq");
+			strcpy(outputFile, "file.sam");
+
+			strcpy(command, "hisat2-build -p 30 -x ");
+		    strcat(command, inputFile);
+		    strcat(command, " -1 ");
+		    strcat(command, inputFile1);
+		    strcat(command, " -2 ");
+		    strcat(command, inputFile2);
+		    strcat(command, " -S ");
+		    strcat(command, outputFile);
+
+		    printf("\n:::::: COMANDO 2 :::::: \n%s \n", command);
+   			printf("::::::");
+   			getchar();
+
+			/*original->id = activityNumber;
+			strcpy(original->name);
+			original->program_name[N];
+			original->program_version;
+			original->command_line[N];
+			original->start_date[N];
+			original->start_hour[N];
+			original->end_date[N];
+			original->end_hour[N];
+			original->execution_status;*/
+			activityNumber++;
+			break;
+		case 3: 
+			strcpy(command, " ");
+
+		   	strcpy(inputFile, "file.sam");
+		   	strcpy(outputFile, "file.bam");
+
+			strcpy(command, "samtools view -bS ");
+		    strcat(command, inputFile);
+		    strcat(command, " > ");
+		    strcat(command, outputFile);
+
+		    printf("\n:::::: COMANDO 3 :::::: \n%s \n", command);
+   			printf("::::::");
+   			getchar();
+
+			/*original->id = activityNumber;
+			strcpy(original->name);
+			original->program_name[N];
+			original->program_version;
+			original->command_line[N];
+			original->start_date[N];
+			original->start_hour[N];
+			original->end_date[N];
+			original->end_hour[N];
+			original->execution_status;*/
+			activityNumber++;
+			break;
+		case 4: 
+			strcpy(command, " ");
+		   	strcpy(inputFile, "file.bam");
+			strcpy(outputFile, "file_sorted.sn");
+
+			strcpy(command, "samtools sort -n ");
+		    strcat(command, inputFile);
+		    strcat(command, " ");
+		    strcat(command, outputFile);
+
+		    printf("\n:::::: COMANDO 4 :::::: \n%s \n", command);
+   			printf("::::::");
+   			getchar();
+
+			/*original->id = activityNumber;
+			strcpy(original->name);
+			original->program_name[N];
+			original->program_version;
+			original->command_line[N];
+			original->start_date[N];
+			original->start_hour[N];
+			original->end_date[N];
+			original->end_hour[N];
+			original->execution_status;*/
+			activityNumber++;
+			break;
+		case 5: 
+
+			strcpy(inputFile, fileBaseName);
+		   	strcpy(outputFile, fileBaseName);
+
+		   	strcpy(inputFile, "file_sorted.sn.sam");
+		   	strcpy(outputFile, "file.bam");
+
+			strcpy(command, "samtools view -h -o ");
+		    strcat(command, inputFile);
+		    strcat(command, " ");
+		    strcat(command, outputFile);
+
+		    printf("\n:::::: COMANDO 5 :::::: \n%s \n", command);
+   			printf("::::::");
+   			getchar();
+
+			/*original->id = activityNumber;
+			strcpy(original->name);
+			original->program_name[N];
+			original->program_version;
+			original->command_line[N];
+			original->start_date[N];
+			original->start_hour[N];
+			original->end_date[N];
+			original->end_hour[N];
+			original->execution_status;*/
+			activityNumber++;
+			break;
+		case 6: 
+
+			strcpy(inputFile1, "file_sorted.sn.sam");
+			strcpy(inputFile2, "Homo_sapiens.GRCh38.88.gtf");
+		   	strcpy(outputFile, "subset.counts");
+
+			strcpy(command, "htseq-count -m intersection-nonempty -s no ");
+		    strcat(command, inputFile1);
+		    strcat(command, " ");
+		    strcat(command, inputFile2);
+		    strcat(command, " > ");
+			strcat(command, outputFile);
+
+		    printf("\n:::::: COMANDO 6 :::::: \n%s \n", command);
+   			printf("::::::");
+   			getchar();
+
+			/*original->id = activityNumber;
+			strcpy(original->name);
+			original->program_name[N];
+			original->program_version;
+			original->command_line[N];
+			original->start_date[N];
+			original->start_hour[N];
+			original->end_date[N];
+			original->end_hour[N];
+			original->execution_status;*/
+			activityNumber++;
+			break;
+		default: 
+			activityNumber++;
+			break;
+
+}
+	}
+
+}
 // cria o node
 activity *create_activity(){
 	activity *new = (activity*)malloc(sizeof(activity));
@@ -19,7 +219,7 @@ activity *create_activity(){
 	printf("Type activity's program name: ");
 	scanf("%s", new->program_name);
 	printf("Type activity's program version: "); // pegar a versao
-	scanf("%d", &new->program_version);
+	scanf("%s", new->program_version);
 	printf("Type activity's command line: "); // pegar o comando
 	scanf("%s", new->command_line);
 	printf("Type activity's start_date: ");
