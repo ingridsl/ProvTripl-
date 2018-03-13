@@ -52,7 +52,7 @@ typedef struct activity{
 	int machine_id;
 	struct activity *next;
 }activity;
-
+activity *define_activity();
 activity *create_activity();
 activity *insert_activity(activity *origin, experiment *originExp, machine *originMac);
 void freedom_activity(activity *origin);

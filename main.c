@@ -33,8 +33,8 @@ int main (){
   experiments = insert_experiment(experiments, projects);
 */
   activity *activitys = NULL;
-  //activitys = insert_activity(activitys, experiments, machines);
-  define_activity(activitys);
+  activitys = insert_activity(activitys,NULL, NULL);
+  //insert_activity(activitys);
 /*
   agent *agents = NULL;
   agents = insert_agent(agents, activitys);

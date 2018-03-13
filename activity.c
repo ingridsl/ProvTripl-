@@ -8,7 +8,14 @@ int activityNumber = 1;
 
 files *used_files = NULL;
 
-activity *define_activity(activity *original){ //falta incluir aquivos na lista de arquivos
+activity *define_activity(){ //falta incluir aquivos na lista de arquivos
+	activity *original = (activity*)malloc(sizeof(activity));
+
+    if(!original){
+		printf("\nError");
+	    exit(1);
+	}
+
 	char fileBaseName[N];
 	char inputFile1[N], outputFile[N], inputFile2[N], inputFile[N];
 	char command[N] = "";
@@ -32,17 +39,18 @@ activity *define_activity(activity *original){ //falta incluir aquivos na lista 
 		    strcat(command, ".fa ");
 		    strcat(command, outputFile);
 
-		    printf("\n:::::: COMANDO 1 :::::: \n%s \n", command);
-   			printf("::::::");
+		    printf("\n\t:::::: COMANDO 1 :::::: \n%s \n", command);
+   			printf("\t\t::::::");
+   			getchar();
    			getchar();
 			//system(command); descomentar
-/*
+
 			original->id = activityNumber;
 			strcpy(original->name, "nome");
 			strcpy(original->program_name, hisat);
 			strcpy(original->program_version, hisatversion);
 			strcpy(original->command_line,command);
-			*//*strcpy(original->start_date,);
+			/*strcpy(original->start_date,);
 			strcpy(original->start_hour,);
 			strcpy(original->end_date,);
 			strcpy(original->end_hour,);*/
@@ -245,7 +253,9 @@ activity *create_activity(){
 activity *insert_activity(activity *origin, experiment *originExp, machine *originMac){
 	activity *aux = origin;
     
-	activity *new = create_activity(new);
+	//activity *new = create_activity(); //trocar
+
+	activity *new = define_activity(); 
 	if(!existsExperimentId(new->experiment_id, originExp)){
 		printf("\nError: There is no experiment with this number");
 		return origin;
