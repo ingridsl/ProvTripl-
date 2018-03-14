@@ -44,12 +44,8 @@ agent *insert_agent(agent *origin, activity *originAct){
 	    new->next = NULL;
 	    return new;
 	}
-	while(aux->next!=NULL){
-		aux = aux->next;
-	}
-	aux->next = new;
-	new->next = NULL;
-	return origin;
+	new->next = aux;
+	return new;
 }
 
 void freedom_agent(agent *origin){

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "documents.h"
+#include "agent.h"
 
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal){
 	bson_t   *provider, cluster, machine;
@@ -92,7 +93,7 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
     * Print the document as a JSON string.
     */
 	provider_str = bson_as_json (provider, NULL);
-	printf ("%s\n", provider_str);
+	printf ("\n\t%s\n\n", provider_str);
 	bson_free (provider_str);
    /*
     * Clean up allocated bson documents.
@@ -102,10 +103,14 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 
 
 
-bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal){
+bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal){
+
+	agent *agents = NULL;
+
 	bson_t   *project, experiment, agent;
 	char     *project_str;
 	bson_oid_t oid;
+	int answer = 0;
 
 	bson_oid_init (&oid, NULL);
 	project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
@@ -130,9 +135,6 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 
 	char str_act_execution_status[15];
 	sprintf(str_act_execution_status, "%d", actOriginal->execution_status);
-
-	char str_age_id[15];
-	sprintf(str_age_id, "%d", ageOriginal->id);
 
 	project = BCON_NEW (
       "id", str_pro_id,
@@ -176,28 +178,45 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
 		BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
 		BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);*/
+		agents = NULL;
 
+		while(answer!=2){
+			printf("\n\nDo you wish to add one agent to activity that has the command line:\n\t %s? (1-yes / 2 - no) : ", actOriginal->command_line);
+			scanf("%d", &answer);
+			printf("%d", answer);
+			if(answer == 2){
+				break;
+			}
+			else{
+				agents = insert_agent(agents, actOriginal);
 
-		BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
-		BSON_APPEND_UTF8 (&agent, "id", str_age_id);
-		BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
-		BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
-		BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
-		BSON_APPEND_UTF8 (&agent, "position", ageOriginal->position);
-		BSON_APPEND_UTF8 (&agent, "role", ageOriginal->role);
-		BSON_APPEND_UTF8 (&agent, "annotation", ageOriginal->annotation);
-		bson_append_document_end(&activity, &agent);
-		bson_append_document_end(&experiment, &activity);
+				char str_age_id[15];
+				sprintf(str_age_id, "%d", agents->id);
+
+				BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
+				BSON_APPEND_UTF8 (&agent, "id", str_age_id);
+				BSON_APPEND_UTF8 (&agent, "name", agents->name);
+				BSON_APPEND_UTF8 (&agent, "login", agents->login);
+				BSON_APPEND_UTF8 (&agent, "instituition", agents->instituition);
+				BSON_APPEND_UTF8 (&agent, "position", agents->position);
+				BSON_APPEND_UTF8 (&agent, "role", agents->role);
+				BSON_APPEND_UTF8 (&agent, "annotation", agents->annotation);
+				bson_append_document_end(&activity, &agent);
+			}
+		}
 		actOriginal = actOriginal->next;
+		bson_append_document_end(&experiment, &activity);
+		answer = 0;
+
+ 		freedom_agent(agents);
 	}
 	//até aqui
 	bson_append_document_end(project, &experiment);
    /*
-    * Print the document as a JSO
-    N string.
+    * Print the document as a JSON string.
     */
 	project_str = bson_as_json (project, NULL);
-	printf ("%s\n", project_str);
+	printf ("\n\t%s\n\n", project_str);
 	bson_free (project_str);
    /*
     * Clean up allocated bson documents.

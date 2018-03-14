@@ -47,10 +47,9 @@ int main (){
   }
   //insert_activity(activitys);
 
-  agent *agents = NULL;
-  agents = insert_agent(agents, activitys);
+ 
 
-  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);
+  CreateDatabase(providers, clusters, machines, projects, experiments, activitys);
   //montar documento arquivo
 
   //limpeza
@@ -60,7 +59,6 @@ int main (){
   freedom_project(projects);
   freedom_experiment(experiments);
   freedom_activity(activitys);
-  freedom_agent(agents);
 
   //freedom_activity(activitys);
 
