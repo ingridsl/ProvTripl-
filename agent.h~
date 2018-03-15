@@ -22,7 +22,7 @@ typedef struct agent{
 }agent;
 
 agent *create_agent();
-agent *insert_agent(agent *origin);
+agent *insert_agent(agent *origin, activity *originAct);
 void freedom_agent(agent *origin);
 bool existsActivityId(int expIdAct, activity *originAct);
 

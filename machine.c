@@ -33,9 +33,9 @@ machine *create_machine(){
 	scanf("%ld", &new->ip);
 	printf("Type machine's type: ");
 	scanf("%s", new->type);
-	printf("Getting machine's operational system: ");
-	strcpy(new->operational_system,operational_system);
-	printf("Type machine's cpu: ");
+	printf("\nGetting machine's operational system: ");
+	strcpy(new->operational_system, operational_system);
+	printf("\nType machine's cpu: ");
 	scanf("%d", &new->cpu);
 	printf("Type machine's ram memory: ");
 	scanf("%d", &new->ram_memory);

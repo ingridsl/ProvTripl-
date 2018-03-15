@@ -103,7 +103,7 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 
 
 
-bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal){
+bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal){
 
 	agent *agents = NULL;
 
@@ -160,6 +160,10 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 	BSON_APPEND_UTF8 (&experiment, "execution_time", str_exp_execution_time);
 	BSON_APPEND_UTF8 (&experiment, "execution_cost", str_exp_execution_cost);
 
+
+	char str_age_id[15];
+	sprintf(str_age_id, "%d", ageOriginal->id);
+
 		//comandos daqui
 	while(actOriginal->next !=NULL){
 		bson_t activity;
@@ -178,32 +182,18 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
 		BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
 		BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);*/
-		agents = NULL;
 
-		while(answer!=2){
-			printf("\n\nDo you wish to add one agent to activity that has the command line:\n\t %s? (1-yes / 2 - no) : ", actOriginal->command_line);
-			scanf("%d", &answer);
-			printf("%d", answer);
-			if(answer == 2){
-				break;
-			}
-			else{
-				agents = insert_agent(agents, actOriginal);
-
-				char str_age_id[15];
-				sprintf(str_age_id, "%d", agents->id);
-
-				BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
-				BSON_APPEND_UTF8 (&agent, "id", str_age_id);
-				BSON_APPEND_UTF8 (&agent, "name", agents->name);
-				BSON_APPEND_UTF8 (&agent, "login", agents->login);
-				BSON_APPEND_UTF8 (&agent, "instituition", agents->instituition);
-				BSON_APPEND_UTF8 (&agent, "position", agents->position);
-				BSON_APPEND_UTF8 (&agent, "role", agents->role);
-				BSON_APPEND_UTF8 (&agent, "annotation", agents->annotation);
-				bson_append_document_end(&activity, &agent);
-			}
-		}
+		BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
+		BSON_APPEND_UTF8 (&agent, "id", str_age_id);
+		BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
+		BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
+		BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
+		BSON_APPEND_UTF8 (&agent, "position", ageOriginal->position);
+		BSON_APPEND_UTF8 (&agent, "role", ageOriginal->role);
+		BSON_APPEND_UTF8 (&agent, "annotation", ageOriginal->annotation);
+		bson_append_document_end(&activity, &agent);
+		
+		
 		actOriginal = actOriginal->next;
 		bson_append_document_end(&experiment, &activity);
 		answer = 0;

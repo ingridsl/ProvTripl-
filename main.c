@@ -33,25 +33,23 @@ int main (){
   experiment *experiments = NULL;
   experiments = insert_experiment(experiments, projects);
 
+  agent *agents = NULL;
+  agents = insert_agent(agents);
 
+  dataFile *dataFiles = NULL;
   char fileBaseName[N];
-
-
-  printf("Write fasta file name: ");
-  scanf("%s", fileBaseName);
-  printf("\n%s", fileBaseName);
+ 
 
   activity *activitys = NULL;
   while(activityNumber < 7){
-    activitys = insert_activity(activitys, experiments, machines, &activityNumber, fileBaseName);
+    activitys = insert_activity(activitys, &(*dataFiles), &activityNumber, "22_20-21M");
   }
   //insert_activity(activitys);
 
  
 
-  CreateDatabase(providers, clusters, machines, projects, experiments, activitys);
-  //montar documento arquivo
-
+  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);
+  
   //limpeza
   freedom_provider(providers);
   freedom_cluster(clusters);
@@ -59,6 +57,7 @@ int main (){
   freedom_project(projects);
   freedom_experiment(experiments);
   freedom_activity(activitys);
+  freedom_dataFile(dataFiles);
 
   //freedom_activity(activitys);
 

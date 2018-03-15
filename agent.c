@@ -25,22 +25,20 @@ agent *create_agent(){
 	scanf("%s", new->position);
 	printf("Type agent's annotation: ");
 	scanf("%s", new->annotation);
-	printf("Type machine's activity id: "); //checar se existe
-	scanf("%d", &new->activity_id);
+	printf("scanf(, new->annotation);");
 	return new;
 }
 
 
-agent *insert_agent(agent *origin, activity *originAct){
+agent *insert_agent(agent *origin){
 	agent *aux = origin;
     
 	agent *new = create_agent();
-	if(!existsActivityId(new->activity_id, originAct)){
+	/*if(!existsActivityId(new->activity_id, originAct)){
 		printf("\nError: There is no Activity with this id");
 		return origin;
-	}
+	}*/
 	if(aux==NULL){
-	    aux = new;
 	    new->next = NULL;
 	    return new;
 	}

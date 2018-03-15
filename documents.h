@@ -15,6 +15,6 @@
 #include "agent.h"
 
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal);
-bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal);
+bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal);
 
 #endif

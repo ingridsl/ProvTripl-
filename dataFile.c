@@ -5,7 +5,7 @@
 
 #include "dataFile.h"
 #include "machine.h"
-dataFile *create_dataFile(){
+dataFile *create_dataFile(char file_name[N]){
 	dataFile *new = (dataFile*)malloc(sizeof(dataFile));
 
     if(!new){
@@ -15,8 +15,8 @@ dataFile *create_dataFile(){
 
 	printf("Type Data File's id: ");
 	scanf("%d", &new->id);
-	printf("Type Data File's name: ");
-	scanf("%s", new->name);
+	//printf("Type Data File's name: ");
+	strcpy(new->name, file_name);
 	printf("Type Data File's description: ");
 	scanf("%s", new->description);
 	printf("Type Data File's localization: ");
@@ -40,14 +40,13 @@ dataFile *create_dataFile(){
 }
 
 
-dataFile *insert_dataFile(dataFile *origin, machine *originMac){
+dataFile *insert_dataFile(dataFile *origin, char file_name[N]){
 	dataFile *aux = origin;
-    
-	dataFile *new = create_dataFile();
-	if(!existsMachineIdForFile(new->machine_id, originMac)){
+	dataFile *new = create_dataFile(file_name);
+	/*if(!existsMachineIdForFile(new->machine_id, originMac)){
 		printf("\nError: There is no machine with this number");
 		return origin;
-	}
+	}*/
 	if(aux==NULL){
 	    aux = new;
 	    new->next = NULL;
@@ -66,6 +65,7 @@ void freedom_dataFile(dataFile *origin){
 
     while(aux1!=NULL){
     	dataFile *aux2 = aux1->next;
+    	printf("\n\n>>datafile: %s\n", aux1->name);
         free(aux1);
         aux1 = aux2;
     }
