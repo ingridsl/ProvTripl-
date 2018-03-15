@@ -62,10 +62,8 @@ dataFile *insert_dataFile(dataFile *origin, char file_name[N]){
 
 void freedom_dataFile(dataFile *origin){
     dataFile *aux1 = origin;
-
     while(aux1!=NULL){
     	dataFile *aux2 = aux1->next;
-    	printf("\n\n>>datafile: %s\n", aux1->name);
         free(aux1);
         aux1 = aux2;
     }

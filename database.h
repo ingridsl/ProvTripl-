@@ -13,10 +13,11 @@
 #include "experiment.h"
 #include "activity.h"
 #include "agent.h"
+#include "dataFile.h"
 
 #define N 300
 
-void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal);
+void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal);
 
 void CleanDatabase(mongoc_client_t *client,
                 mongoc_database_t *database,

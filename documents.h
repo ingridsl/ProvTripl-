@@ -16,5 +16,6 @@
 
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal);
 bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal);
+bson_t   *DATA_DOC(dataFile *dataOriginal);
 
 #endif

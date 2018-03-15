@@ -42,13 +42,22 @@ int main (){
 
   activity *activitys = NULL;
   while(activityNumber < 7){
-    activitys = insert_activity(activitys, &(*dataFiles), &activityNumber, "22_20-21M");
+    activitys = insert_activity(activitys, &activityNumber, "22_20-21M");
   }
   //insert_activity(activitys);
 
- 
-
-  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents);
+  dataFiles = insert_dataFile(dataFiles, "22_20-21M.fa");
+  dataFiles = insert_dataFile(dataFiles, "22_20-21M.hisat2.idx");
+  dataFiles = insert_dataFile(dataFiles, "file_1.fq");
+  dataFiles = insert_dataFile(dataFiles, "file_2.fq");
+  dataFiles = insert_dataFile(dataFiles, "file.sam");
+  dataFiles = insert_dataFile(dataFiles, "file.bam");
+  dataFiles = insert_dataFile(dataFiles, "file_sorted.sn");
+  dataFiles = insert_dataFile(dataFiles, "file_sorted.sn.sam");
+  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.88.gtf");
+  dataFiles = insert_dataFile(dataFiles, "file.count");
+  
+  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles);
   
   //limpeza
   freedom_provider(providers);

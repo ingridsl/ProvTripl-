@@ -11,7 +11,7 @@
 #include "cluster.h"
 #include "machine.h"
 
-void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal){
+void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal){
   
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
@@ -55,6 +55,11 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
 
    bson_t   *projectDoc = PROJECT_DOC(projOriginal, expOriginal, actOriginal, ageOriginal);
    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
+      fprintf (stderr, "%s\n", error.message);
+   }
+
+   bson_t   *fileDoc = DATA_DOC(dataOriginal);
+   if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
   

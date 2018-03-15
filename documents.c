@@ -103,9 +103,8 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 
 
 
-bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal){
-
-	agent *agents = NULL;
+bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal){
+	activity *actOriginal = activitys;
 
 	bson_t   *project, experiment, agent;
 	char     *project_str;
@@ -197,8 +196,6 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		actOriginal = actOriginal->next;
 		bson_append_document_end(&experiment, &activity);
 		answer = 0;
-
- 		freedom_agent(agents);
 	}
 	//até aqui
 	bson_append_document_end(project, &experiment);
@@ -213,3 +210,47 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
     */
 	return project;
 }
+
+bson_t   *DATA_DOC(dataFile *dataOriginal){
+	bson_t   *dataFile;
+	char     *dataFile_str;
+	bson_oid_t oid;
+
+	bson_oid_init (&oid, NULL);
+	dataFile = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+	//cluster = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+
+	//falta machine
+	char str_data_id[15];
+	sprintf(str_data_id, "%d", dataOriginal->id);
+
+	char str_data_size[15];
+	sprintf(str_data_size, "%d", dataOriginal->size);
+
+	char str_data_machine_id[15];
+	sprintf(str_data_machine_id, "%d", dataOriginal->machine_id);
+
+	dataFile = BCON_NEW (
+      "id", str_data_id,
+      "name", dataOriginal->name,
+      "description", dataOriginal->description,
+      "localization", dataOriginal->localization,
+      "annotation", dataOriginal->annotation,
+      "size", str_data_size,
+      "insertion_date",dataOriginal->insertion_date,
+      "machine_id", str_data_machine_id,
+      "type", dataOriginal->type
+      //"file", "file"
+     );
+   /*
+    * Print the document as a JSON string.
+    */
+	dataFile_str = bson_as_json (dataFile, NULL);
+	printf ("\n\t%s\n\n", dataFile_str);
+	bson_free (dataFile_str);
+   /*
+    * Clean up allocated bson documents.
+    */
+	return dataFile;
+}
+

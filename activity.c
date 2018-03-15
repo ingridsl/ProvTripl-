@@ -6,7 +6,7 @@
 
 files *used_files = NULL;
 
-activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFiles){ //falta incluir aquivos na lista de arquivos
+activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta incluir aquivos na lista de arquivos
 	activity *original = (activity*)malloc(sizeof(activity));
     if(!original){
 		printf("\nError");
@@ -20,11 +20,9 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 			strcpy(command, " ");
 			strcpy(inputFile, fileBaseName);
 		   	strcpy(outputFile, fileBaseName);
-		   	printf("insert datafile");
-		   	strcat(inputFile, ".fa"); //22_20-21M.fasta
-		   	(dataFiles) = insert_dataFile(dataFiles, inputFile);
+		   	printf("insertd");
+		   	strcat(inputFile, ".fa");
 		   	strcat(outputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
-		   	(dataFiles) = insert_dataFile(dataFiles, outputFile);
 
 			strcpy(command, "hisat2-build -p 30 ");
 		    strcat(command, fileBaseName);
@@ -267,11 +265,11 @@ activity *create_activity(){
 }
 
 //insere o node
-activity *insert_activity(activity *origin, dataFile *dataFiles, int *activityNumber, char fileBaseName[N]){
+activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N]){
 	activity *aux = origin;
 	//activity *new = create_activity(); //trocar
 	
-	activity *new = define_activity(activityNumber, fileBaseName, dataFiles); 
+	activity *new = define_activity(activityNumber, fileBaseName); 
 	/*if(!existsExperimentId(new->experiment_id, originExp)){
 		printf("\nError: There is no experiment with this number");
 		return origin;
