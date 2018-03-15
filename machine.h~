@@ -34,7 +34,7 @@ typedef struct machine{
 	struct machine *next;
 }machine;
 
-machine *create_machine(dataFile *data);
+machine *create_machine(dataFiles *data);
 machine *insert_machine(machine *origin, dataFile *originDataFile);
 void freedom_machine(machine *origin);
 bool existsClusterId(int expIdClu, cluster *originClu);

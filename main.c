@@ -18,15 +18,6 @@ int main (){
   //mainMenu();
   //char file[N];
 
-  provider *providers = NULL;
-  providers = insert_provider(providers);
-
-  cluster *clusters = NULL;
-  clusters = insert_cluster(clusters, providers);
-
-  machine *machines = NULL;
-  machines = insert_machine(machines, clusters);
-
   project *projects = NULL;
   projects = insert_project(projects);
 
@@ -56,7 +47,16 @@ int main (){
   dataFiles = insert_dataFile(dataFiles, "file_sorted.sn.sam");
   dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.88.gtf");
   dataFiles = insert_dataFile(dataFiles, "file.count");
-  
+
+  provider *providers = NULL;
+  providers = insert_provider(providers);
+
+  cluster *clusters = NULL;
+  clusters = insert_cluster(clusters, providers);
+
+  machine *machines = NULL;
+  machines = insert_machine(machines, dataFiles);
+
   CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles);
   
   //limpeza

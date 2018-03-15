@@ -4,7 +4,6 @@
 #include <stdbool.h>
 
 #include "machine.h"
-//#include "cluster.h"
 
 #if defined(_WIN32) || defined(_WIN64)
         const char* operational_system = "Windows";
@@ -17,7 +16,7 @@
 #endif
 
 
-machine *create_machine(){
+machine *create_machine(dataFile *data){
 	machine *new = (machine*)malloc(sizeof(machine));
 
     if(!new){
@@ -47,7 +46,6 @@ machine *create_machine(){
 	scanf("%ld", &new->price);
 	printf("Type machine's price type: "); 
 	scanf("%ld", &new->price_type);
-
 	//Localization
 	printf("Type machine's localization id: "); 
 	scanf("%d", &new->localization_id);
@@ -56,20 +54,16 @@ machine *create_machine(){
 	printf("Type machine's localization zone: ");
 	scanf("%s", new->localization_zone);
 
-	printf("Type machine's cluster id: "); //checar se existe
-	scanf("%d", &new->cluster_id);
+	new->dataFiles = data;
+
 	return new;
 }
 
 
-machine *insert_machine(machine *origin, cluster *originClu){
+machine *insert_machine(machine *origin, dataFile *originDataFile){
 	machine *aux = origin;
     
-	machine *new = create_machine(new);
-	if(!existsClusterId(new->cluster_id, originClu)){
-		printf("\nError: There is no Cluster with this id");
-		return origin;
-	}
+	machine *new = create_machine(originDataFile);
 	if(aux==NULL){
 	    aux = new;
 	    new->next = NULL;

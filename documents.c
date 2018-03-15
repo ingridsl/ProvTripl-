@@ -5,10 +5,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "documents.h"
+#include "dataFile.h"
+#include "machine.h"
 #include "agent.h"
 
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal){
-	bson_t   *provider, cluster, machine;
+	dataFile *aux = macOriginal->dataFiles;
+	bson_t   *provider, cluster, machine, dataFiles;
 	char     *provider_str;
 	bson_oid_t oid;
 
@@ -86,6 +89,22 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 	BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
 	BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
 	BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
+	char str_mac_dataFiles_id[36];
+	uint32_t    i;
+    char        buf[16];
+    const       char *key;
+    size_t      keylen;
+	BSON_APPEND_ARRAY_BEGIN(&machine, "data_file_id", &dataFiles);
+	while(aux != NULL){
+		sprintf(str_mac_dataFiles_id, "%d", aux->id);
+     	keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
+      	bson_append_utf8 (&dataFiles, key, (int) keylen, str_mac_dataFiles_id, -1);
+
+      	i++;
+		aux = aux->next;
+	}
+
+	bson_append_array_end(&machine, &dataFiles);
 	bson_append_document_end(&cluster, &machine);
 
 	bson_append_document_end(provider, &cluster);

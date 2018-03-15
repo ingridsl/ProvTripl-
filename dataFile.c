@@ -68,14 +68,3 @@ void freedom_dataFile(dataFile *origin){
         aux1 = aux2;
     }
 }
-
-bool existsMachineIdForFile(int expIdMac, machine *originMac){
- 	machine *aux = originMac;
-    while(aux!=NULL){
-    	if(expIdMac == aux->id)
-    		return true;
-       	aux = aux->next;
-    }
-
-return false;
-}
