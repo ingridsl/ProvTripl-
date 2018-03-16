@@ -34,10 +34,6 @@ agent *insert_agent(agent *origin){
 	agent *aux = origin;
     
 	agent *new = create_agent();
-	/*if(!existsActivityId(new->activity_id, originAct)){
-		printf("\nError: There is no Activity with this id");
-		return origin;
-	}*/
 	if(aux==NULL){
 	    new->next = NULL;
 	    return new;

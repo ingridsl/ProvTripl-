@@ -47,10 +47,6 @@ experiment *insert_experiment(experiment *origin, project *originPro){
 	experiment *aux = origin;
     
 	experiment *new = create_experiment(new);
-	if(!existsProjectId(new->project_id, originPro)){
-		printf("\nError: There is no project with this name");
-		return origin;
-	}
 	if(aux==NULL){
 	    aux = new;
 	    new->next = NULL;

@@ -32,10 +32,6 @@ cluster *insert_cluster(cluster *origin, provider *originPro){
 	cluster *aux = origin;
     
 	cluster *new = create_cluster(new);
-	if(!existsProviderId(new->provider_id, originPro)){
-		printf("\nError: There is no Provider with this id");
-		return origin;
-	}
 	if(aux==NULL){
 	    aux = new;
 	    new->next = NULL;

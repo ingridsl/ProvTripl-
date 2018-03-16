@@ -12,7 +12,7 @@
 #include "machine.h"
 
 void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal){
-  
+  dataFile *auxdata = dataOriginal;
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
    mongoc_database_t *database;
@@ -58,12 +58,14 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
       fprintf (stderr, "%s\n", error.message);
    }
 
-   bson_t   *fileDoc = DATA_DOC(dataOriginal);
-   if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
-      fprintf (stderr, "%s\n", error.message);
-   }
-  
+    bson_t   *fileDoc = DATA_DOC(auxdata);
+    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
+      printf (stderr, "%s\n", error.message);
+    }
+ 
    bson_destroy (providerDoc);
+   bson_destroy (projectDoc);
+   bson_destroy (fileDoc);
    mongoc_collection_destroy(collection);
    mongoc_client_destroy(client);
    mongoc_cleanup();
