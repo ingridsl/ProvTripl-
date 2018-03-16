@@ -68,3 +68,26 @@ void freedom_dataFile(dataFile *origin){
         aux1 = aux2;
     }
 }
+
+int Convert(char name[N], mongoc_collection_t  *collection, mongoc_database_t *database){
+  char comando[N];
+  if(access(name, F_OK)==-1){
+    return 0;
+  }
+
+  strcpy(comando, "tr ' ' \\\\t < ");
+  strcat(comando, name);
+  strcat(comando," > ");
+  strcat(comando, name);
+  strcat(comando,".tsv");
+
+  system(comando);  //DESCOMENTAR DEPOIS
+
+  strcpy(comando, " ");
+  strcat (comando, "mongoimport -d db_name -c coll_name --type tsv --file ");
+  strcat(comando, name);
+  strcat(comando, ".tsv -f id --numInsertionWorkers 2");
+
+  system(comando);
+  return 1;
+}

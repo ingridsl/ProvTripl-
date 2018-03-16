@@ -60,9 +60,13 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
 
     bson_t   *fileDoc = DATA_DOC(auxdata);
     if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
-      printf (stderr, "%s\n", error.message);
+      fprintf (stderr, "%s\n", error.message);
     }
- 
+    
+    while(auxdata!=NULL){
+      Convert(auxdata->name, collection, database);
+      auxdata=auxdata->next;
+    } 
    bson_destroy (providerDoc);
    bson_destroy (projectDoc);
    bson_destroy (fileDoc);
