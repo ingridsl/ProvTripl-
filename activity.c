@@ -18,16 +18,13 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 	switch((*activityNumber)){
 		case 1: 
 			strcpy(command, " ");
-			strcpy(inputFile, fileBaseName);
-		   	strcpy(outputFile, fileBaseName);
-		   	printf("insertd");
+			strcpy(inputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.fa");
+		   	strcpy(outputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
+		   	//printf("insertd");
 		   	strcat(inputFile, ".fa");
 		   	strcat(outputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
 
-			strcpy(command, "hisat2-build -p 30 ");
-		    strcat(command, fileBaseName);
-		    strcat(command, ".fa ");
-		    strcat(command, outputFile);
+			strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.88.dna.chromosome.22.fa Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
 
 		    printf("\n\t:::::: COMANDO 1 :::::: \n%s \n", command);
    			printf("::::::");
@@ -52,21 +49,21 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 		case 2: 
 			strcpy(command, " ");
 
-			strcpy(inputFile, fileBaseName);
+			strcpy(inputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
 
-		   	strcat(inputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
-		   	strcpy(inputFile1, "file_1.fq"); //file_1.fq
-		   	strcpy(inputFile2, "file_2.fq"); //file_2.fq
-			strcpy(outputFile, "file.sam"); // file.sam
+		   	//strcat(inputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
+		   	strcpy(inputFile1, "SRR5181508_1.fastq"); //file_1.fq
+		   	//strcpy(inputFile2, "file_2.fq"); //file_2.fq
+			//strcpy(outputFile, "file.sam"); // file.sam
 
-			strcpy(command, "hisat2-build -p 30 -x ");
-		    strcat(command, inputFile);
+			strcpy(command, "hisat2-build -p 2 -x Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx -q SRR5181508_1.fastq -S file.sam");
+		    /*strcat(command, inputFile);
 		    strcat(command, " -1 ");
 		    strcat(command, inputFile1);
 		    strcat(command, " -2 ");
 		    strcat(command, inputFile2);
 		    strcat(command, " -S ");
-		    strcat(command, outputFile);
+		    strcat(command, outputFile);*/
 
 		    printf("\n:::::: COMANDO 2 :::::: \n%s \n", command);
    			printf("::::::");
