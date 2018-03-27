@@ -12,6 +12,7 @@
 #include "menu.h"
 #define N 300
 
+
 int activityNumber = 1;
 int main (){
 

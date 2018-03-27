@@ -423,16 +423,11 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
       "type", dataOriginal->type
       //"file", "file"
      );
-	dataFile_str = bson_as_json (dataFile, NULL);
-	printf ("\n\t%s\n\n", dataFile_str);
-	bson_free (dataFile_str);
-	while(auxData!=NULL){
-		result = Convert(auxData->name, collection, database);
-		printf("\n file: %s", auxData->name);
-		GetDocuments(database,collection);
+	
+	result = Convert(auxData->name, collection, database);
+	printf("\n file: %s", auxData->name);
+	GetDocuments(database,collection);
 
-	auxData = auxData->next;
-	}
 
 	aux = oidNumbers;
 	char str_id[36];
@@ -462,6 +457,9 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
    /*
     * Clean up allocated bson documents.
     */
+    dataFile_str = bson_as_json (dataFile, NULL);
+	printf ("\n\t%s\n\n", dataFile_str);
+	bson_free (dataFile_str);
 	return dataFile;
 }
 

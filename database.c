@@ -42,16 +42,22 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
    /*
     * Get a handle on the database "db_name" and collection "coll_name"
     */
+   bson_t   *fileDoc;
    printf("database \n");
    database = mongoc_client_get_database (client, "db_name");
    printf("collection \n");
    collection = mongoc_client_get_collection (client, "db_name", "collection");
+   dataFile *aux1 = auxdata;
+   
+   while(aux1!=NULL){
 
-    bson_t   *fileDoc = DATA_DOC(auxdata, database, collection);
-    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
-      fprintf (stderr, "%s\n", error.message);
-    }
+      fileDoc = DATA_DOC(aux1, database, collection);
+      if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
+        fprintf (stderr, "%s\n", error.message);
+      }
 
+      aux1=aux1->next;
+  }
    bson_t   *providerDoc = PROVIDER_DOC(provOriginal, cluOriginal, macOriginal);
    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
