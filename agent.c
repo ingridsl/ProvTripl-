@@ -13,19 +13,12 @@ agent *create_agent(){
 	    exit(1);
 	}
 
-	printf("Type agent's id: ");
-	scanf("%d", &new->id);
-	printf("Type agent's name: ");
-	scanf("%s", new->name);
-	printf("Type agent's login: ");
-	scanf("%s", new->login);
-	printf("Type agent's instituition: ");
-	scanf("%s", new->instituition);
-	printf("Type agent's position: ");
-	scanf("%s", new->position);
-	printf("Type agent's annotation: ");
-	scanf("%s", new->annotation);
-	printf("scanf(, new->annotation);");
+	new->id = 1;
+	strcpy(new->name, "Polyane Wercelens");
+	strcpy(new->login, "polyane.wercelens");
+	strcpy(new->instituition, "Universidade de Brasília");
+	strcpy(new->position, "Masters Degree student");
+	strcpy(new->annotation, "Data architect");
 	return new;
 }
 

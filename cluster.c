@@ -13,17 +13,10 @@ cluster *create_cluster(){
 	    exit(1);
 	}
 
-	printf("Type cluster's id: ");
-	scanf("%d", &new->id);
-	printf("Type cluster's name: ");
-	scanf("%s", new->name);
-	printf("Type cluster's number of machines: ");
-	scanf("%d", &new->number_machines);
-	printf("Type cluster's description: ");
-	scanf("%s", new->description);
-
-	printf("Type cluster's provider id: "); //checar se existe
-	scanf("%d", &new->provider_id);
+	new->id = 1;
+	strcpy(new->name,"ProvBio-BIBM");
+	new->number_machines = 1;
+	strcpy(new->description,"description here");
 	return new;
 }
 

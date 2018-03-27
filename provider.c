@@ -13,22 +13,15 @@ provider *create_provider(){
 	    exit(1);
 	}
 
-	printf("Type provider's id: ");
-	scanf("%d", &new->id);
-	printf("Type provider's name: ");
-	scanf("%s", new->name);
-	printf("Type provider's url: ");
-	scanf("%s", new->url);
-	printf("Type provider's description: ");
-	scanf("%s", new->description);
+	new->id = 1;
+	strcpy(new->name, "Google Cloud");
+	strcpy(new->url, "url");
+	strcpy(new->description, "description");
 	
 	//Localization
-	printf("Type machine's localization id: "); 
-	scanf("%d", &new->localization_id);
-	printf("Type machine's localization region: ");
-	scanf("%s", new->localization_region);
-	printf("Type machine's localization zone: ");
-	scanf("%s", new->localization_zone);
+	new->localization_id = 1;
+	strcpy(new->localization_region,"region");
+	strcpy(new->localization_zone, "zone");
 
 
 	return new;

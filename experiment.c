@@ -15,30 +15,21 @@ experiment *create_experiment(){
 	    exit(1);
 	}
 
-	printf("Type experiment's id: ");
-	scanf("%d", &new->id);
-	printf("Type experiment's name: ");
-	scanf("%s", new->name);
-	printf("Type experiment's description: ");
-	scanf("%s", new->description);
-	printf("Type experiment's local: ");
-	scanf("%s", new->local);
-	printf("Type experiment's start_date: ");
-	scanf("%s", new->start_date);
-	printf("Type experiment's end_date: ");
-	scanf("%s", new->end_date);
-	printf("Type experiment's annotation: ");
-	scanf("%s", new->annotation);
-	printf("Type experiment's version: ");
-	scanf("%d", &new->version);
-	printf("Type experiment's version date: ");
-	scanf("%s", new->version_date);
-	printf("Type experiment's project's id: "); // checar se existe
-	scanf("%d", &new->project_id);
-	printf("Type experiment's execution time: "); //deve ser calculado?
-	scanf("%f", &new->execution_cost);
-	printf("Type experiment's execution cost: "); //deve ser calculado?
-	scanf("%f", &new->execution_cost);
+	new->id = 1;
+	strcpy(new->name, "BIBM2017");
+	strcpy(new->description, "Workflow for mapping reads to a reference");
+	strcpy(new->local,"local");
+	strcpy(new->start_date, "2018-01-02");
+	strcpy(new->end_date, "2018-04-01");
+	strcpy(new->annotation, "annotation");
+	new->version = 1;
+	strcpy(new->version_date, "2018-01-02");
+	//printf("Type experiment's project's id: "); // checar se existe
+	//scanf("%d", &new->project_id);
+	//printf("Type experiment's execution time: "); //deve ser calculado?
+	//scanf("%f", &new->execution_cost);
+	//printf("Type experiment's execution cost: "); //deve ser calculado?
+	//scanf("%f", &new->execution_cost);
 	return new;
 }
 

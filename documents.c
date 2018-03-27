@@ -9,6 +9,55 @@
 #include "machine.h"
 #include "agent.h"
 
+bool novo = false;
+oid *oidNumbers = NULL;
+
+oid *add_oid(oid *o, char new[N]){
+  oid *aux = o;
+	oid *aux2 = o;
+	while(aux2!=NULL){
+		if(strcmp(aux2->oid, new)==0){
+			//printf("\n\nIGUAIS ================= %s & %s", aux2->oid, new);
+			novo = false;
+			return o;
+		}
+		novo = true;
+		aux2 = aux2->next;
+	}
+	//printf("\n\nINCLUIDO ================= %s & %s ", aux2->oid, new);
+
+  oid *auxNew = (oid*)malloc(sizeof(oid));
+  if(!auxNew){
+    printf("\nError");
+    exit(1);
+  }
+	
+	auxNew->posto = false;
+  	strcpy(auxNew->oid, new);
+	/*if(renew){
+		//lastoid = auxNew;
+		printf("\n\nLASTOID ================= %s & %s ", auxNew->oid, lastoid->oid);
+		getchar();
+	}*/
+
+	if(aux==NULL){
+	    auxNew->next = NULL;
+	    return auxNew;
+	}
+	auxNew->next = aux;
+	return auxNew;
+}
+
+void freedomOid(){
+    oid *aux1 = oidNumbers;
+    printf("\n\nWORDS:");
+    while(aux1!=NULL){
+        printf("\n %s", aux1->oid);
+        free(aux1);
+        aux1 = aux1->next;
+    }
+}
+
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal){
 	dataFile *aux = macOriginal->dataFiles;
 	bson_t   *provider, cluster, machine, dataFiles;
@@ -124,8 +173,13 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 
 bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal){
 	activity *actOriginal = activitys;
+	const char* command1[] = {"1","2"};
+	const char* command2[] = {"2","3","4"};
+	const char* command3[] = {"4","5"};
+	const char* command4[] = {"5","6"};
+	const char* command5[] = {"6","7", "8"};
 
-	bson_t   *project, experiment, agent;
+	bson_t   *project, experiment, agent, child;
 	char     *project_str;
 	bson_oid_t oid;
 	int answer = 0;
@@ -200,7 +254,52 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
 		BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
 		BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);*/
+		// USED FILES
+		char str_mac_dataFiles_id[36];
+		uint32_t    i;
+    	char        buf[16];
+    	const       char *key;
+    	size_t      keylen;
 
+		BSON_APPEND_ARRAY_BEGIN(&activity, "files", &child);
+		if(actOriginal->id == 1){
+			for(i = 0; i< sizeof command1 /sizeof(char *); ++i){
+				keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+				bson_append_utf8(&child, key, (int) keylen, command1[i], -1);
+
+			}
+		}
+		if(actOriginal->id == 2){
+			for(i = 0; i< sizeof command2 /sizeof(char *); ++i){
+				keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+				bson_append_utf8(&child, key, (int) keylen, command2[i], -1);
+
+			}
+		}
+		if(actOriginal->id == 3){
+			for(i = 0; i< sizeof command3 /sizeof(char *); ++i){
+				keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+				bson_append_utf8(&child, key, (int) keylen, command3[i], -1);
+
+			}
+		}
+		if(actOriginal->id == 4){
+			for(i = 0; i< sizeof command4 /sizeof(char *); ++i){
+				keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+				bson_append_utf8(&child, key, (int) keylen, command4[i], -1);
+
+			}
+		}
+		if(actOriginal->id == 5){
+			for(i = 0; i< sizeof command5 /sizeof(char *); ++i){
+				keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+				bson_append_utf8(&child, key, (int) keylen, command5[i], -1);
+
+			}
+		}
+
+		bson_append_array_end(&activity, &child);
+		// END USED FILES
 		BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
 		BSON_APPEND_UTF8 (&agent, "id", str_age_id);
 		BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
@@ -229,9 +328,72 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
     */
 	return project;
 }
+int Convert(char fileName[N], mongoc_collection_t  *collection, mongoc_database_t    *database){
+  char comando[N];
+  char name[N], extensao[7];
+  strcpy(name, fileName);
+  int i = 1;
+  while(i<9){
+  		printf("\n\n i> %d", i);
+	  if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
+	  	strcpy(name, fileName);
+		sprintf(extensao, ".%d.ht2", i);
+		strcat(name, extensao);
+		i++;
+		printf("\n \n file name: %s", name);
+	  }else{
+	  	i=9;
+	  }
 
-bson_t   *DATA_DOC(dataFile *dataOriginal){
-	bson_t   *dataFile;
+	  /*if(access(name, F_OK)==-1){
+	    return 0;
+	  }*/
+
+	  strcpy(comando, "tr ' ' \\\\t < ");
+	  strcat(comando, name);
+	  strcat(comando," > ");
+	  strcat(comando, name);
+	  strcat(comando,".tsv");
+
+	  system(comando);  //DESCOMENTAR DEPOIS
+
+	  strcpy(comando, " ");
+	  strcat (comando, "mongoimport -d db_name -c coll_name --type tsv --file ");
+	  strcat(comando, name);
+	  strcat(comando, ".tsv -f id --numInsertionWorkers 2");
+
+	  system(comando);
+	}
+  return 1;
+}
+void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
+	const bson_t *doc;
+	bson_t *query;
+	char *str, partial[30];
+	mongoc_cursor_t *cursor;
+
+	query = bson_new ();
+	printf("\nquery");
+   	cursor = mongoc_collection_find_with_opts (collection, query, NULL, NULL);
+   	while (mongoc_cursor_next (cursor, &doc)) {
+		//printf(">> loop 0.2");
+      		str = bson_as_json (doc, NULL);
+      		//printf ("\n\n%s\n", str);
+   		strncpy(partial, str + 22, 24);
+      		//printf ("\n\npartial = %s\n", partial);
+		oidNumbers = add_oid(oidNumbers,partial);
+      		bson_free (str);
+		strcpy(partial," ");
+   	}
+	printf("\n>> loop 0.3");
+}
+
+
+bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection){
+	dataFile *auxData = dataOriginal;
+	oid *aux = oidNumbers;
+	int result = 0;
+	bson_t   *dataFile, dataFiles;
 	char     *dataFile_str;
 	bson_oid_t oid;
 
@@ -261,12 +423,42 @@ bson_t   *DATA_DOC(dataFile *dataOriginal){
       "type", dataOriginal->type
       //"file", "file"
      );
-   /*
-    * Print the document as a JSON string.
-    */
 	dataFile_str = bson_as_json (dataFile, NULL);
 	printf ("\n\t%s\n\n", dataFile_str);
 	bson_free (dataFile_str);
+	while(auxData!=NULL){
+		result = Convert(auxData->name, collection, database);
+		printf("\n file: %s", auxData->name);
+		GetDocuments(database,collection);
+
+	auxData = auxData->next;
+	}
+
+	aux = oidNumbers;
+	char str_id[36];
+	uint32_t    i;
+    char        buf[16];
+    const       char *key;
+	size_t keylen;
+	BSON_APPEND_ARRAY_BEGIN(dataFile, "data_file_id", &dataFiles);
+	while(aux != NULL){
+		aux = oidNumbers;
+		if(!aux->posto){
+			sprintf(str_id, "%s", aux->oid);
+			printf("\n%s\n", aux->oid);
+			aux->posto = true;
+	     		keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
+	      		bson_append_utf8 (&dataFiles, key, (int) keylen, str_id, -1);
+	      		i++;
+		}
+		aux = aux->next;
+	}
+
+	bson_append_array_end(dataFile, &dataFiles);
+   /*
+    * Print the document as a JSON string.
+    */
+	
    /*
     * Clean up allocated bson documents.
     */

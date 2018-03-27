@@ -24,35 +24,21 @@ machine *create_machine(dataFile *data){
 	    exit(1);
 	}
 
-	printf("Type machine's id: ");
-	scanf("%d", &new->id);
-	printf("Type machine's hostname: ");
-	scanf("%s", new->hostname);
-	printf("Type machine's ip: ");
-	scanf("%ld", &new->ip);
-	printf("Type machine's type: ");
-	scanf("%s", new->type);
-	printf("\nGetting machine's operational system: ");
+	new->id = 1;
+	strcpy(new->hostname, "hostname");
+	new->ip = 0;
+	strcpy( new->type, "type");
 	strcpy(new->operational_system, operational_system);
-	printf("\nType machine's cpu: ");
-	scanf("%d", &new->cpu);
-	printf("Type machine's ram memory: ");
-	scanf("%d", &new->ram_memory);
-	printf("Type machine's disk: ");
-	scanf("%ld", &new->disk);
-	printf("Type machine's disk type: "); 
-	scanf("%s", new->disk_type);
-	printf("Type machine's price: "); 
-	scanf("%ld", &new->price);
-	printf("Type machine's price type: "); 
-	scanf("%ld", &new->price_type);
+	new->cpu = 1;
+	new->ram_memory = 2;
+	new->disk = 1;
+	strcpy(new->disk_type, "disk type");
+	new->price = 0;
+	new->price_type = 0;
 	//Localization
-	printf("Type machine's localization id: "); 
-	scanf("%d", &new->localization_id);
-	printf("Type machine's localization region: ");
-	scanf("%s", new->localization_region);
-	printf("Type machine's localization zone: ");
-	scanf("%s", new->localization_zone);
+	new->localization_id = 1;
+	strcpy(new->localization_region, "region");
+	strcpy(new->localization_zone, "zone");
 
 	new->dataFiles = data;
 

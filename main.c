@@ -33,20 +33,18 @@ int main (){
 
   activity *activitys = NULL;
   while(activityNumber < 7){
-    activitys = insert_activity(activitys, &activityNumber, "22_20-21M");
+    activitys = insert_activity(activitys, &activityNumber, "Homo_sapiens.GRCh38.dna.chromosome.22");
   }
   //insert_activity(activitys);
 
-  dataFiles = insert_dataFile(dataFiles, "22_20-21M.fa");
-  dataFiles = insert_dataFile(dataFiles, "22_20-21M.hisat2.idx");
-  dataFiles = insert_dataFile(dataFiles, "file_1.fq");
-  dataFiles = insert_dataFile(dataFiles, "file_2.fq");
-  dataFiles = insert_dataFile(dataFiles, "file.sam");
-  dataFiles = insert_dataFile(dataFiles, "file.bam");
-  dataFiles = insert_dataFile(dataFiles, "file_sorted.sn");
-  dataFiles = insert_dataFile(dataFiles, "file_sorted.sn.sam");
-  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.88.gtf");
-  dataFiles = insert_dataFile(dataFiles, "file.count");
+  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.fa"); //1
+  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"); //2
+  dataFiles = insert_dataFile(dataFiles, "SRR5181508_1.fastq"); //3
+  dataFiles = insert_dataFile(dataFiles, "file.sam"); //4
+  dataFiles = insert_dataFile(dataFiles, "file.bam"); //5
+  dataFiles = insert_dataFile(dataFiles, "file_sorted.sn.bam"); //6
+  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.88.gtf"); //7
+  dataFiles = insert_dataFile(dataFiles, "file.count"); //8
 
   provider *providers = NULL;
   providers = insert_provider(providers);
@@ -60,13 +58,15 @@ int main (){
   CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles);
   
   //limpeza
+
+  
   freedom_provider(providers);
   freedom_cluster(clusters);
   freedom_machine(machines);
   freedom_project(projects);
   freedom_experiment(experiments);
   freedom_activity(activitys);
-  freedom_dataFile(dataFiles);
+  //freedom_dataFile(dataFiles);
 
   //freedom_activity(activitys);
 

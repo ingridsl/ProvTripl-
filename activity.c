@@ -8,6 +8,9 @@ files *used_files = NULL;
 
 activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta incluir aquivos na lista de arquivos
 	activity *original = (activity*)malloc(sizeof(activity));
+	
+   	time_t t;
+	struct tm tm;
     if(!original){
 		printf("\nError");
 	    exit(1);
@@ -24,13 +27,26 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 		   	strcat(inputFile, ".fa");
 		   	strcat(outputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
 
-			strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.88.dna.chromosome.22.fa Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
+			strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
 
 		    printf("\n\t:::::: COMANDO 1 :::::: \n%s \n", command);
    			printf("::::::");
-   			getchar();
-   			getchar();
-			//system(command); descomentar
+
+   			// GET TIME
+   			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+			system(command);
+
+			//GET TIME
+			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->end_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->end_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 			original->id = *activityNumber;
 			printf("\n\n %d", original->id);
@@ -56,7 +72,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 		   	//strcpy(inputFile2, "file_2.fq"); //file_2.fq
 			//strcpy(outputFile, "file.sam"); // file.sam
 
-			strcpy(command, "hisat2-build -p 2 -x Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx -q SRR5181508_1.fastq -S file.sam");
+			strcpy(command, "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_1.fastq -S file.sam");
 		    /*strcat(command, inputFile);
 		    strcat(command, " -1 ");
 		    strcat(command, inputFile1);
@@ -67,12 +83,27 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 		    printf("\n:::::: COMANDO 2 :::::: \n%s \n", command);
    			printf("::::::");
-   			getchar();
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
 			strcpy(original->program_name, hisat);
 			strcpy(original->program_version, hisatversion);
 			strcpy(original->command_line,command);
+
+			// GET TIME
+   			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+			system(command);
+
+			//GET TIME
+			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->end_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->end_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 			/*original->id = activityNumber;
 			strcpy(original->name);
@@ -99,7 +130,21 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 		    printf("\n:::::: COMANDO 3 :::::: \n%s \n", command);
    			printf("::::::");
-   			getchar();
+			// GET TIME
+   			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+			system(command);
+
+			//GET TIME
+			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->end_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->end_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
@@ -130,7 +175,21 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 		    printf("\n:::::: COMANDO 4 :::::: \n%s \n", command);
    			printf("::::::");
-   			getchar();
+			// GET TIME
+   			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+			system(command);
+
+			//GET TIME
+			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->end_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->end_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
@@ -149,56 +208,36 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			original->execution_status;*/
 			(*activityNumber)++;
 			break;
-		case 5: 
+			case 5: 
 
-			strcpy(inputFile, fileBaseName);
-		   	strcpy(outputFile, fileBaseName);
-
-		   	strcpy(inputFile, "file_sorted.sn.sam");
-		   	strcpy(outputFile, "file.bam");
-
-			strcpy(command, "samtools view -h -o ");
-		    strcat(command, inputFile);
-		    strcat(command, " ");
-		    strcat(command, outputFile);
-
-		    printf("\n:::::: COMANDO 5 :::::: \n%s \n", command);
-   			printf("::::::");
-   			getchar();
-
-			original->id = *activityNumber;
-			strcpy(original->name, "nome");
-			strcpy(original->program_name, hisat);
-			strcpy(original->program_version, hisatversion);
-			strcpy(original->command_line,command);
-			/*original->id = activityNumber;
-			strcpy(original->name);
-			original->program_name[N];
-			original->program_version;
-			original->command_line[N];
-			original->start_date[N];
-			original->start_hour[N];
-			original->end_date[N];
-			original->end_hour[N];
-			original->execution_status;*/
-			(*activityNumber)++;
-			break;
-		case 6: 
-
-			strcpy(inputFile1, "file_sorted.sn.sam");
+			strcpy(inputFile1, "file_sorted.sn.bam");
 			strcpy(inputFile2, "Homo_sapiens.GRCh38.88.gtf");
-		   	strcpy(outputFile, "subset.counts");
+		   	strcpy(outputFile, "file.count");
 
-			strcpy(command, "htseq-count -m intersection-nonempty -s no ");
+			strcpy(command, "htseq-count -m intersection-nonempty -s no -a 10 ");
 		    strcat(command, inputFile1);
 		    strcat(command, " ");
 		    strcat(command, inputFile2);
-		    strcat(command, " > ");
+		    strcat(command, " -o ");
 			strcat(command, outputFile);
 
-		    printf("\n:::::: COMANDO 6 :::::: \n%s \n", command);
+		    printf("\n:::::: COMANDO 5 :::::: \n%s \n", command);
    			printf("::::::");
-   			getchar();
+			// GET TIME
+   			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+			system(command);
+
+			//GET TIME
+			t = time(NULL);
+			tm = *localtime(&t);
+			printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+			sprintf(original->end_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+			sprintf(original->end_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");

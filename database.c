@@ -47,7 +47,11 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
    printf("collection \n");
    collection = mongoc_client_get_collection (client, "db_name", "collection");
 
-/*
+    bson_t   *fileDoc = DATA_DOC(auxdata, database, collection);
+    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
+      fprintf (stderr, "%s\n", error.message);
+    }
+
    bson_t   *providerDoc = PROVIDER_DOC(provOriginal, cluOriginal, macOriginal);
    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
@@ -56,17 +60,9 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
    bson_t   *projectDoc = PROJECT_DOC(projOriginal, expOriginal, actOriginal, ageOriginal);
    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
-   }*/
+   }
 
-   /* bson_t   *fileDoc = DATA_DOC(auxdata);
-    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
-      fprintf (stderr, "%s\n", error.message);
-    }*/
-    
-    while(auxdata!=NULL){
-      Convert(auxdata->name, collection, database);
-      auxdata=auxdata->next;
-    } 
+   
   // bson_destroy (providerDoc);
   // bson_destroy (projectDoc);
    //bson_destroy (fileDoc);

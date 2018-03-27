@@ -12,22 +12,14 @@ project *create_project(){
 	    exit(1);
 	}
 
-	printf("Type project's id: ");
-	scanf("%d", &new->id);
-	printf("Type project's name: ");
-	scanf("%s", new->name);
-	printf("Type project's description: ");
-	scanf("%s", new->description);
-	printf("Type project's institution funder: ");
-	scanf("%s", new->inst_funders);
-	printf("Type project's institution participants: ");
-	scanf("%s", new->inst_participants);
-	printf("Type project's coordinator: ");
-	scanf("%s", new->coordinator);
-	printf("Type project's start_date: ");
-	scanf("%s", new->start_date);
-	printf("Type project's end_date: ");
-	scanf("%s", new->end_date);
+	new->id = 1;
+	strcpy(new->name, "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment");
+	strcpy(new->description, "Cloud bioinformatics workflow provenance");
+	strcpy(new->inst_funders, "funders");
+	strcpy(new->inst_participants, "University of Brasilia");
+	strcpy(new->coordinator, "Maristela Holanda");
+	strcpy(new->start_date, "2018-01-02");
+	strcpy(new->end_date, "2018-04-01");
 	return new;
 }
 
