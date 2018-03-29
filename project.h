@@ -18,8 +18,11 @@ typedef struct project{
 	struct project *next;
 }project;
 
+//inicializa variaveis do projeto
 project *create_project();
+//insere nós na lista
 project *insert_project(project *origin);
+//libera memória
 void freedom_project(project *origin);
 
 #endif

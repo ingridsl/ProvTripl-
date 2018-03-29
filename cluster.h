@@ -21,10 +21,13 @@ typedef struct cluster{
 	
 	struct cluster *next;
 }cluster;
-
+//inicializa valores do cluster
 cluster *create_cluster();
+//insere nó na lista
 cluster *insert_cluster(cluster *origin, provider *originPro);
+//libera memória
 void freedom_cluster(cluster *origin);
+//não usado
 bool existsProviderId(int expIdPro, provider *originPro);
 
 #endif

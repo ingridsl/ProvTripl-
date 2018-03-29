@@ -20,10 +20,13 @@ typedef struct agent{
 	int activity_id; //checar se existe
 	struct agent *next;
 }agent;
-
+//inicializa valores dos agentes
 agent *create_agent();
+//insere nó na lista
 agent *insert_agent(agent *origin);
+//libera memoria
 void freedom_agent(agent *origin);
+//não usado
 bool existsActivityId(int expIdAct, activity *originAct);
 
 #endif

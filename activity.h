@@ -18,6 +18,9 @@
 #define samtoolsversion "1.4.4"
 #define samtools "samtools"
 
+#define sickleversion "1.33"
+#define sickle "sickle"
+
 typedef struct files{
   char file_name[N];
   struct files *next;

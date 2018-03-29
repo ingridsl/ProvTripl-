@@ -9,7 +9,6 @@
 #include "cluster.h"
 #include "machine.h"
 #include "database.h"
-#include "menu.h"
 #define N 300
 
 int activityNumber = 1;
@@ -25,10 +24,6 @@ int main (){
   tm = *localtime(&t);
   fprintf(log,"\nbegin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
       
-
-  //mainMenu();
-  //char file[N];
-
   project *projects = NULL;
   projects = insert_project(projects);
 
@@ -46,16 +41,16 @@ int main (){
   while(activityNumber < 7){
     activitys = insert_activity(activitys, &activityNumber, "Homo_sapiens.GRCh38.dna.chromosome.22");
   }
-  //insert_activity(activitys);
 
   dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.fa"); //1
   dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"); //2
-  dataFiles = insert_dataFile(dataFiles, "SRR5181508_1.fastq"); //3
+  dataFiles = insert_dataFile(dataFiles, "SRR5181508.fastq"); //3
   dataFiles = insert_dataFile(dataFiles, "file.sam"); //4
   dataFiles = insert_dataFile(dataFiles, "file.bam"); //5
   dataFiles = insert_dataFile(dataFiles, "file_sorted.sn.bam"); //6
   dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.88.gtf"); //7
   dataFiles = insert_dataFile(dataFiles, "file.count"); //8
+  dataFiles = insert_dataFile(dataFiles, "SRR5181508_FILTERED.fastq"); //9
 
   provider *providers = NULL;
   providers = insert_provider(providers);
@@ -79,12 +74,14 @@ int main (){
   freedom_activity(activitys);
   freedom_dataFile(dataFiles);
 
-  fclose(log);
+  
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nend: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
       
   fprintf(log," \t---- END OF EXECUTION ----");
+
+  fclose(log);
   
 
   printf("\n");

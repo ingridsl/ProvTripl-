@@ -14,11 +14,11 @@ agent *create_agent(){
 	}
 
 	new->id = 1;
-	strcpy(new->name, "Polyane Wercelens");
-	strcpy(new->login, "polyane.wercelens");
+	strcpy(new->name, "Ingrid Santana");
+	strcpy(new->login, "ingrid.santana");
 	strcpy(new->instituition, "Universidade de Brasília");
-	strcpy(new->position, "Masters Degree student");
-	strcpy(new->annotation, "Data architect");
+	strcpy(new->position, "Undergraduate student");
+	strcpy(new->annotation, "Systems Developer");
 	return new;
 }
 

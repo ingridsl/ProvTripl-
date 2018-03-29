@@ -15,9 +15,9 @@ oid *oidNumbers = NULL;
 oid *add_oid(oid *o, char new[N]){
   oid *aux = o;
 	oid *aux2 = o;
-	while(aux2!=NULL){
-		if(strcmp(aux2->oid, new)==0){
-			printf("\n\nIGUAIS ================= %s & %s", aux2->oid, new);
+	while(aux2!=NULL){ //impede que seja inserido um oid que já existe
+		if(strcmp(aux2->oid, new)>0){
+			//printf("\n\nIGUAIS ================= %s & %s", aux2->oid, new);
 			novo = false;
 			return o;
 		}
@@ -39,14 +39,6 @@ oid *add_oid(oid *o, char new[N]){
 		printf("\n\nLASTOID ================= %s & %s ", auxNew->oid, lastoid->oid);
 		//getchar();
 	}*/
-	printf("oi");
-	printf("oi");
-	printf("oi");
-	printf("oi");
-	printf("oi");
-	printf("oi");
-	printf("oi");
-
 	if(aux==NULL){
 	    auxNew->next = NULL;
 	    return auxNew;
@@ -71,12 +63,11 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 	char     *provider_str;
 	bson_oid_t oid;
 
+	//inicializa documento
 	bson_oid_init (&oid, NULL);
 	provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-	//cluster = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
 
-	//falta machine
-
+	//conversão para strings é necessária
 	char str_clu_id[15];
 	sprintf(str_clu_id, "%d", cluOriginal->id);
 
@@ -151,7 +142,7 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
     const       char *key;
     size_t      keylen;
 	BSON_APPEND_ARRAY_BEGIN(&machine, "data_file_id", &dataFiles);
-	while(aux != NULL){
+	while(aux != NULL){ //insere o id da lista de arquivos na máquina
 		sprintf(str_mac_dataFiles_id, "%d", aux->id);
      	keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
       	bson_append_utf8 (&dataFiles, key, (int) keylen, str_mac_dataFiles_id, -1);
@@ -181,11 +172,12 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 
 bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
 	activity *actOriginal = activitys;
-	const char* command1[] = {"1","2"};
-	const char* command2[] = {"2","3","4"};
-	const char* command3[] = {"4","5"};
-	const char* command4[] = {"5","6"};
-	const char* command5[] = {"6","7", "8"};
+	const char* command1[] = {"3","9"}; //arquivos usados pelos comandos. ver na main qual é qual
+	const char* command2[] = {"1","2"};
+	const char* command3[] = {"2","9","4"};
+	const char* command4[] = {"4","5"};
+	const char* command5[] = {"5","6"};
+	const char* command6[] = {"6","7", "8"};
 
 	bson_t   *project, experiment, agent, child;
 	char     *project_str;
@@ -194,9 +186,6 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 
 	bson_oid_init (&oid, NULL);
 	project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-	//cluster = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
-	//falta machine
 
 	char str_pro_id[15];
 	sprintf(str_pro_id, "%d", proOriginal->id);
@@ -257,11 +246,11 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
 		BSON_APPEND_UTF8 (&activity, "program version", actOriginal->program_version);
 		BSON_APPEND_UTF8 (&activity, "command_line", actOriginal->command_line);
-		/*BSON_APPEND_UTF8 (&activity, "start_date", actOriginal->start_date);
+		BSON_APPEND_UTF8 (&activity, "start_date", actOriginal->start_date);
 		BSON_APPEND_UTF8 (&activity, "start_hour", actOriginal->start_hour);
 		BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
 		BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
-		BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);*/
+		BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);
 		// USED FILES
 		char str_mac_dataFiles_id[36];
 		uint32_t    i;
@@ -305,6 +294,13 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 
 			}
 		}
+		if(actOriginal->id == 6){
+			for(i = 0; i< sizeof command6 /sizeof(char *); ++i){
+				keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+				bson_append_utf8(&child, key, (int) keylen, command6[i], -1);
+
+			}
+		}
 
 		bson_append_array_end(&activity, &child);
 		// END USED FILES
@@ -337,13 +333,14 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
     */
 	return project;
 }
+//pegar arquivo bruto, converter, fragmentar e inserir no mongo
 int Convert(char fileName[N], mongoc_collection_t  *collection, mongoc_database_t    *database){
   char comando[N];
   char name[N], extensao[7];
   strcpy(name, fileName);
   int i = 1;
   while(i<9){
-  		printf("\n\n i> %d", i);
+  		printf("\n\n i> %d", i); // os hisat2.idx são fragmentados em 8 arquivos durante o workflow. deve-se considerar os 8
 	  if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
 	  	strcpy(name, fileName);
 		sprintf(extensao, ".%d.ht2", i);
@@ -373,22 +370,22 @@ int Convert(char fileName[N], mongoc_collection_t  *collection, mongoc_database_
 	  strcat(comando, ".tsv -f id --numInsertionWorkers 2");
 
 	  system(comando);
-
-		GetDocuments(database,collection);
 	}
   return 1;
 }
+
+//tentativa sem busca sequencial. não funciona.
 void GetDocuments2(mongoc_database_t *database, mongoc_collection_t *collection){
 	const bson_t *doc, *doc2;
-   	char *str, *str2;
-    char partial[30];
+   	char *str;
+   	bson_error_t error;
+    char partial[3000];
 	mongoc_cursor_t *cursor, *cursor2;
 	bson_t *opts, *opts2;
 	printf("\nquery0");
 	printf("\nquery1");
 	bson_t *query = bson_new ();
-	 opts = BCON_NEW (
-      "limit", BCON_INT64 (1), "sort", "{", "_id", BCON_INT32 (1), "}");
+	 opts = BCON_NEW ( "limit", BCON_INT64 (1),"sort", "{", "_id", BCON_INT32 (1), "}");
 
 	printf("\nquery2");
    	cursor = mongoc_collection_find_with_opts (collection, query, opts, NULL);
@@ -413,30 +410,56 @@ void GetDocuments2(mongoc_database_t *database, mongoc_collection_t *collection)
 	printf("\nquery4");
 	printf("\nquery4");
 	printf("\nquery4");
-	opts2 = BCON_NEW ("limit", BCON_INT64 (1), "sort", "{", "_id", BCON_INT32 (-1), "}");
+	opts2 = BCON_NEW ( "limit", BCON_INT64 (1),"sort", "{", "_id", BCON_INT32 (-1), "}");
 	printf("\nquery5");
    	cursor2 = mongoc_collection_find_with_opts (collection, query, opts2, NULL);
 	printf("\nquery6");
    	mongoc_cursor_next (cursor2, &doc2);
+   	if (mongoc_cursor_error (cursor2, &error)) {
+    	fprintf (stderr, "An error occurred: %s\n", error.message);
+   	}
 	printf("\nquery7");
-	str2 = bson_as_json(doc2, NULL);
+	printf("\nquery7");
+	printf("\nquery7");
+	char *str2 = {'\0'};
+	strcpy(str2,bson_as_json(doc2, NULL));
+	if(str2[0]== '\0'){
+		printf("nul nçao [e bom");
+	}
 	printf("\nquery8");
+	printf("\nquery8");
+	printf("\nquery8");
+	printf("\n>>> %s ", partial);
+	printf("\nquery8");
+	printf("\nquery8");
+	printf("\nquery8");
+	printf("\n>>> %s ", str2);
+
    	strncpy(partial, str2 + 22, 24);
+   	partial[24]='\0';
+	printf("\nquery9");
+	printf("\nquery9");
+	printf("\nquery9");
 	printf("\nquery9");
    	printf("\n>>> %s", partial);
    	oidNumbers = add_oid(oidNumbers,partial);
-    bson_free (str);
+
+	printf("\nquery9.1");
+	printf("\nquery9.1");
+	printf("\nquery9.1");
+	printf("\nquery9.1");
+   /* bson_free (str);
     bson_destroy (query);
    	mongoc_cursor_destroy (cursor);
     bson_free (str2);
-   	mongoc_cursor_destroy (cursor2);
+   	mongoc_cursor_destroy (cursor2);*/
 	printf("\nquery10");
 	printf("\nquery10");
 	printf("\nquery10");
 	printf("\nquery10");
 
 }
-
+//tentativa com busca sequencial. não funciona.
 void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
 	const bson_t *doc;
 	bson_t *query;
@@ -452,9 +475,10 @@ void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
 		//printf(">> loop 0.2");
       	str = bson_as_json (doc, NULL);
       		//printf ("\n\n%s\n", str);
-   		strncpy(partial, str + 22, 24);
-   		partial[24]='\0';
-      		//printf ("\n\npartial = %s\n", partial);
+   		if(*str)
+   			strncpy(partial, str + 22, 24);
+   			partial[24]='\0';
+      	//printf ("\n\npartial = %s\n", partial);
 		oidNumbers = add_oid(oidNumbers,partial);
       	bson_free (str);
    	}
@@ -473,7 +497,7 @@ void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
 
 }
 
-
+//inserção documento data
 bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log){
 	
 	dataFile *auxData = dataOriginal;
@@ -485,9 +509,8 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
 
 	bson_oid_init (&oid, NULL);
 	dataFile = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-	//cluster = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
 
-	//falta machine
+	//precisa converter para string os números
 	char str_data_id[15];
 	sprintf(str_data_id, "%d", dataOriginal->id);
 
@@ -507,14 +530,15 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
       "insertion_date",dataOriginal->insertion_date,
       "machine_id", str_data_machine_id,
       "type", dataOriginal->type
-      //"file", "file"
+
      );
-	
-	printf("\nFILE NAME:  %s",auxData->name);
-	//getchar();
-	result = Convert(auxData->name, collection, database);
-	printf("\n file: %s", auxData->name);
-	//GetDocuments(database,collection);
+
+	//lista de ids dos arquivos brutos. não funciona
+	/*
+	printf("\nFILE NAME:  %s",auxData->name);*/
+	//result = Convert(auxData->name, collection, database); DESCOMENTAR ESSA LINHA PARA INSERIR DADOS BRUTOS
+	/*printf("\n file: %s", auxData->name);
+	GetDocuments(database,collection); // NAO FUNCIONA - INSERÇÃO DOS IDS DOS DADOS BRUTOS
 	printf("voltou0");
 	printf("voltou0");
 	printf("voltou0");
@@ -527,7 +551,7 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
 	BSON_APPEND_ARRAY_BEGIN(dataFile, "data_file_id", &dataFiles);
 	while(aux != NULL){
 
-		printf("voltou1");
+		//printf("voltou1");
 		if(!aux->posto){
 			sprintf(str_id, "%s", aux->oid);
 			//printf("\n%s\n", aux->oid);
@@ -541,11 +565,11 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
 		//getchar();
 		if(aux == NULL){
 
-			printf("tá null!");
+			//printf("tá null!");
 		}
 	}
 	printf("saiu!! ");
-	bson_append_array_end(dataFile, &dataFiles);
+	bson_append_array_end(dataFile, &dataFiles);*/
    /*
     * Print the document as a JSON string.
     */

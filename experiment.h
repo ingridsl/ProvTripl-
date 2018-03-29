@@ -19,7 +19,7 @@ typedef struct experiment{
 	char annotation[N];
 	int version;
 	char version_date[N];
-	int execution_time; // é referente a cada comando colocado no terminal?
+	int execution_time;
 	float execution_cost;
 
 	//dentro de projeto
@@ -28,9 +28,14 @@ typedef struct experiment{
 	struct experiment *next;
 }experiment;
 
+//define valores da estrutura do experimento
 experiment *create_experiment();
+//insere nós na lista
 experiment *insert_experiment(experiment *origin, project *originPro);
+//libera memória
 void freedom_experiment(experiment *origin);
+
+//método obsoleto - não usado
 bool existsProjectId(int expIdPro, project *originPro);
 
 #endif

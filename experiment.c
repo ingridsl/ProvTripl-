@@ -6,7 +6,7 @@
 #include "experiment.h"
 #include "project.h"
 
-
+//inicializa variáveis
 experiment *create_experiment(){
 	experiment *new = (experiment*)malloc(sizeof(experiment));
 
@@ -22,14 +22,9 @@ experiment *create_experiment(){
 	strcpy(new->start_date, "2018-01-02");
 	strcpy(new->end_date, "2018-04-01");
 	strcpy(new->annotation, "annotation");
-	new->version = 1;
+	new->version = 1; 
 	strcpy(new->version_date, "2018-01-02");
-	//printf("Type experiment's project's id: "); // checar se existe
-	//scanf("%d", &new->project_id);
-	//printf("Type experiment's execution time: "); //deve ser calculado?
-	//scanf("%f", &new->execution_cost);
-	//printf("Type experiment's execution cost: "); //deve ser calculado?
-	//scanf("%f", &new->execution_cost);
+	new->execution_cost = 1; // no momento, esse valor é aleatório
 	return new;
 }
 

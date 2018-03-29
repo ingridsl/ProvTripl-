@@ -33,11 +33,15 @@ typedef struct machine{
 
 	struct machine *next;
 }machine;
-
+//inicializa variaveis da maquina
 machine *create_machine(dataFile *data);
+//insere no na lista
 machine *insert_machine(machine *origin, dataFile *originDataFile);
+//libera memória
 void freedom_machine(machine *origin);
+//não usado
 bool existsClusterId(int expIdClu, cluster *originClu);
+//lista os arquivos
 machine *listDataFiles(machine *origin, dataFile *originDataFile);
 
 #endif
