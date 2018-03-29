@@ -26,8 +26,8 @@ oid *add_oid(oid *o, char new[N]);
 void freedomOid();
 int Convert(char name[N], mongoc_collection_t  *collection, mongoc_database_t    *database);
 void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection);
-bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal);
-bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal);
-bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection);
+bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
+bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
+bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log);
 
 #endif

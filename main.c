@@ -12,9 +12,19 @@
 #include "menu.h"
 #define N 300
 
-
 int activityNumber = 1;
 int main (){
+  time_t t;
+  struct tm tm;
+
+
+  FILE *log = fopen("log.txt", "a+");
+  fprintf(log,"\t---- LOG ----");
+
+  t = time(NULL);
+  tm = *localtime(&t);
+  fprintf(log,"\nbegin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+      
 
   //mainMenu();
   //char file[N];
@@ -56,7 +66,7 @@ int main (){
   machine *machines = NULL;
   machines = insert_machine(machines, dataFiles);
 
-  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles);
+  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
   
   //limpeza
 
@@ -67,9 +77,15 @@ int main (){
   freedom_project(projects);
   freedom_experiment(experiments);
   freedom_activity(activitys);
-  //freedom_dataFile(dataFiles);
+  freedom_dataFile(dataFiles);
 
-  //freedom_activity(activitys);
+  fclose(log);
+  t = time(NULL);
+  tm = *localtime(&t);
+  fprintf(log,"\nend: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+      
+  fprintf(log," \t---- END OF EXECUTION ----");
+  
 
   printf("\n");
   return 0;

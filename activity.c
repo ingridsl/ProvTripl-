@@ -39,7 +39,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -96,7 +96,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -137,7 +137,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -182,7 +182,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -230,7 +230,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
