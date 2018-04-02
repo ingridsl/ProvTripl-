@@ -136,7 +136,7 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 	BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
 	BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
 	BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
-	char str_mac_dataFiles_id[36];
+	/*char str_mac_dataFiles_id[36];
 	uint32_t    i;
     char        buf[16];
     const       char *key;
@@ -151,7 +151,7 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 		aux = aux->next;
 	}
 
-	bson_append_array_end(&machine, &dataFiles);
+	bson_append_array_end(&machine, &dataFiles);*/
 	bson_append_document_end(&cluster, &machine);
 
 	bson_append_document_end(provider, &cluster);

@@ -23,6 +23,7 @@ dataFile *create_dataFile(char file_name[N]){
 	strcpy(new->localization, "localization");
 	strcpy(new->annotation, "annotation");
 	strcpy(new->type, "type");
+	new->machine_id = 1;
 	strcpy(new->insertion_date, "insertion_date");
 	new->size = 0;
 
