@@ -230,33 +230,60 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 	BSON_APPEND_UTF8 (&experiment, "execution_cost", str_exp_execution_cost);
 
 
+
+
+   /*
+    * Array of subdocuments:
+    *    degrees: [ { degree: "BA", school: "Vassar" }, ... ]
+    
+   BSON_APPEND_ARRAY_BEGIN (document, "degrees", &child);
+   for (i = 0; i < sizeof degrees / sizeof (char *); ++i) {
+      keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
+      bson_append_document_begin (&child, key, (int) keylen, &child2);
+      BSON_APPEND_UTF8 (&child2, "degree", degrees[i]);
+      BSON_APPEND_UTF8 (&child2, "school", schools[i]);
+      bson_append_document_end (&child, &child2);
+   }
+   bson_append_array_end (document, &child);
+
+*/
+	int y = 0;
+
 	char str_age_id[15];
 	sprintf(str_age_id, "%d", ageOriginal->id);
 
+	bson_t activity, activities, child2;
+	BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
 		//comandos daqui
 	while(actOriginal->next !=NULL){
-		bson_t activity;
 
 		char str_act_id[15];
 		sprintf(str_act_id, "%d", actOriginal->id);
 
-		BSON_APPEND_DOCUMENT_BEGIN(&experiment, "activity", &activity);
-		BSON_APPEND_UTF8 (&activity, "id", str_act_id);
-		BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
-		BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
-		BSON_APPEND_UTF8 (&activity, "program version", actOriginal->program_version);
-		BSON_APPEND_UTF8 (&activity, "command_line", actOriginal->command_line);
-		BSON_APPEND_UTF8 (&activity, "start_date", actOriginal->start_date);
-		BSON_APPEND_UTF8 (&activity, "start_hour", actOriginal->start_hour);
-		BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
-		BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
-		BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);
-		// USED FILES
-		char str_mac_dataFiles_id[36];
+		//BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
+		
 		uint32_t    i;
     	char        buf[16];
     	const       char *key;
     	size_t      keylen;
+
+
+		//for (y = 0; y < sizeof actOriginal->program_name / sizeof (char *); ++y) {
+	      	keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
+	      	bson_append_document_begin (&activities, key, (int) keylen, &activity);
+	      	BSON_APPEND_UTF8 (&activity, "id", str_act_id);
+			BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
+			BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
+			BSON_APPEND_UTF8 (&activity, "program_version", actOriginal->program_version);
+			BSON_APPEND_UTF8 (&activity, "command_line", actOriginal->command_line);
+			BSON_APPEND_UTF8 (&activity, "start_date", actOriginal->start_date);
+			BSON_APPEND_UTF8 (&activity, "start_hour", actOriginal->start_hour);
+			BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
+			BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
+			BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);
+   		//}
+		// USED FILES
+		char str_mac_dataFiles_id[36];
 
 		BSON_APPEND_ARRAY_BEGIN(&activity, "files", &child);
 		if(actOriginal->id == 1){
@@ -303,6 +330,7 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		}
 
 		bson_append_array_end(&activity, &child);
+
 		// END USED FILES
 		BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
 		BSON_APPEND_UTF8 (&agent, "id", str_age_id);
@@ -316,9 +344,12 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		
 		
 		actOriginal = actOriginal->next;
-		bson_append_document_end(&experiment, &activity);
+		
+		bson_append_document_end(&activities, &activity);
 		answer = 0;
 	}
+
+	bson_append_array_end(&experiment, &activities);
 	//até aqui
 	bson_append_document_end(project, &experiment);
    /*

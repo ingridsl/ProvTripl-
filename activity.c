@@ -36,7 +36,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -73,7 +73,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -119,7 +119,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -156,7 +156,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -167,8 +167,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, hisat);
-			strcpy(original->program_version, hisatversion);
+			strcpy(original->program_name, samtools);
+			strcpy(original->program_version, samtoolsversion);
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
@@ -191,7 +191,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -202,8 +202,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, hisat);
-			strcpy(original->program_version, hisatversion);
+			strcpy(original->program_name, samtools);
+			strcpy(original->program_version, samtoolsversion);
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
@@ -229,7 +229,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			system(command);
+			//system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -240,8 +240,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, hisat);
-			strcpy(original->program_version, hisatversion);
+			strcpy(original->program_name, htseq);
+			strcpy(original->program_version, htseqversion);
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
