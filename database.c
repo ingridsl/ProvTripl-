@@ -15,8 +15,8 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
   dataFile *auxdata = dataOriginal;
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
-   mongoc_database_t *database;
-   mongoc_collection_t *collection;
+   mongoc_database_t *model1;
+   mongoc_collection_t *project1, * provider1, * data1;
    bson_t *command, reply, *insert;
    bson_error_t error;
    char *str;
@@ -44,9 +44,11 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
     */
    bson_t   *fileDoc;
    printf("database \n");
-   database = mongoc_client_get_database (client, "db_name");
+   model1 = mongoc_client_get_database (client, "model1");
    printf("collection \n");
-   collection = mongoc_client_get_collection (client, "db_name", "collection");
+   data1 = mongoc_client_get_collection (client, "model1", "data1");
+   project1 = mongoc_client_get_collection (client, "model1", "project1");
+   provider1 = mongoc_client_get_collection (client, "model1", "provider1");
    dataFile *aux1 = auxdata;
     time_t t;
     struct tm tm;
@@ -57,8 +59,8 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
 
    while(aux1!=NULL){
 
-      fileDoc = DATA_DOC(aux1, database, collection, log);
-      if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
+      fileDoc = DATA_DOC(aux1, model1, data1, log);
+      if (!mongoc_collection_insert(data1, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
       }
 
@@ -74,7 +76,7 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
 
 
    bson_t   *providerDoc = PROVIDER_DOC(provOriginal, cluOriginal, macOriginal, log);
-   if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
+   if (!mongoc_collection_insert(provider1, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
 
@@ -87,7 +89,7 @@ void CreateDatabase(provider *provOriginal, cluster *cluOriginal, machine *macOr
   
 
    bson_t   *projectDoc = PROJECT_DOC(projOriginal, expOriginal, actOriginal, ageOriginal, log);
-   if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
+   if (!mongoc_collection_insert(project1, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
 t = time(NULL);
@@ -98,7 +100,9 @@ t = time(NULL);
   // bson_destroy (providerDoc);
   // bson_destroy (projectDoc);
    //bson_destroy (fileDoc);
-   mongoc_collection_destroy(collection);
+   mongoc_collection_destroy(data1);
+   mongoc_collection_destroy(project1);
+   mongoc_collection_destroy(provider1);
    mongoc_client_destroy(client);
    mongoc_cleanup();
 
