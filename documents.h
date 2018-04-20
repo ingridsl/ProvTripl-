@@ -30,11 +30,23 @@ void freedomOid();
 int Convert(char name[N], mongoc_collection_t  *collection, mongoc_database_t    *database);
 //método não funcional - recupera ids dos documentos dos arquivos fragmentados
 void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection);
+
+//collections individuais
+
 //monta documento do provider
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
 //monta documento do project
 bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
 //monta documento do data
 bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log);
+
+//uma collection
+
+//monta documento do provider
+bson_t   *PROVIDER_DOC_S(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
+//monta documento do project
+bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
+//monta documento do data
+bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log);
 
 #endif

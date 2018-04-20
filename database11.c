@@ -11,12 +11,12 @@
 #include "cluster.h"
 #include "machine.h"
 
-void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+void CreateDatabase11(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
   dataFile *auxdata = dataOriginal;
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
-   mongoc_database_t *model1;
-   mongoc_collection_t *project1, * provider1, * data1;
+   mongoc_database_t *model;
+   mongoc_collection_t *collection;
    bson_t *command, reply, *insert;
    bson_error_t error;
    char *str;
@@ -44,11 +44,9 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
     */
    bson_t   *fileDoc;
    printf("database \n");
-   model1 = mongoc_client_get_database (client, "model10");
+   model = mongoc_client_get_database (client, "model11");
    printf("collection \n");
-   data1 = mongoc_client_get_collection (client, "model10", "data1");
-   project1 = mongoc_client_get_collection (client, "model10", "project1");
-   provider1 = mongoc_client_get_collection (client, "model10", "provider1");
+   collection = mongoc_client_get_collection (client, "model11", "default");
    dataFile *aux1 = auxdata;
     time_t t;
     struct tm tm;
@@ -59,8 +57,8 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
 
    while(aux1!=NULL){
 
-      fileDoc = DATA_DOC(aux1, model1, data1, log);
-      if (!mongoc_collection_insert(data1, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
+      fileDoc = DATA_DOC_S(aux1, model, collection, log);
+      if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
       }
 
@@ -75,8 +73,8 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
   
 
 
-   bson_t   *providerDoc = PROVIDER_DOC(provOriginal, cluOriginal, macOriginal, log);
-   if (!mongoc_collection_insert(provider1, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
+   bson_t   *providerDoc = PROVIDER_DOC_S(provOriginal, cluOriginal, macOriginal, log);
+   if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
 
@@ -88,8 +86,8 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
   
 
-   bson_t   *projectDoc = PROJECT_DOC(projOriginal, expOriginal, actOriginal, ageOriginal, log);
-   if (!mongoc_collection_insert(project1, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
+   bson_t   *projectDoc = PROJECT_DOC_S(projOriginal, expOriginal, actOriginal, ageOriginal, log);
+   if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
 t = time(NULL);
@@ -100,15 +98,13 @@ t = time(NULL);
   // bson_destroy (providerDoc);
   // bson_destroy (projectDoc);
    //bson_destroy (fileDoc);
-   mongoc_collection_destroy(data1);
-   mongoc_collection_destroy(project1);
-   mongoc_collection_destroy(provider1);
+   mongoc_collection_destroy(collection);
    mongoc_client_destroy(client);
    mongoc_cleanup();
 
 }
 
-void CleanDatabase10(mongoc_client_t *client,
+void CleanDatabase11(mongoc_client_t *client,
                 mongoc_database_t *database,
                 mongoc_collection_t *collection){
     /*

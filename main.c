@@ -9,6 +9,7 @@
 #include "cluster.h"
 #include "machine.h"
 #include "database.h"
+#include "database11.h"
 #define N 300
 
 int activityNumber = 1;
@@ -61,8 +62,21 @@ int main (){
   machine *machines = NULL;
   machines = insert_machine(machines, dataFiles);
 
-  CreateDatabase(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
-  
+  //////////////////////////// MODEL 1.0 - N COLLECTIONS/////////////////////////////////
+  fprintf(log," \t---- MODEL 1.0 ----");
+  fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+ 
+  CreateDatabase10(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
+  fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+ 
+ //////////////////////////// MODEL 1.1 - 1 COLLECTIONS/////////////////////////////////
+  fprintf(log," \t---- MODEL 1.1 ----");
+  fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+ 
+  CreateDatabase11(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
+  fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+ 
+
   //limpeza
 
   
