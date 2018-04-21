@@ -31,7 +31,7 @@ oid *add_oid(oid *o, char new[N]){
     printf("\nError");
     exit(1);
   }
-	
+
 	auxNew->posto = false;
   	strcpy(auxNew->oid, new);
 	/*if(renew){
@@ -174,10 +174,10 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 	activity *actOriginal = activitys;
 	const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
 	const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
-	
+
 	const char* command2_input[] = {"1"};
 	const char* command2_output[] = {"2"};
-	
+
 	const char* command3_input[] = {"2","9"};
 	const char* command3_output[] = {"4"};
 
@@ -239,27 +239,7 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 	BSON_APPEND_UTF8 (&experiment, "version_date", expOriginal->version_date);
 	BSON_APPEND_UTF8 (&experiment, "execution_time", str_exp_execution_time);
 	BSON_APPEND_UTF8 (&experiment, "execution_cost", str_exp_execution_cost);
-
-
-
-
-   /*
-    * Array of subdocuments:
-    *    degrees: [ { degree: "BA", school: "Vassar" }, ... ]
-    
-   BSON_APPEND_ARRAY_BEGIN (document, "degrees", &child);
-   for (i = 0; i < sizeof degrees / sizeof (char *); ++i) {
-      keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
-      bson_append_document_begin (&child, key, (int) keylen, &child2);
-      BSON_APPEND_UTF8 (&child2, "degree", degrees[i]);
-      BSON_APPEND_UTF8 (&child2, "school", schools[i]);
-      bson_append_document_end (&child, &child2);
-   }
-   bson_append_array_end (document, &child);
-
-*/
 	int y = 0;
-
 	char str_age_id[15];
 	sprintf(str_age_id, "%d", ageOriginal->id);
 
@@ -272,7 +252,7 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		sprintf(str_act_id, "%d", actOriginal->id);
 
 		//BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
-		
+
 		uint32_t    i;
     	char        buf[16];
     	const       char *key;
@@ -382,10 +362,10 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 		BSON_APPEND_UTF8 (&agent, "role", ageOriginal->role);
 		BSON_APPEND_UTF8 (&agent, "annotation", ageOriginal->annotation);
 		bson_append_document_end(&activity, &agent);
-		
-		
+
+
 		actOriginal = actOriginal->next;
-		
+
 		bson_append_document_end(&activities, &activity);
 		answer = 0;
 	}
@@ -571,7 +551,7 @@ void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
 
 //inserção documento data
 bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log){
-	
+
 	dataFile *auxData = dataOriginal;
 	oid *aux = oidNumbers;
 	int result = 0;
@@ -645,7 +625,7 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
    /*
     * Print the document as a JSON string.
     */
-	
+
    /*
     * Clean up allocated bson documents.
     */
@@ -775,10 +755,10 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
 	activity *actOriginal = activitys;
 	const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
 	const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
-	
+
 	const char* command2_input[] = {"1"};
 	const char* command2_output[] = {"2"};
-	
+
 	const char* command3_input[] = {"2","9"};
 	const char* command3_output[] = {"4"};
 
@@ -841,25 +821,6 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
 	BSON_APPEND_UTF8 (&experiment, "version_date", expOriginal->version_date);
 	BSON_APPEND_UTF8 (&experiment, "execution_time", str_exp_execution_time);
 	BSON_APPEND_UTF8 (&experiment, "execution_cost", str_exp_execution_cost);
-
-
-
-
-   /*
-    * Array of subdocuments:
-    *    degrees: [ { degree: "BA", school: "Vassar" }, ... ]
-    
-   BSON_APPEND_ARRAY_BEGIN (document, "degrees", &child);
-   for (i = 0; i < sizeof degrees / sizeof (char *); ++i) {
-      keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
-      bson_append_document_begin (&child, key, (int) keylen, &child2);
-      BSON_APPEND_UTF8 (&child2, "degree", degrees[i]);
-      BSON_APPEND_UTF8 (&child2, "school", schools[i]);
-      bson_append_document_end (&child, &child2);
-   }
-   bson_append_array_end (document, &child);
-
-*/
 	int y = 0;
 
 	char str_age_id[15];
@@ -874,7 +835,7 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
 		sprintf(str_act_id, "%d", actOriginal->id);
 
 		//BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
-		
+
 		uint32_t    i;
     	char        buf[16];
     	const       char *key;
@@ -984,10 +945,10 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
 		BSON_APPEND_UTF8 (&agent, "role", ageOriginal->role);
 		BSON_APPEND_UTF8 (&agent, "annotation", ageOriginal->annotation);
 		bson_append_document_end(&activity, &agent);
-		
-		
+
+
 		actOriginal = actOriginal->next;
-		
+
 		bson_append_document_end(&activities, &activity);
 		answer = 0;
 	}
@@ -1009,7 +970,7 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
 }
 //inserção documento data
 bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log){
-	
+
 	dataFile *auxData = dataOriginal;
 	oid *aux = oidNumbers;
 	int result = 0;
@@ -1084,7 +1045,7 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
    /*
     * Print the document as a JSON string.
     */
-	
+
    /*
     * Clean up allocated bson documents.
     */
@@ -1093,4 +1054,216 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
 	fprintf(log,"\n\t%s\n\n", dataFile_str);
 	bson_free (dataFile_str);
 	return dataFile;
+}
+
+bson_t   *PROJECT_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+	activity *actOriginal = activitys;
+  dataFile *auxFiles = dataOriginal;
+
+	int command1_input[1] = {3}; //arquivos usados pelos comandos. ver na main qual é qual
+	int command1_output[1] = {9}; //arquivos usados pelos comandos. ver na main qual é qual
+
+  int command2_input[1] = {1};
+	int command2_output[1] = {2};
+
+	int command3_input[2] = {2,9};
+	int command3_output[1] = {4};
+
+	int command4_input[1] = {4};
+	int command4_output[1] = {5};
+
+	int command5_input[2] = {5,6};
+	int command5_output[1] = {6};
+
+	int command6_input[2] = {6,7};
+	int command6_output[1] = {8};
+
+	bson_t   *project, experiment, agent, child;
+	char     *project_str;
+	bson_oid_t oid;
+	int answer = 0;
+
+	bson_oid_init (&oid, NULL);
+	project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+
+	char str_pro_id[15];
+	sprintf(str_pro_id, "%d", proOriginal->id);
+
+	char str_exp_id[15];
+	sprintf(str_exp_id, "%d", expOriginal->id);
+
+	char str_exp_version[15];
+	sprintf(str_exp_version, "%d", expOriginal->version);
+
+	char str_exp_execution_time[15];
+	sprintf(str_exp_execution_time, "%d", expOriginal->execution_time);
+
+	char str_exp_execution_cost[24];
+	sprintf(str_exp_execution_cost, "%f", expOriginal->execution_cost);
+
+	char str_act_execution_status[15];
+	sprintf(str_act_execution_status, "%d", actOriginal->execution_status);
+
+	project = BCON_NEW (
+      "id", str_pro_id,
+      "name", proOriginal->name,
+      "description", proOriginal->description,
+      "inst_funders", proOriginal->inst_funders,
+      "inst_participants", proOriginal->inst_participants,
+      "coordinator", proOriginal->coordinator,
+      "start_date", proOriginal->start_date,
+      "end_date", proOriginal->end_date
+     );
+
+	BSON_APPEND_DOCUMENT_BEGIN(project, "experiment", &experiment);
+	BSON_APPEND_UTF8 (&experiment, "id", str_exp_id);
+	BSON_APPEND_UTF8 (&experiment, "name", expOriginal->name);
+	BSON_APPEND_UTF8 (&experiment, "description", expOriginal->description);
+	BSON_APPEND_UTF8 (&experiment, "local", expOriginal->local);
+	BSON_APPEND_UTF8 (&experiment, "start_date", expOriginal->start_date);
+	BSON_APPEND_UTF8 (&experiment, "end_date", expOriginal->end_date);
+	BSON_APPEND_UTF8 (&experiment, "annotation", expOriginal->annotation);
+	BSON_APPEND_UTF8 (&experiment, "version", str_exp_version);
+	BSON_APPEND_UTF8 (&experiment, "version_date", expOriginal->version_date);
+	BSON_APPEND_UTF8 (&experiment, "execution_time", str_exp_execution_time);
+	BSON_APPEND_UTF8 (&experiment, "execution_cost", str_exp_execution_cost);
+
+	int y = 0;
+
+	char str_age_id[15];
+	sprintf(str_age_id, "%d", ageOriginal->id);
+
+	bson_t activity, activities, child2, dataFile, dataFiles;
+	BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
+		//comandos daqui
+	while(actOriginal->next !=NULL){
+
+		char str_act_id[15];
+		sprintf(str_act_id, "%d", actOriginal->id);
+
+		//BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
+
+		uint32_t    i;
+    	char        buf[16];
+    	const       char *key;
+    	size_t      keylen;
+
+
+		//for (y = 0; y < sizeof actOriginal->program_name / sizeof (char *); ++y) {
+	    keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
+	    bson_append_document_begin (&activities, key, (int) keylen, &activity);
+	    BSON_APPEND_UTF8 (&activity, "id", str_act_id);
+			BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
+			BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
+			BSON_APPEND_UTF8 (&activity, "program_version", actOriginal->program_version);
+			BSON_APPEND_UTF8 (&activity, "command_line", actOriginal->command_line);
+			BSON_APPEND_UTF8 (&activity, "start_date", actOriginal->start_date);
+			BSON_APPEND_UTF8 (&activity, "start_hour", actOriginal->start_hour);
+			BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
+			BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
+			BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);
+   		//}
+		// USED FILES
+		char str_mac_dataFiles_id[36];
+
+    	char        buf2[16];
+    	const       char *key2;
+    	size_t      keylen2;
+      if(actOriginal->id == 1){
+        //input files
+        BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
+        auxFiles = dataOriginal;
+        while(auxFiles != NULL){
+          printf("While \n: auxFiles->id %d \n", auxFiles->id);
+            if(auxFiles->id == command1_input[0]){
+              printf("achei!");
+              char str_data_id[15];
+        	    sprintf(str_data_id, "%d", dataOriginal->id);
+        	    char str_data_size[15];
+        	    sprintf(str_data_size, "%d", dataOriginal->size);
+            	char str_data_machine_id[15];
+            	sprintf(str_data_machine_id, "%d", dataOriginal->machine_id);
+              keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
+              bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
+              BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
+              BSON_APPEND_UTF8 (&dataFile,"name", dataOriginal->name);
+              BSON_APPEND_UTF8 (&dataFile, "description", dataOriginal->description);
+              BSON_APPEND_UTF8 (&dataFile,"localization", dataOriginal->localization);
+              BSON_APPEND_UTF8 (&dataFile,"annotation", dataOriginal->annotation);
+              BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
+              BSON_APPEND_UTF8 (&dataFile,"insertion_date",dataOriginal->insertion_date);
+              BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
+              BSON_APPEND_UTF8 (&dataFile,"type", dataOriginal->type);
+
+            }
+            auxFiles = auxFiles->next;
+        }
+        bson_append_document_end(&dataFiles, &dataFile);
+        bson_append_array_end(&activity, &dataFiles);
+        // end of input files
+          //output files
+          BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
+          auxFiles = dataOriginal;
+          while(auxFiles != NULL){
+            printf("While \n: auxFiles->id %d \n", auxFiles->id);
+              if(auxFiles->id == command1_output[0]){
+                printf("achei!");
+                char str_data_id[15];
+          	    sprintf(str_data_id, "%d", dataOriginal->id);
+          	    char str_data_size[15];
+          	    sprintf(str_data_size, "%d", dataOriginal->size);
+              	char str_data_machine_id[15];
+              	sprintf(str_data_machine_id, "%d", dataOriginal->machine_id);
+                keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
+                bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
+                BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
+                BSON_APPEND_UTF8 (&dataFile,"name", dataOriginal->name);
+                BSON_APPEND_UTF8 (&dataFile, "description", dataOriginal->description);
+                BSON_APPEND_UTF8 (&dataFile,"localization", dataOriginal->localization);
+                BSON_APPEND_UTF8 (&dataFile,"annotation", dataOriginal->annotation);
+                BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
+                BSON_APPEND_UTF8 (&dataFile,"insertion_date",dataOriginal->insertion_date);
+                BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
+                BSON_APPEND_UTF8 (&dataFile,"type", dataOriginal->type);
+
+              }
+              auxFiles = auxFiles->next;
+          }
+          bson_append_document_end(&dataFiles, &dataFile);
+          bson_append_array_end(&activity, &dataFiles);
+          // end of output files
+    }
+
+    printf("sai2!\n");
+		BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
+		BSON_APPEND_UTF8 (&agent, "id", str_age_id);
+		BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
+		BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
+		BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
+		BSON_APPEND_UTF8 (&agent, "position", ageOriginal->position);
+		BSON_APPEND_UTF8 (&agent, "role", ageOriginal->role);
+		BSON_APPEND_UTF8 (&agent, "annotation", ageOriginal->annotation);
+		bson_append_document_end(&activity, &agent);
+
+
+		actOriginal = actOriginal->next;
+
+		bson_append_document_end(&activities, &activity);
+		answer = 0;
+	}
+
+	bson_append_array_end(&experiment, &activities);
+	//até aqui
+	bson_append_document_end(project, &experiment);
+   /*
+    * Print the document as a JSON string.
+    */
+	project_str = bson_as_json (project, NULL);
+	printf ("\n\t%s\n\n", project_str);
+	fprintf(log,"\n\t%s\n\n", project_str);
+	bson_free (project_str);
+   /*
+    * Clean up allocated bson documents.
+    */
+	return project;
 }

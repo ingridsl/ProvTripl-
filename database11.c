@@ -67,6 +67,8 @@ void CreateDatabase11(provider *provOriginal, cluster *cluOriginal, machine *mac
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nDataDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  /* // Provider
+
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -81,6 +83,8 @@ void CreateDatabase11(provider *provOriginal, cluster *cluOriginal, machine *mac
    t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  */
+
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);

@@ -55,7 +55,7 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nDataDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-   
+
 
    while(aux1!=NULL){
 
@@ -69,10 +69,11 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nDataDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  /* // PROVIDER
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-  
+
 
 
    bson_t   *providerDoc = PROVIDER_DOC(provOriginal, cluOriginal, macOriginal, log);
@@ -83,20 +84,22 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
    t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  */
+
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-  
 
-   bson_t   *projectDoc = PROJECT_DOC(projOriginal, expOriginal, actOriginal, ageOriginal, log);
+
+   bson_t   *projectDoc = PROJECT_DOC_2(projOriginal, expOriginal, actOriginal, ageOriginal, auxdata, log);
    if (!mongoc_collection_insert(project1, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
 t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProjectDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-  
-   
+
+
   // bson_destroy (providerDoc);
   // bson_destroy (projectDoc);
    //bson_destroy (fileDoc);
