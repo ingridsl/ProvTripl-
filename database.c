@@ -91,7 +91,7 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-   bson_t   *projectDoc = PROJECT_DOC_2(projOriginal, expOriginal, actOriginal, ageOriginal, auxdata, log);
+   bson_t   *projectDoc = PROJECT_DOC(projOriginal, expOriginal, actOriginal, ageOriginal, log);
    if (!mongoc_collection_insert(project1, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }

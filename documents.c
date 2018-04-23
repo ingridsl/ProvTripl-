@@ -1056,7 +1056,7 @@ bson_free (dataFile_str);
 return dataFile;
 }
 
-bson_t   *PROJECT_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
   activity *actOriginal = activitys;
   dataFile *auxFiles = dataOriginal;
 

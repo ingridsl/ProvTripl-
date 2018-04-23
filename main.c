@@ -24,7 +24,7 @@ int main (){
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nbegin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-      
+
   project *projects = NULL;
   projects = insert_project(projects);
 
@@ -36,7 +36,7 @@ int main (){
 
   dataFile *dataFiles = NULL;
   char fileBaseName[N];
- 
+
 
   activity *activitys = NULL;
   while(activityNumber < 7){
@@ -62,24 +62,42 @@ int main (){
   machine *machines = NULL;
   machines = insert_machine(machines, dataFiles);
 
-  //////////////////////////// MODEL 1.0 - N COLLECTIONS/////////////////////////////////
+  //////////////////////////// MODEL 1.0 - N COLLECTIONS - N DOCUMENTS /////////////////////////////////
   fprintf(log," \t---- MODEL 1.0 ----");
+  t = time(NULL);
+  tm = *localtime(&t);
   fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
- 
+
   CreateDatabase10(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
+  t = time(NULL);
+  tm = *localtime(&t);
   fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
- 
- //////////////////////////// MODEL 1.1 - 1 COLLECTIONS/////////////////////////////////
+
+ //////////////////////////// MODEL 1.1 - 1 COLLECTIONS - N DOCUMENTS/////////////////////////////////
   fprintf(log," \t---- MODEL 1.1 ----");
+  t = time(NULL);
+  tm = *localtime(&t);
   fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
- 
+
   CreateDatabase11(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
+  t = time(NULL);
+  tm = *localtime(&t);
   fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
- 
+
+  //////////////////////////// MODEL 2.0 - 1 COLLECTION - 1 DOCUMENT/////////////////////////////////
+   fprintf(log," \t---- MODEL 2.0 ----");
+   t = time(NULL);
+   tm = *localtime(&t);
+   fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+   CreateDatabase20(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
+   t = time(NULL);
+   tm = *localtime(&t);
+   fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
   //limpeza
 
-  
+
   freedom_provider(providers);
   freedom_cluster(clusters);
   freedom_machine(machines);
@@ -88,15 +106,15 @@ int main (){
   freedom_activity(activitys);
   freedom_dataFile(dataFiles);
 
-  
+
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nend: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-      
+
   fprintf(log," \t---- END OF EXECUTION ----");
 
   fclose(log);
-  
+
 
   printf("\n");
   return 0;

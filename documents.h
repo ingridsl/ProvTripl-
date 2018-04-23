@@ -49,7 +49,7 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
 //monta documento do data
 bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log);
 
-bson_t   *PROJECT_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
+bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
 
 
 #endif
