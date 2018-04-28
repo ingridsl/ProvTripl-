@@ -27,7 +27,7 @@ oid *add_oid(oid *o, char new[N]);
 //método obsoleto - libera lista
 void freedomOid();
 //pega o arquivo bruto e insere no mongo db em vários fragmentos
-int Convert(char name[N], mongoc_collection_t  *collection, mongoc_database_t    *database);
+int Convert(char fileName[N], char db_name[N], mongoc_client_t *client);
 //método não funcional - recupera ids dos documentos dos arquivos fragmentados
 void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection);
 
@@ -38,7 +38,7 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
 //monta documento do project
 bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
 //monta documento do data
-bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log);
+bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log,mongoc_client_t *client);
 
 //uma collection
 
@@ -47,7 +47,7 @@ bson_t   *PROVIDER_DOC_S(provider *proOriginal, cluster *cluOriginal, machine *m
 //monta documento do project
 bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
 //monta documento do data
-bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log);
+bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log, mongoc_client_t *client);
 
 bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
 

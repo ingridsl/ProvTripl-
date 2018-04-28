@@ -386,27 +386,39 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
   return project;
 }
 //pegar arquivo bruto, converter, fragmentar e inserir no mongo
-int Convert(char fileName[N], mongoc_collection_t  *collection, mongoc_database_t    *database){
+int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
   char comando[N];
   char name[N], extensao[7];
   strcpy(name, fileName);
   int i = 1;
   while(i<9){
-    printf("\n\n i> %d", i); // os hisat2.idx são fragmentados em 8 arquivos durante o workflow. deve-se considerar os 8
+    //printf("\n\n i> %d", i); // os hisat2.idx são fragmentados em 8 arquivos durante o workflow. deve-se considerar os 8
     if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
       strcpy(name, fileName);
       sprintf(extensao, ".%d.ht2", i);
       strcat(name, extensao);
       i++;
-      printf("\n \n file name: %s", name);
+      //printf("\n \n file name: %s", name);
     }else{
       i=9;
     }
+
+/////////////////////////// VERSÃO EM TERMINAL
+
+/*
+    strcpy(comando, "mongofiles -d ");
+    strcat(comando, db_name);
+    strcat(comando, " put ");
+    strcat(comando, name);
+    printf("\n %s\n", comando);
+    system(comando);*/
+  ////////////////////////////////////
 
     /*if(access(name, F_OK)==-1){
     return 0;
   }*/
 
+/* TRV VERSION
   strcpy(comando, "tr ' ' \\\\t < ");
   strcat(comando, name);
   strcat(comando," > ");
@@ -422,7 +434,54 @@ int Convert(char fileName[N], mongoc_collection_t  *collection, mongoc_database_
   strcat(comando, ".tsv -f id --numInsertionWorkers 2");
 
   system(comando);
-}
+  */
+////////////////////////////////////////////////////
+//////////////// VERSÃO MONGOC
+  mongoc_gridfs_t *gridfs;
+  mongoc_gridfs_file_t *file;
+  mongoc_gridfs_file_list_t *list;
+  mongoc_gridfs_file_opt_t opt = {0};
+  mongoc_stream_t *stream;
+  bson_t filter;
+  bson_t opts;
+  bson_t child;
+  bson_error_t error;
+  ssize_t r;
+  char buf[4096];
+  mongoc_iovec_t iov;
+  const char *filename;
+  const char *command;
+  bson_value_t id;
+
+  /* grab a gridfs handle in test prefixed by fs */
+  gridfs = mongoc_client_get_gridfs (client, db_name, "fs", &error);
+  assert (gridfs);
+
+  stream = mongoc_stream_file_new_for_path (name, O_RDONLY, 0);
+      assert (stream);
+
+      opt.filename = name;
+
+      /* the driver generates a file_id for you */
+      file = mongoc_gridfs_create_file_from_stream (gridfs, stream, &opt);
+      assert (file);
+
+      id.value_type = BSON_TYPE_INT32;
+      id.value.v_int32 = 1;
+
+      /* optional: the following method specifies a file_id of any
+         BSON type */
+      if (!mongoc_gridfs_file_set_id (file, &id, &error)) {
+         fprintf (stderr, "%s\n", error.message);
+         return 1;
+      }
+
+      mongoc_gridfs_file_save (file);
+      mongoc_gridfs_file_destroy (file);
+
+
+
+  }
 return 1;
 }
 
@@ -550,7 +609,7 @@ void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
 }
 
 //inserção documento data
-bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log){
+bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log , mongoc_client_t *client){
 
   dataFile *auxData = dataOriginal;
   oid *aux = oidNumbers;
@@ -584,6 +643,8 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
     "type", dataOriginal->type
 
   );
+
+  Convert(auxData->name, "model10", client);
 
   //lista de ids dos arquivos brutos. não funciona
   /*
@@ -969,7 +1030,7 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
   return project;
 }
 //inserção documento data
-bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log){
+bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log, mongoc_client_t *client){
 
   dataFile *auxData = dataOriginal;
   oid *aux = oidNumbers;
@@ -1005,6 +1066,8 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
 
   );
 
+
+  Convert(auxData->name, "model11", client);
   //lista de ids dos arquivos brutos. não funciona
   /*
   printf("\nFILE NAME:  %s",auxData->name);*/
