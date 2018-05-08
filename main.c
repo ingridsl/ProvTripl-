@@ -19,7 +19,7 @@ int main (){
 
 
   FILE *log = fopen("log.txt", "a+");
-  fprintf(log,"\t---- LOG ----");
+  fprintf(log,"\n\n\t--------- LOG ---------");
 
   t = time(NULL);
   tm = *localtime(&t);

@@ -37,7 +37,7 @@ oid *add_oid(oid *o, char new[N]){
   /*if(renew){
   //lastoid = auxNew;
   printf("\n\nLASTOID ================= %s & %s ", auxNew->oid, lastoid->oid);
-  //getchar();
+  ////getchar();
 }*/
 if(aux==NULL){
   auxNew->next = NULL;
@@ -387,56 +387,9 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 }
 //pegar arquivo bruto, converter, fragmentar e inserir no mongo
 int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
+  printf("\nCONVERT\n");
   char comando[N];
   char name[N], extensao[7];
-  strcpy(name, fileName);
-  int i = 1;
-  while(i<9){
-    //printf("\n\n i> %d", i); // os hisat2.idx são fragmentados em 8 arquivos durante o workflow. deve-se considerar os 8
-    if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
-      strcpy(name, fileName);
-      sprintf(extensao, ".%d.ht2", i);
-      strcat(name, extensao);
-      i++;
-      //printf("\n \n file name: %s", name);
-    }else{
-      i=9;
-    }
-
-/////////////////////////// VERSÃO EM TERMINAL
-
-/*
-    strcpy(comando, "mongofiles -d ");
-    strcat(comando, db_name);
-    strcat(comando, " put ");
-    strcat(comando, name);
-    printf("\n %s\n", comando);
-    system(comando);*/
-  ////////////////////////////////////
-
-    /*if(access(name, F_OK)==-1){
-    return 0;
-  }*/
-
-/* TRV VERSION
-  strcpy(comando, "tr ' ' \\\\t < ");
-  strcat(comando, name);
-  strcat(comando," > ");
-  strcat(comando, name);
-  strcat(comando,".tsv");
-
-  printf("\nCOMANDO: %s", comando);
-  system(comando);  //DESCOMENTAR DEPOIS
-
-  strcpy(comando, " ");
-  strcat (comando, "mongoimport -d db_name -c collection --type tsv --file ");
-  strcat(comando, name);
-  strcat(comando, ".tsv -f id --numInsertionWorkers 2");
-
-  system(comando);
-  */
-////////////////////////////////////////////////////
-//////////////// VERSÃO MONGOC
   mongoc_gridfs_t *gridfs;
   mongoc_gridfs_file_t *file;
   mongoc_gridfs_file_list_t *list;
@@ -452,13 +405,39 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
   const char *filename;
   const char *command;
   bson_value_t id;
+  strcpy(name, fileName);
+  int counter = 1;
+  char nameExtraFile[N];
+  while(counter<9){
+    //printf("\n\n i> %d", i); // os hisat2.idx são fragmentados em 8 arquivos durante o workflow. deve-se considerar os 8
+    if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
+      strcpy(name, fileName);
+      sprintf(extensao, ".%d.ht2", counter);
+      strcat(name, extensao);
+      counter++;
+      //printf("\n \n file name: %s", name);
+    }
+    printf("\n>>>>FILE NAME: %s", name);
+    strcpy(nameExtraFile, name);
+    strcat(nameExtraFile, ".created.txt");
+    FILE *fp = fopen(nameExtraFile, "w+");
+    if(!fp){
+      printf("Unable to create file");
+      exit(1);
 
+    }
+    // VERSÃO MONGOC
+    printf("\n1.0");
   /* grab a gridfs handle in test prefixed by fs */
   gridfs = mongoc_client_get_gridfs (client, db_name, "fs", &error);
   assert (gridfs);
 
+  printf("\n1.1");
+
   stream = mongoc_stream_file_new_for_path (name, O_RDONLY, 0);
       assert (stream);
+
+      printf("\n1.3");
 
       opt.filename = name;
 
@@ -466,20 +445,80 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       file = mongoc_gridfs_create_file_from_stream (gridfs, stream, &opt);
       assert (file);
 
+      printf("\n1.5");
       id.value_type = BSON_TYPE_INT32;
       id.value.v_int32 = 1;
 
       /* optional: the following method specifies a file_id of any
-         BSON type */
+         BSON type
       if (!mongoc_gridfs_file_set_id (file, &id, &error)) {
          fprintf (stderr, "%s\n", error.message);
          return 1;
-      }
+      }*/
 
       mongoc_gridfs_file_save (file);
       mongoc_gridfs_file_destroy (file);
 
+      printf("\n2.0");
+      /////////////////////////
 
+      printf("\n\n COMEÇANDO AQUI!! 1");
+    //  //getchar();
+iov.iov_base = (void*) buf;
+iov.iov_len = sizeof buf;
+file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
+      assert (file);
+
+      stream = mongoc_stream_gridfs_new (file);
+      assert (stream);
+
+      for (;;) {
+         r = mongoc_stream_readv (stream, &iov, 1, -1, 0);
+
+         assert (r >= 0);
+
+         if (r == 0) {
+            break;
+         }
+          //getchar();
+         if (fwrite (iov.iov_base, 1, r, fp) != r) {
+           printf("ERROR");
+           //getchar();
+            MONGOC_ERROR ("Failed to write to stdout. Exiting.\n");
+            exit (1);
+         }
+      }
+      fclose(fp);
+      mongoc_stream_destroy (stream);
+      mongoc_gridfs_file_destroy (file);
+
+      ////////////////// LIST
+
+      printf("\n\n COMEÇANDO AQUI!! 2");
+      ////getchar();
+      bson_init (&filter);
+
+      bson_init (&opts);
+      bson_append_document_begin (&opts, "sort", -1, &child);
+      BSON_APPEND_INT32 (&child, "filename", 1);
+      bson_append_document_end (&opts, &child);
+
+      list = mongoc_gridfs_find_with_opts (gridfs, &filter, &opts);
+
+      bson_destroy (&filter);
+      bson_destroy (&opts);
+
+      while ((file = mongoc_gridfs_file_list_next (list))) {
+         const char *name2 = mongoc_gridfs_file_get_filename (file);
+         printf ("%s\n", name2 ? name2 : "?");
+
+         mongoc_gridfs_file_destroy (file);
+      }
+
+      mongoc_gridfs_file_list_destroy (list);
+      if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")!=0){
+        counter=9;
+      }
 
   }
 return 1;
@@ -675,7 +714,7 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
 }
 aux = aux->next;
 //printf("aux");
-//getchar();
+////getchar();
 if(aux == NULL){
 
 //printf("tá null!");
@@ -1097,7 +1136,7 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
 }
 aux = aux->next;
 //printf("aux");
-//getchar();
+////getchar();
 if(aux == NULL){
 
 //printf("tá null!");
