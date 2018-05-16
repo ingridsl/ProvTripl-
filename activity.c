@@ -8,7 +8,7 @@ files *used_files = NULL;
 
 activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta incluir aquivos na lista de arquivos
 	activity *original = (activity*)malloc(sizeof(activity));
-	
+
    	time_t t;
 	struct tm tm;
     if(!original){
@@ -53,7 +53,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 		break;
-		case 2: 
+		case 2:
 			strcpy(command, " ");
 			strcpy(inputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.fa");
 		   	strcpy(outputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
@@ -91,7 +91,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			//original->execution_status;
 			(*activityNumber)++;
 			break;
-		case 3: 
+		case 3:
 			strcpy(command, " ");
 
 			strcpy(inputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
@@ -128,7 +128,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			sprintf(original->end_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->end_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			
+
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
 			strcpy(original->program_name, hisat);
@@ -136,7 +136,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
-		case 4: 
+		case 4:
 			strcpy(command, " ");
 
 		   	strcpy(inputFile, "file.sam");
@@ -172,7 +172,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
-		case 5: 
+		case 5:
 			strcpy(command, " ");
 		   	strcpy(inputFile, "file.bam");
 			strcpy(outputFile, "file_sorted.sn");
@@ -207,7 +207,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
-		case 6: 
+		case 6:
 
 			strcpy(inputFile1, "file_sorted.sn.bam");
 			strcpy(inputFile2, "Homo_sapiens.GRCh38.88.gtf");
@@ -245,9 +245,12 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
-		default: 
+		default:
 			(*activityNumber)++;
 			break;
+		original->experiment_id = 1;
+		original->agent_id = 1;
+
 	}
 	return original;
 }
@@ -293,8 +296,8 @@ activity *create_activity(){
 activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N]){
 	activity *aux = origin;
 	//activity *new = create_activity(); //trocar
-	
-	activity *new = define_activity(activityNumber, fileBaseName); 
+
+	activity *new = define_activity(activityNumber, fileBaseName);
 	/*if(!existsExperimentId(new->experiment_id, originExp)){
 		printf("\nError: There is no experiment with this number");
 		return origin;

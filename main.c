@@ -10,6 +10,8 @@
 #include "machine.h"
 #include "database.h"
 #include "database11.h"
+#include "database20.h"
+#include "database30.h"
 #define N 300
 
 int activityNumber = 1;
@@ -94,6 +96,18 @@ int main (){
    t = time(NULL);
    tm = *localtime(&t);
    fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+
+   //////////////////////////// MODEL 3.0 - REFERENCIA  /////////////////////////////////
+    fprintf(log," \t---- MODEL 3.0 ----");
+    t = time(NULL);
+    tm = *localtime(&t);
+    fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+    CreateDatabase30(providers, clusters, machines, projects, experiments, activitys, agents, dataFiles, log);
+    t = time(NULL);
+    tm = *localtime(&t);
+    fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
   //limpeza
 

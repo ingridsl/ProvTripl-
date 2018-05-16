@@ -22,16 +22,17 @@ experiment *create_experiment(){
 	strcpy(new->start_date, "2018-01-02");
 	strcpy(new->end_date, "2018-04-01");
 	strcpy(new->annotation, "annotation");
-	new->version = 1; 
+	new->version = 1;
 	strcpy(new->version_date, "2018-01-02");
 	new->execution_cost = 1; // no momento, esse valor é aleatório
+	new->project_id = 1;
 	return new;
 }
 
 
 experiment *insert_experiment(experiment *origin, project *originPro){
 	experiment *aux = origin;
-    
+
 	experiment *new = create_experiment(new);
 	if(aux==NULL){
 	    aux = new;

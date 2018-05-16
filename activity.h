@@ -26,6 +26,7 @@ typedef struct files{
   struct files *next;
 }files;
 
+/*
 typedef struct instruction{
    char command[N];
    char initial_time[N];
@@ -34,7 +35,7 @@ typedef struct instruction{
    struct files *output_files;
    struct instruction *next;
 
-}instruction;
+}instruction;*/
 
 typedef struct activity{
 	int id;
@@ -50,6 +51,7 @@ typedef struct activity{
 
 	//dentro de experimento
 	int experiment_id;
+  int agent_id;
 	//int agent_id;
 
 	//aponta para maquina

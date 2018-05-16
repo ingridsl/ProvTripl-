@@ -58,12 +58,13 @@ void freedomOid(){
 }
 
 bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
+  //parametros
   dataFile *aux = macOriginal->dataFiles;
   bson_t   *provider, cluster, machine, dataFiles;
   char     *provider_str;
   bson_oid_t oid;
 
-  //inicializa documento
+  //inicializa documento com index
   bson_oid_init (&oid, NULL);
   provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
 
@@ -683,7 +684,7 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
 
   );
 
-  Convert(auxData->name, "model10", client);
+//  Convert(auxData->name, "model10", client);
 
   //lista de ids dos arquivos brutos. não funciona
   /*
@@ -1106,7 +1107,7 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
   );
 
 
-  Convert(auxData->name, "model11", client);
+//  Convert(auxData->name, "model11", client);
   //lista de ids dos arquivos brutos. não funciona
   /*
   printf("\nFILE NAME:  %s",auxData->name);*/
@@ -1687,4 +1688,303 @@ bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *
   * Clean up allocated bson documents.
   */
   return project;
+}
+
+
+
+
+
+bson_t   *PROJECT_DOC_3(project *proOriginal, FILE *log){
+
+  bson_t   *project;
+  char     *project_str;
+  bson_oid_t oid;
+  int answer = 0;
+
+  bson_oid_init (&oid, NULL);
+  project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+
+  char str_pro_id[15];
+  sprintf(str_pro_id, "%d", proOriginal->id);
+
+
+  project = BCON_NEW (
+    "id", str_pro_id,
+    "name", proOriginal->name,
+    "description", proOriginal->description,
+    "inst_funders", proOriginal->inst_funders,
+    "inst_participants", proOriginal->inst_participants,
+    "coordinator", proOriginal->coordinator,
+    "start_date", proOriginal->start_date,
+    "end_date", proOriginal->end_date
+  );
+
+  /*
+  * Print the document as a JSON string.
+  */
+  project_str = bson_as_json (project, NULL);
+  printf ("\n\t%s\n\n", project_str);
+  fprintf(log,"\n\t%s\n\n", project_str);
+  bson_free (project_str);
+  /*
+  * Clean up allocated bson documents.
+  */
+  return project;
+}
+
+
+
+
+bson_t   *EXPERIMENT_DOC_3(experiment *expOriginal, FILE *log){
+
+  bson_t   *experiment;
+  char     *experiment_str;
+  bson_oid_t oid;
+  int answer = 0;
+
+  bson_oid_init (&oid, NULL);
+  experiment = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+
+  char str_exp_id[15];
+  sprintf(str_exp_id, "%d", expOriginal->id);
+
+  char str_exp_version[15];
+  sprintf(str_exp_version, "%d", expOriginal->version);
+
+  char str_exp_execution_time[15];
+  sprintf(str_exp_execution_time, "%d", expOriginal->execution_time);
+
+  char str_exp_execution_cost[24];
+  sprintf(str_exp_execution_cost, "%f", expOriginal->execution_cost);
+
+  char str_exp_project_id[24];
+  sprintf(str_exp_project_id, "%d", expOriginal->project_id);
+
+  experiment = BCON_NEW (
+    "id", str_exp_id,
+    "name", expOriginal->name,
+    "description", expOriginal->description,
+    "local", expOriginal->local,
+    "start_date", expOriginal->start_date,
+    "end_date", expOriginal->end_date,
+    "annotation", expOriginal->annotation,
+    "version", str_exp_version,
+    "version_date", expOriginal->version_date,
+    "execution_time", str_exp_execution_time,
+    "execution_cost", str_exp_execution_cost,
+    "project_id",str_exp_project_id
+
+  );
+
+  experiment_str = bson_as_json (experiment, NULL);
+  printf ("\n\t%s\n\n", experiment_str);
+  fprintf(log,"\n\t%s\n\n", experiment_str);
+  bson_free (experiment_str);
+  /*
+  * Clean up allocated bson documents.
+  */
+  return experiment;
+}
+
+
+
+bson_t   *ACTIVITY_DOC_3(activity *activitys, FILE *log){
+  activity *actOriginal = activitys;
+  const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
+  const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
+
+  const char* command2_input[] = {"1"};
+  const char* command2_output[] = {"2"};
+
+  const char* command3_input[] = {"2","9"};
+  const char* command3_output[] = {"4"};
+
+  const char* command4_input[] = {"4"};
+  const char* command4_output[] = {"5"};
+
+  const char* command5_input[] = {"5"};
+  const char* command5_output[] = {"6"};
+
+  const char* command6_input[] = {"6","7"};
+  const char* command6_output[] = {"8"};
+
+  bson_t   child, *activity;
+  char * activity_str;
+  bson_oid_t oid;
+  int answer = 0;
+
+  bson_oid_init (&oid, NULL);
+  activity = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+
+  int y = 0;
+  //comandos daqui
+
+    char str_act_id[15];
+    sprintf(str_act_id, "%d", actOriginal->id);
+    char str_act_experiment_id[15];
+    sprintf(str_act_experiment_id, "%d", actOriginal->experiment_id);
+    char str_act_agent_id[15];
+    sprintf(str_act_agent_id, "%d", actOriginal->agent_id);
+
+
+      char str_act_execution_status[15];
+      sprintf(str_act_execution_status, "%d", actOriginal->execution_status);
+
+    //BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
+
+    uint32_t    i;
+    char        buf[16];
+    const       char *key;
+    size_t      keylen;
+    activity = BCON_NEW(
+        "id", str_act_id,
+        "name", actOriginal->name,
+        "program_name", actOriginal->program_name,
+        "program_version", actOriginal->program_version,
+        "command_line", actOriginal->command_line,
+        "start_date", actOriginal->start_date,
+        "start_hour", actOriginal->start_hour,
+        "end_date", actOriginal->end_date,
+        "end_hour", actOriginal->end_hour,
+        "execution_status", str_act_execution_status,
+        "experiment_id", str_act_experiment_id,
+        "agent_id", str_act_agent_id
+
+    );
+    // USED FILES
+    char str_mac_dataFiles_id[36];
+
+    BSON_APPEND_ARRAY_BEGIN(activity, "files", &child);
+    if(actOriginal->id == 1){
+      for(i = 0; i< sizeof command1_input /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command1_input[i], -1);
+
+      }
+      for(i = 0; i< sizeof command1_output /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command1_output[i], -1);
+
+      }
+    }
+    if(actOriginal->id == 2){
+      for(i = 0; i< sizeof command2_input /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command2_input[i], -1);
+
+      }
+      for(i = 0; i< sizeof command2_output /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command2_output[i], -1);
+
+      }
+    }
+    if(actOriginal->id == 3){
+      for(i = 0; i< sizeof command3_input /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command3_input[i], -1);
+
+      }
+      for(i = 0; i< sizeof command3_output /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command3_output[i], -1);
+
+      }
+    }
+    if(actOriginal->id == 4){
+      for(i = 0; i< sizeof command4_input /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command4_input[i], -1);
+
+      }
+      for(i = 0; i< sizeof command4_output/sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command4_output[i], -1);
+
+      }
+    }
+    if(actOriginal->id == 5){
+      for(i = 0; i< sizeof command5_input /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command5_input[i], -1);
+
+      }
+      for(i = 0; i< sizeof command5_output /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command5_output[i], -1);
+
+      }
+    }
+    if(actOriginal->id == 6){
+      for(i = 0; i< sizeof command6_input /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command6_input[i], -1);
+
+      }
+      for(i = 0; i< sizeof command6_output /sizeof(char *); ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child, key, (int) keylen, command6_output[i], -1);
+
+      }
+    }
+
+    bson_append_array_end(activity, &child);
+
+    actOriginal = actOriginal->next;
+    answer = 0;
+
+
+    activity_str = bson_as_json (activity, NULL);
+    printf ("\n\t%s\n\n", activity_str);
+    fprintf(log,"\n\t%s\n\n", activity_str);
+    bson_free (activity_str);
+    /*
+    * Clean up allocated bson documents.
+    */
+  //}
+return activity;
+}
+
+bson_t   *AGENT_DOC_3(agent *ageOriginal, FILE *log){
+  bson_t   *agent, child;
+  char     *agent_str;
+  int answer = 0;
+  bson_oid_t oid;
+  bson_oid_init (&oid, NULL);
+  agent = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+
+  int y = 0;
+
+  char str_age_id[15];
+  sprintf(str_age_id, "%d", ageOriginal->id);
+
+    uint32_t    i;
+    char        buf[16];
+    const       char *key;
+    size_t      keylen;
+
+    char        buf2[16];
+    const       char *key2;
+    size_t      keylen2;
+
+      agent = BCON_NEW (
+          "id", str_age_id,
+          "name", ageOriginal->name,
+          "login", ageOriginal->login,
+          "instituition", ageOriginal->instituition,
+          "position", ageOriginal->position,
+          "role", ageOriginal->role,
+          "annotation", ageOriginal->annotation
+      );
+  /*
+  * Print the document as a JSON string.
+  */
+  agent_str = bson_as_json (agent, NULL);
+  printf ("\n\t%s\n\n", agent_str);
+  fprintf(log,"\n\t%s\n\n", agent_str);
+  bson_free (agent_str);
+  /*
+  * Clean up allocated bson documents.
+  */
+  return agent;
 }

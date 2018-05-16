@@ -40,7 +40,7 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
 //monta documento do data
 bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log,mongoc_client_t *client);
 
-//uma collection
+//embedded
 
 //monta documento do provider
 bson_t   *PROVIDER_DOC_S(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
@@ -51,5 +51,13 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
 
 bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
 
+
+
+
+//referenciando
+bson_t   *PROJECT_DOC_3(project *proOriginal, FILE *log);
+bson_t   *EXPERIMENT_DOC_3(experiment *expOriginal, FILE *log);
+bson_t   *ACTIVITY_DOC_3(activity *activitys, FILE *log);
+bson_t   *AGENT_DOC_3(agent *ageOriginal, FILE *log);
 
 #endif
