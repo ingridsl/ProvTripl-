@@ -5,13 +5,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "database.h"
+#include "database10.h"
 #include "documents.h"
 #include "provider.h"
 #include "cluster.h"
 #include "machine.h"
 
-void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+void CreateDatabase10(bool index, provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
   dataFile *auxdata = dataOriginal;
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
@@ -44,11 +44,17 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
     */
    bson_t   *fileDoc;
    printf("database \n");
-   model1 = mongoc_client_get_database (client, "model10");
+   char databaseName[N];
+   if(index){
+     strcpy(databaseName, "model10-I");
+   }else{
+       strcpy(databaseName, "model10-NI");
+   }
+   model1 = mongoc_client_get_database (client, databaseName);
    printf("collection \n");
-   data1 = mongoc_client_get_collection (client, "model10", "data1");
-   project1 = mongoc_client_get_collection (client, "model10", "project1");
-   provider1 = mongoc_client_get_collection (client, "model10", "provider1");
+   data1 = mongoc_client_get_collection (client, databaseName, "data1");
+   project1 = mongoc_client_get_collection (client, databaseName, "project1");
+   provider1 = mongoc_client_get_collection (client, databaseName, "provider1");
    dataFile *aux1 = auxdata;
     time_t t;
     struct tm tm;
@@ -59,7 +65,7 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
 
    while(aux1!=NULL){
 
-      fileDoc = DATA_DOC(aux1, model1, data1, log, client);
+      fileDoc = DATA_DOC(index, aux1, model1, data1, log, client);
       if (!mongoc_collection_insert(data1, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
       }
@@ -91,7 +97,7 @@ void CreateDatabase10(provider *provOriginal, cluster *cluOriginal, machine *mac
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-   bson_t   *projectDoc = PROJECT_DOC(projOriginal, expOriginal, actOriginal, ageOriginal, log);
+   bson_t   *projectDoc = PROJECT_DOC(index, projOriginal, expOriginal, actOriginal, ageOriginal, log);
    if (!mongoc_collection_insert(project1, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }

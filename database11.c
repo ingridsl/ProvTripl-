@@ -11,7 +11,7 @@
 #include "cluster.h"
 #include "machine.h"
 
-void CreateDatabase11(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+void CreateDatabase11(bool index, provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
   dataFile *auxdata = dataOriginal;
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
@@ -44,9 +44,15 @@ void CreateDatabase11(provider *provOriginal, cluster *cluOriginal, machine *mac
     */
    bson_t   *fileDoc;
    printf("database \n");
-   model = mongoc_client_get_database (client, "model11");
+   char databaseName[N];
+   if(index){
+     strcpy(databaseName, "model11-I");
+   }else{
+       strcpy(databaseName, "model11-NI");
+   }
+   model = mongoc_client_get_database (client, databaseName);
    printf("collection \n");
-   collection = mongoc_client_get_collection (client, "model11", "default");
+   collection = mongoc_client_get_collection (client, databaseName, "default");
    dataFile *aux1 = auxdata;
     time_t t;
     struct tm tm;
@@ -57,7 +63,7 @@ void CreateDatabase11(provider *provOriginal, cluster *cluOriginal, machine *mac
 
    while(aux1!=NULL){
 
-      fileDoc = DATA_DOC_S(aux1, model, collection, log, client);
+      fileDoc = DATA_DOC_S(index, aux1, model, collection, log, client);
       if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
       }
@@ -90,7 +96,7 @@ void CreateDatabase11(provider *provOriginal, cluster *cluOriginal, machine *mac
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-   bson_t   *projectDoc = PROJECT_DOC_S(projOriginal, expOriginal, actOriginal, ageOriginal, log);
+   bson_t   *projectDoc = PROJECT_DOC_S(index, projOriginal, expOriginal, actOriginal, ageOriginal, log);
    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }

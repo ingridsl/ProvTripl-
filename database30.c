@@ -5,13 +5,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "database.h"
+#include "database30.h"
 #include "documents.h"
 #include "provider.h"
 #include "cluster.h"
 #include "machine.h"
 
-void CreateDatabase30(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
   dataFile *auxdata = dataOriginal;
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
@@ -44,14 +44,21 @@ void CreateDatabase30(provider *provOriginal, cluster *cluOriginal, machine *mac
     */
    bson_t   *fileDoc;
    printf("database \n");
-   model30 = mongoc_client_get_database (client, "model30");
+
+   char databaseName[N];
+   if(index){
+     strcpy(databaseName, "model30-I");
+   }else{
+       strcpy(databaseName, "model30-NI");
+   }
+   model30 = mongoc_client_get_database (client, databaseName);
    printf("collection \n");
-   data3 = mongoc_client_get_collection (client, "model30", "data3");
-   project3 = mongoc_client_get_collection (client, "model30", "project3");
-   provider3 = mongoc_client_get_collection (client, "model30", "provider3");
-   agent3 = mongoc_client_get_collection (client, "model30", "agent3");
-   experiment3 = mongoc_client_get_collection (client, "model30", "experiment3");
-   activity3 = mongoc_client_get_collection (client, "model30", "activity3");
+   data3 = mongoc_client_get_collection (client,databaseName, "data3");
+   project3 = mongoc_client_get_collection (client, databaseName, "project3");
+   provider3 = mongoc_client_get_collection (client, databaseName, "provider3");
+   agent3 = mongoc_client_get_collection (client, databaseName, "agent3");
+   experiment3 = mongoc_client_get_collection (client, databaseName, "experiment3");
+   activity3 = mongoc_client_get_collection (client, databaseName, "activity3");
    dataFile *auxDatafile = auxdata;
    activity *auxActivity = actOriginal;
 
@@ -64,7 +71,7 @@ void CreateDatabase30(provider *provOriginal, cluster *cluOriginal, machine *mac
 
    while(auxDatafile!=NULL){
 
-      fileDoc = DATA_DOC(auxDatafile, model30, data3, log, client);
+      fileDoc = DATA_DOC(index, auxDatafile, model30, data3, log, client);
       if (!mongoc_collection_insert(data3, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
       }
@@ -96,8 +103,8 @@ void CreateDatabase30(provider *provOriginal, cluster *cluOriginal, machine *mac
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-   bson_t   *projectDoc = PROJECT_DOC_3(projOriginal, log);
-   if (!mongoc_collection_insert(project3, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
+   bson_t   *projectDoc = PROJECT_DOC_3(index, projOriginal, log);
+   if (!mongoc_collection_insert( project3, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
 t = time(NULL);
@@ -111,7 +118,7 @@ t = time(NULL);
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-   bson_t   *experimentDoc = EXPERIMENT_DOC_3(expOriginal, log);
+   bson_t   *experimentDoc = EXPERIMENT_DOC_3(index, expOriginal, log);
    if (!mongoc_collection_insert(experiment3, MONGOC_INSERT_NONE, experimentDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
@@ -125,7 +132,7 @@ t = time(NULL);
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
  while(auxActivity!=NULL){
-   bson_t   *activityDoc = ACTIVITY_DOC_3(auxActivity, log);
+   bson_t   *activityDoc = ACTIVITY_DOC_3(index, auxActivity, log);
    if (!mongoc_collection_insert(activity3, MONGOC_INSERT_NONE, activityDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
@@ -141,7 +148,7 @@ t = time(NULL);
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-   bson_t   *agentDoc = AGENT_DOC_3(ageOriginal, log);
+   bson_t   *agentDoc = AGENT_DOC_3(index, model30, ageOriginal, log);
    if (!mongoc_collection_insert(agent3, MONGOC_INSERT_NONE, agentDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }

@@ -37,7 +37,7 @@ oid *add_oid(oid *o, char new[N]){
   /*if(renew){
   //lastoid = auxNew;
   printf("\n\nLASTOID ================= %s & %s ", auxNew->oid, lastoid->oid);
-  ////getchar();
+  //////getchar();
 }*/
 if(aux==NULL){
   auxNew->next = NULL;
@@ -57,7 +57,7 @@ void freedomOid(){
   }
 }
 
-bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
+bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
   //parametros
   dataFile *aux = macOriginal->dataFiles;
   bson_t   *provider, cluster, machine, dataFiles;
@@ -65,9 +65,10 @@ bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *mac
   bson_oid_t oid;
 
   //inicializa documento com index
+  if(index){
   bson_oid_init (&oid, NULL);
   provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  }
   //conversão para strings é necessária
   char str_clu_id[15];
   sprintf(str_clu_id, "%d", cluOriginal->id);
@@ -171,7 +172,7 @@ return provider;
 
 
 
-bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
+bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
   activity *actOriginal = activitys;
   const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
   const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
@@ -196,9 +197,10 @@ bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *a
   bson_oid_t oid;
   int answer = 0;
 
-  bson_oid_init (&oid, NULL);
-  project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   char str_pro_id[15];
   sprintf(str_pro_id, "%d", proOriginal->id);
 
@@ -418,7 +420,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       counter++;
       //printf("\n \n file name: %s", name);
     }
-    printf("\n>>>>FILE NAME: %s", name);
+    //printf("\n>>>>FILE NAME: %s", name);
     strcpy(nameExtraFile, name);
     strcat(nameExtraFile, ".created.txt");
     FILE *fp = fopen(nameExtraFile, "w+");
@@ -428,17 +430,17 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
 
     }
     // VERSÃO MONGOC
-    printf("\n1.0");
+  //  printf("\n1.0");
   /* grab a gridfs handle in test prefixed by fs */
   gridfs = mongoc_client_get_gridfs (client, db_name, "fs", &error);
   assert (gridfs);
 
-  printf("\n1.1");
+  //printf("\n1.1");
 
   stream = mongoc_stream_file_new_for_path (name, O_RDONLY, 0);
       assert (stream);
 
-      printf("\n1.3");
+      //printf("\n1.3");
 
       opt.filename = name;
 
@@ -446,7 +448,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       file = mongoc_gridfs_create_file_from_stream (gridfs, stream, &opt);
       assert (file);
 
-      printf("\n1.5");
+      //printf("\n1.5");
       id.value_type = BSON_TYPE_INT32;
       id.value.v_int32 = 1;
 
@@ -460,11 +462,11 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       mongoc_gridfs_file_save (file);
       mongoc_gridfs_file_destroy (file);
 
-      printf("\n2.0");
+      //printf("\n2.0");
       /////////////////////////
 
       printf("\n\n COMEÇANDO AQUI!! 1");
-    //  //getchar();
+    //  ////getchar();
 iov.iov_base = (void*) buf;
 iov.iov_len = sizeof buf;
 file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
@@ -481,10 +483,10 @@ file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
          if (r == 0) {
             break;
          }
-          //getchar();
+          ////getchar();
          if (fwrite (iov.iov_base, 1, r, fp) != r) {
            printf("ERROR");
-           //getchar();
+           ////getchar();
             MONGOC_ERROR ("Failed to write to stdout. Exiting.\n");
             exit (1);
          }
@@ -494,9 +496,9 @@ file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
       mongoc_gridfs_file_destroy (file);
 
       ////////////////// LIST
-
       printf("\n\n COMEÇANDO AQUI!! 2");
-      ////getchar();
+
+      //////getchar();
       bson_init (&filter);
 
       bson_init (&opts);
@@ -511,7 +513,7 @@ file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
 
       while ((file = mongoc_gridfs_file_list_next (list))) {
          const char *name2 = mongoc_gridfs_file_get_filename (file);
-         printf ("%s\n", name2 ? name2 : "?");
+         //printf ("%s\n", name2 ? name2 : "?");
 
          mongoc_gridfs_file_destroy (file);
       }
@@ -649,7 +651,7 @@ void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
 }
 
 //inserção documento data
-bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log , mongoc_client_t *client){
+bson_t   *DATA_DOC(bool index, dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log , mongoc_client_t *client){
 
   dataFile *auxData = dataOriginal;
   oid *aux = oidNumbers;
@@ -658,9 +660,10 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
   char     *dataFile_str;
   bson_oid_t oid;
 
-  bson_oid_init (&oid, NULL);
-  dataFile = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    dataFile = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   //precisa converter para string os números
   char str_data_id[15];
   sprintf(str_data_id, "%d", dataOriginal->id);
@@ -684,7 +687,7 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
 
   );
 
-//  Convert(auxData->name, "model10", client);
+  Convert(auxData->name, "model10", client);
 
   //lista de ids dos arquivos brutos. não funciona
   /*
@@ -715,7 +718,7 @@ bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_c
 }
 aux = aux->next;
 //printf("aux");
-////getchar();
+//////getchar();
 if(aux == NULL){
 
 //printf("tá null!");
@@ -738,16 +741,17 @@ return dataFile;
 }
 
 
-bson_t   *PROVIDER_DOC_S(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
+bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
   dataFile *aux = macOriginal->dataFiles;
   bson_t   *provider, cluster, machine, dataFiles;
   char     *provider_str;
   bson_oid_t oid;
 
   //inicializa documento
-  bson_oid_init (&oid, NULL);
-  provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   //conversão para strings é necessária
   char str_clu_id[15];
   sprintf(str_clu_id, "%d", cluOriginal->id);
@@ -852,7 +856,7 @@ return provider;
 
 
 
-bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
+bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
   activity *actOriginal = activitys;
   const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
   const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
@@ -877,9 +881,10 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
   bson_oid_t oid;
   int answer = 0;
 
-  bson_oid_init (&oid, NULL);
-  project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   char str_pro_id[15];
   sprintf(str_pro_id, "%d", proOriginal->id);
 
@@ -1070,7 +1075,7 @@ bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity 
   return project;
 }
 //inserção documento data
-bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log, mongoc_client_t *client){
+bson_t   *DATA_DOC_S(bool index, dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log, mongoc_client_t *client){
 
   dataFile *auxData = dataOriginal;
   oid *aux = oidNumbers;
@@ -1079,9 +1084,10 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
   char     *dataFile_str;
   bson_oid_t oid;
 
-  bson_oid_init (&oid, NULL);
-  dataFile = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    dataFile = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   //precisa converter para string os números
   char str_data_id[15];
   sprintf(str_data_id, "%d", dataOriginal->id);
@@ -1137,7 +1143,7 @@ bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc
 }
 aux = aux->next;
 //printf("aux");
-////getchar();
+//////getchar();
 if(aux == NULL){
 
 //printf("tá null!");
@@ -1159,7 +1165,7 @@ bson_free (dataFile_str);
 return dataFile;
 }
 
-bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
   activity *actOriginal = activitys;
   dataFile *auxFiles = dataOriginal;
 
@@ -1185,10 +1191,10 @@ bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *
   char     *project_str;
   bson_oid_t oid;
   int answer = 0;
-
-  bson_oid_init (&oid, NULL);
-  project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   char str_pro_id[15];
   sprintf(str_pro_id, "%d", proOriginal->id);
 
@@ -1694,16 +1700,17 @@ bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *
 
 
 
-bson_t   *PROJECT_DOC_3(project *proOriginal, FILE *log){
+bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
 
   bson_t   *project;
   char     *project_str;
   bson_oid_t oid;
   int answer = 0;
 
-  bson_oid_init (&oid, NULL);
-  project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   char str_pro_id[15];
   sprintf(str_pro_id, "%d", proOriginal->id);
 
@@ -1735,16 +1742,16 @@ bson_t   *PROJECT_DOC_3(project *proOriginal, FILE *log){
 
 
 
-bson_t   *EXPERIMENT_DOC_3(experiment *expOriginal, FILE *log){
+bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
 
   bson_t   *experiment;
   char     *experiment_str;
   bson_oid_t oid;
   int answer = 0;
-
-  bson_oid_init (&oid, NULL);
-  experiment = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    experiment = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   char str_exp_id[15];
   sprintf(str_exp_id, "%d", expOriginal->id);
 
@@ -1788,7 +1795,7 @@ bson_t   *EXPERIMENT_DOC_3(experiment *expOriginal, FILE *log){
 
 
 
-bson_t   *ACTIVITY_DOC_3(activity *activitys, FILE *log){
+bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
   activity *actOriginal = activitys;
   const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
   const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
@@ -1813,9 +1820,10 @@ bson_t   *ACTIVITY_DOC_3(activity *activitys, FILE *log){
   bson_oid_t oid;
   int answer = 0;
 
-  bson_oid_init (&oid, NULL);
-  activity = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-
+  if(index){
+    bson_oid_init (&oid, NULL);
+    activity = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
   int y = 0;
   //comandos daqui
 
@@ -1945,14 +1953,23 @@ bson_t   *ACTIVITY_DOC_3(activity *activitys, FILE *log){
 return activity;
 }
 
-bson_t   *AGENT_DOC_3(agent *ageOriginal, FILE *log){
+bson_t   *AGENT_DOC_3(bool index, mongoc_database_t *db, agent *ageOriginal, FILE *log){
   bson_t   *agent, child;
   char     *agent_str;
   int answer = 0;
   bson_oid_t oid;
-  bson_oid_init (&oid, NULL);
-  agent = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  mongoc_client_t *client;
 
+  //query = bson_new ();
+    // BSON_APPEND_UTF8 (query, "hello", "world");
+  /*if(index){
+    printf("INDEXADO");
+    //getchar();
+    bson_oid_init (&oid, NULL);
+    agent = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }else{*/
+    agent = bson_new ();
+//}
   int y = 0;
 
   char str_age_id[15];
@@ -1967,15 +1984,17 @@ bson_t   *AGENT_DOC_3(agent *ageOriginal, FILE *log){
     const       char *key2;
     size_t      keylen2;
 
-      agent = BCON_NEW (
-          "id", str_age_id,
-          "name", ageOriginal->name,
-          "login", ageOriginal->login,
-          "instituition", ageOriginal->instituition,
-          "position", ageOriginal->position,
-          "role", ageOriginal->role,
-          "annotation", ageOriginal->annotation
-      );
+      BSON_APPEND_UTF8 (agent,"id", str_age_id);
+      BSON_APPEND_UTF8 (agent,"name", ageOriginal->name);
+      BSON_APPEND_UTF8 (agent,"login", ageOriginal->login);
+      BSON_APPEND_UTF8 (agent,"instituition", ageOriginal->instituition);
+      BSON_APPEND_UTF8 (agent,"position", ageOriginal->position);
+      BSON_APPEND_UTF8 (agent,"role", ageOriginal->role);
+      BSON_APPEND_UTF8 (agent,"annotation", ageOriginal->annotation);
+
+      if(index){
+          indexingDocument("agent3", db, "_id");
+      }
   /*
   * Print the document as a JSON string.
   */
@@ -1987,4 +2006,46 @@ bson_t   *AGENT_DOC_3(agent *ageOriginal, FILE *log){
   * Clean up allocated bson documents.
   */
   return agent;
+}
+
+void indexingDocument (char *collection_name, mongoc_database_t *db, char *label) {
+
+  char *index_name;
+  bson_t *create_indexes;
+  bson_t reply;
+  char *reply_str;
+  bson_error_t error;
+  bool r;
+   bson_t keys;
+
+  bson_init (&keys);
+   BSON_APPEND_INT32 (&keys, label, 1);
+   index_name = mongoc_collection_keys_to_index_string (&keys);
+   create_indexes = BCON_NEW ("createIndexes",
+                              BCON_UTF8 (collection_name),
+                              "indexes",
+                              "[",
+                              "{",
+                              "key",
+                              BCON_DOCUMENT (&keys),
+                              "name",
+                              BCON_UTF8 (index_name),
+                              "}",
+                              "]");
+
+   r = mongoc_database_write_command_with_opts (
+      db, create_indexes, NULL /* opts */, &reply, &error);
+
+   reply_str = bson_as_json (&reply, NULL);
+   printf ("%s\n", reply_str);
+
+   if (!r) {
+      fprintf (stderr, "Error in createIndexes: %s\n", error.message);
+   }
+
+   //bson_free (index_name);
+   bson_free (reply_str);
+   bson_destroy (&reply);
+   bson_destroy (create_indexes);
+
 }

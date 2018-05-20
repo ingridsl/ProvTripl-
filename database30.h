@@ -17,7 +17,7 @@
 
 #define N 300
 
-void CreateDatabase30(provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
+void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
 
 void CleanDatabase30(mongoc_client_t *client,
                 mongoc_database_t *database,

@@ -34,30 +34,32 @@ void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection);
 //collections individuais
 
 //monta documento do provider
-bson_t   *PROVIDER_DOC(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
+bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
 //monta documento do project
-bson_t   *PROJECT_DOC(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
+bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
 //monta documento do data
-bson_t   *DATA_DOC(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log,mongoc_client_t *client);
+bson_t   *DATA_DOC(bool index, dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log,mongoc_client_t *client);
 
 //embedded
 
 //monta documento do provider
-bson_t   *PROVIDER_DOC_S(provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
+bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log);
 //monta documento do project
-bson_t   *PROJECT_DOC_S(project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
+bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, FILE *log);
 //monta documento do data
-bson_t   *DATA_DOC_S(dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log, mongoc_client_t *client);
+bson_t   *DATA_DOC_S(bool index, dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log, mongoc_client_t *client);
 
-bson_t   *SINGLE_DOC_2(project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
+bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
 
 
 
 
 //referenciando
-bson_t   *PROJECT_DOC_3(project *proOriginal, FILE *log);
-bson_t   *EXPERIMENT_DOC_3(experiment *expOriginal, FILE *log);
-bson_t   *ACTIVITY_DOC_3(activity *activitys, FILE *log);
-bson_t   *AGENT_DOC_3(agent *ageOriginal, FILE *log);
+bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log);
+bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log);
+bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log);
+bson_t   *AGENT_DOC_3(bool index, mongoc_database_t *db, agent *ageOriginal, FILE *log);
 
+//indexing
+void indexingDocument (char *collection_name, mongoc_database_t *db, char *label);
 #endif
