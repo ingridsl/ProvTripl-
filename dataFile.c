@@ -7,14 +7,14 @@
 #include "machine.h"
 
 int dataFileId = 1;
+
 dataFile *create_dataFile(char file_name[N]){
 	dataFile *new = (dataFile*)malloc(sizeof(dataFile));
 
-    if(!new){
+  if(!new){
 		printf("\nError");
 	    exit(1);
 	}
-
 	new->id = dataFileId;
 	dataFileId ++;
 	//printf("Type Data File's name: ");
@@ -38,6 +38,12 @@ dataFile *create_dataFile(char file_name[N]){
 
 dataFile *insert_dataFile(dataFile *origin, char file_name[N]){
 	dataFile *aux = origin;
+
+	if(existsDataFileId(file_name, origin)){
+		return origin;
+	}
+	printf("\n\nINSERTING");
+	getchar();
 	dataFile *new = create_dataFile(file_name);
 	if(aux==NULL){
 	    aux = new;
@@ -60,4 +66,16 @@ void freedom_dataFile(dataFile *origin){
         free(aux1);
         aux1 = aux2;
     }
+}
+
+bool existsDataFileId(char fileName[N], dataFile *origin){
+ 	dataFile *aux = origin;
+    while(aux!=NULL){
+    	if(strcmp(aux->name, fileName) == 0)
+    		return true;
+       	aux = aux->next;
+    }
+		printf("\n\nNOVO!!");
+		getchar();
+return false;
 }

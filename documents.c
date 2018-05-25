@@ -686,7 +686,7 @@ bson_t   *DATA_DOC(bool index, dataFile *dataOriginal, mongoc_database_t *databa
     "type", dataOriginal->type
 
   );
-
+  printf("\n FILE = %s", auxData->name);
   Convert(auxData->name, "model10", client);
 
   //lista de ids dos arquivos brutos. não funciona

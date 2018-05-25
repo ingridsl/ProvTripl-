@@ -13,7 +13,7 @@
 #define hisat "hisat2"
 
 #define htseqversion "0.7.2"
-#define htseq "htsqeq"
+#define htseq "htseq"
 
 #define samtoolsversion "1.4.4"
 #define samtools "samtools"
@@ -58,9 +58,12 @@ typedef struct activity{
 	int machine_id;
 	struct activity *next;
 }activity;
-activity *define_activity(int *activityNumber, char fileBaseName[N]);
+dataFile *returnUsedFiles();
+char *searchProgramUsed(char command[N]);
+char *searchProgramVersion(char command[N]);
+activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig);
 activity *create_activity();
-activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N]);
+activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig);
 void freedom_activity(activity *origin);
 bool existsExperimentId(int expIdExp, experiment *originExp);
 //bool existsAgentId(int expIdAg, agent *originAg);

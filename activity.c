@@ -4,9 +4,38 @@
 #include <stdbool.h>
 #include "activity.h"
 
-files *used_files = NULL;
+//files *used_files = NULL;
 
-activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta incluir aquivos na lista de arquivos
+dataFile *used_files = NULL;
+dataFile *returnUsedFiles(){
+	return used_files;
+}
+
+char *searchProgramUsed(char command[N]){
+	if(strstr(command, "sickle")!=NULL){
+		return sickle;
+	}else if(strstr(command, "hisat2")!=NULL){
+		return hisat;
+	}else if(strstr(command, "samtools")!=NULL){
+		return samtools;
+	}else if(strstr(command, "htseq")!=NULL){
+		return htseq;
+	}
+}
+
+char *searchProgramVersion(char command[N]){
+	if(strstr(command, "sickle")!=NULL){
+		return sickleversion;
+	}else if(strstr(command, "hisat2")!=NULL){
+		return hisatversion;
+	}else if(strstr(command, "samtools")!=NULL){
+		return samtools;
+	}else if(strstr(command, "htseq")!=NULL){
+		return htseqversion;
+	}
+}
+
+activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig){ //falta incluir aquivos na lista de arquivos
 	activity *original = (activity*)malloc(sizeof(activity));
 
    	time_t t;
@@ -16,14 +45,16 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 	    exit(1);
 	}
 
-	char inputFile1[N], outputFile[N], inputFile2[N], inputFile[N];
+	char inputFile1[N], inputFile2[N], inputFile3[N], outputFile[N];
 	char command[N] = "";
 	switch((*activityNumber)){
 		case 1:
 			strcpy(command, " ");
-			strcpy(inputFile, "SRR5181508.fastq");
+			strcpy(inputFile1, "SRR5181508.fastq");
 		   	strcpy(outputFile, "SRR5181508_FILTERED.fastq");
 
+				used_files = insert_dataFile(used_files, inputFile1);
+				used_files = insert_dataFile(used_files, outputFile);
 		   	strcpy(command, "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25");
 
 		    printf("\n\t:::::: COMANDO 1 :::::: \n%s \n", command);
@@ -48,17 +79,17 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			original->id = *activityNumber;
 			printf("\n\n %d", original->id);
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, sickle);
-			strcpy(original->program_version, sickleversion);
+			strcpy(original->program_name, searchProgramUsed(command));
+			strcpy(original->program_version, searchProgramVersion(command));
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 		break;
 		case 2:
 			strcpy(command, " ");
-			strcpy(inputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.fa");
+			strcpy(inputFile1, "Homo_sapiens.GRCh38.88.dna.chromosome.22.fa");
 		   	strcpy(outputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
 		   	//printf("insertd");
-		   	strcat(inputFile, ".fa");
+		   	strcat(inputFile1, ".fa");
 		   	strcat(outputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
 
 			strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
@@ -85,8 +116,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 			original->id = *activityNumber;
 			printf("\n\n %d", original->id);
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, hisat);
-			strcpy(original->program_version, hisatversion);
+			strcpy(original->program_name, searchProgramUsed(command));
+			strcpy(original->program_version,searchProgramVersion(command));
 			strcpy(original->command_line,command);
 			//original->execution_status;
 			(*activityNumber)++;
@@ -94,7 +125,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 		case 3:
 			strcpy(command, " ");
 
-			strcpy(inputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
+			strcpy(inputFile1, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
 
 		   	//strcat(inputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
 		   	strcpy(inputFile1, "SRR5181508_FILTERED.fastq"); //file_1.fq
@@ -108,8 +139,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
    			printf("::::::");
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, hisat);
-			strcpy(original->program_version, hisatversion);
+			strcpy(original->program_name, searchProgramUsed(command));
+			strcpy(original->program_version, searchProgramVersion(command));
 			strcpy(original->command_line,command);
 
 			// GET TIME
@@ -131,19 +162,19 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, hisat);
-			strcpy(original->program_version, hisatversion);
+			strcpy(original->program_name, searchProgramUsed(command));
+			strcpy(original->program_version, searchProgramVersion(command));
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
 		case 4:
 			strcpy(command, " ");
 
-		   	strcpy(inputFile, "file.sam");
+		   	strcpy(inputFile1, "file.sam");
 		   	strcpy(outputFile, "file.bam");
 
 			strcpy(command, "samtools view -bS ");
-		    strcat(command, inputFile);
+		    strcat(command, inputFile1);
 		    strcat(command, " > ");
 		    strcat(command, outputFile);
 
@@ -167,18 +198,18 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, samtools);
-			strcpy(original->program_version, samtoolsversion);
+			strcpy(original->program_name, searchProgramUsed(command));
+			strcpy(original->program_version,searchProgramVersion(command));
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
 		case 5:
 			strcpy(command, " ");
-		   	strcpy(inputFile, "file.bam");
+		   	strcpy(inputFile1, "file.bam");
 			strcpy(outputFile, "file_sorted.sn");
 
 			strcpy(command, "samtools sort -n ");
-		    strcat(command, inputFile);
+		    strcat(command, inputFile1);
 		    strcat(command, " ");
 		    strcat(command, outputFile);
 
@@ -202,8 +233,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, samtools);
-			strcpy(original->program_version, samtoolsversion);
+			strcpy(original->program_name, searchProgramUsed(command));
+			strcpy(original->program_version, searchProgramVersion(command));
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
@@ -240,8 +271,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N]){ //falta in
 
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
-			strcpy(original->program_name, htseq);
-			strcpy(original->program_version, htseqversion);
+			strcpy(original->program_name, searchProgramUsed(command));
+			strcpy(original->program_version,searchProgramVersion(command));
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
 			break;
@@ -293,11 +324,11 @@ activity *create_activity(){
 }
 
 //insere o node
-activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N]){
+activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig){
 	activity *aux = origin;
 	//activity *new = create_activity(); //trocar
 
-	activity *new = define_activity(activityNumber, fileBaseName);
+	activity *new = define_activity(activityNumber, fileBaseName, &(*dataFileOrig));
 	/*if(!existsExperimentId(new->experiment_id, originExp)){
 		printf("\nError: There is no experiment with this number");
 		return origin;
