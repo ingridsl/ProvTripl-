@@ -100,6 +100,11 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, outputFile);
 
+				value = retrieveDataFileId(inputFile1, used_files);
+				sprintf(original->command_input[0],"%d", value);
+				value = retrieveDataFileId(outputFile, used_files);
+				sprintf(original->command_output[0],"%d", value);
+
 			strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
 
 		    printf("\n\t:::::: COMANDO 2 :::::: \n%s \n", command);
@@ -142,6 +147,13 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, inputFile2);
 				used_files = insert_dataFile(used_files, outputFile);
+
+				value = retrieveDataFileId(inputFile1, used_files);
+				sprintf(original->command_input[0],"%d", value);
+				value = retrieveDataFileId(inputFile2, used_files);
+				sprintf(original->command_input[1],"%d", value);
+				value = retrieveDataFileId(outputFile, used_files);
+				sprintf(original->command_output[0],"%d", value);
 
 			strcpy(command, "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam");
 
@@ -186,6 +198,11 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, outputFile);
 
+				value = retrieveDataFileId(inputFile1, used_files);
+				sprintf(original->command_input[0],"%d", value);
+				value = retrieveDataFileId(outputFile, used_files);
+				sprintf(original->command_output[0],"%d", value);
+
 			strcpy(command, "samtools view -bS ");
 		    strcat(command, inputFile1);
 		    strcat(command, " > ");
@@ -229,6 +246,11 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, outputFile);
 
+				value = retrieveDataFileId(inputFile1, used_files);
+				sprintf(original->command_input[0],"%d", value);
+				value = retrieveDataFileId(outputFile, used_files);
+				sprintf(original->command_output[0],"%d", value);
+
 		    printf("\n:::::: COMANDO 5 :::::: \n%s \n", command);
    			printf("::::::");
 			// GET TIME
@@ -263,6 +285,13 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, inputFile2);
 				used_files = insert_dataFile(used_files, outputFile);
+
+				value = retrieveDataFileId(inputFile1, used_files);
+				sprintf(original->command_input[0],"%d", value);
+				value = retrieveDataFileId(inputFile2, used_files);
+				sprintf(original->command_input[1],"%d", value);
+				value = retrieveDataFileId(outputFile, used_files);
+				sprintf(original->command_output[0],"%d", value);
 
 			strcpy(command, "htseq-count -m intersection-nonempty -s no -a 10 ");
 		    strcat(command, inputFile1);

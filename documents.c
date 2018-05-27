@@ -12,51 +12,6 @@
 bool novo = false;
 oid *oidNumbers = NULL;
 
-oid *add_oid(oid *o, char new[N]){
-  oid *aux = o;
-  oid *aux2 = o;
-  while(aux2!=NULL){ //impede que seja inserido um oid que já existe
-    if(strcmp(aux2->oid, new)>0){
-      //printf("\n\nIGUAIS ================= %s & %s", aux2->oid, new);
-      novo = false;
-      return o;
-    }
-    novo = true;
-    aux2 = aux2->next;
-  }
-  //printf("\n\nINCLUIDO ================= %s & %s ", aux2->oid, new);
-
-  oid *auxNew = (oid*)malloc(sizeof(oid));
-  if(!auxNew){
-    printf("\nError");
-    exit(1);
-  }
-
-  auxNew->posto = false;
-  strcpy(auxNew->oid, new);
-  /*if(renew){
-  //lastoid = auxNew;
-  printf("\n\nLASTOID ================= %s & %s ", auxNew->oid, lastoid->oid);
-  //////getchar();
-}*/
-if(aux==NULL){
-  auxNew->next = NULL;
-  return auxNew;
-}
-auxNew->next = aux;
-return auxNew;
-}
-
-void freedomOid(){
-  oid *aux1 = oidNumbers;
-  printf("\n\nWORDS:");
-  while(aux1!=NULL){
-    printf("\n %s", aux1->oid);
-    free(aux1);
-    aux1 = aux1->next;
-  }
-}
-
 bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
   //parametros
   dataFile *aux = macOriginal->dataFiles;
@@ -174,25 +129,7 @@ return provider;
 
 bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
   activity *actOriginal = activitys;
-  const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
-  const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
-
-  const char* command2_input[] = {"1"};
-  const char* command2_output[] = {"2"};
-
-  const char* command3_input[] = {"2","9"};
-  const char* command3_output[] = {"4"};
-
-  const char* command4_input[] = {"4"};
-  const char* command4_output[] = {"5"};
-
-  const char* command5_input[] = {"5"};
-  const char* command5_output[] = {"6"};
-
-  const char* command6_input[] = {"6","7"};
-  const char* command6_output[] = {"8"};
-
-  bson_t   *project, experiment, agent, child;
+  bson_t   *project, experiment, agent;
   char     *project_str;
   bson_oid_t oid;
   int answer = 0;
@@ -246,7 +183,7 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
   char str_age_id[15];
   sprintf(str_age_id, "%d", ageOriginal->id);
 
-  bson_t activity, activities, child2;
+  bson_t activity, activities,child1, child2;
   BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
   //comandos daqui
   while(actOriginal->next !=NULL){
@@ -279,81 +216,22 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
     // USED FILES
     char str_mac_dataFiles_id[36];
 
-    BSON_APPEND_ARRAY_BEGIN(&activity, "files", &child);
-    if(actOriginal->id == 1){
-      for(i = 0; i< 1 /*sizeof actOriginal->command_input[0] /sizeof(char *)*/; ++i){
+    BSON_APPEND_ARRAY_BEGIN(&activity, "input_files", &child1);
+      for(i = 0; i < 2; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, actOriginal->command_input[0], -1);
+        if(strlen(actOriginal->command_input[i])>0)
+          bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
 
       }
-      for(i = 0; i< sizeof command1_output /sizeof(char *); ++i){
+    bson_append_array_end(&activity, &child1);
+    BSON_APPEND_ARRAY_BEGIN(&activity, "output_files", &child2);
+      for(i = 0; i< 1; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command1_output[i], -1);
+        bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
 
       }
-    }
-    if(actOriginal->id == 2){
-      for(i = 0; i< sizeof command2_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command2_input[i], -1);
+    bson_append_array_end(&activity, &child2);
 
-      }
-      for(i = 0; i< sizeof command2_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command2_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 3){
-      for(i = 0; i< sizeof command3_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command3_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command3_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command3_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 4){
-      for(i = 0; i< sizeof command4_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command4_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command4_output/sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command4_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 5){
-      for(i = 0; i< sizeof command5_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command5_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command5_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command5_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 6){
-      for(i = 0; i< sizeof command6_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command6_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command6_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command6_output[i], -1);
-
-      }
-    }
-
-    bson_append_array_end(&activity, &child);
 
     // END USED FILES
     BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
@@ -735,25 +613,7 @@ return provider;
 
 bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
   activity *actOriginal = activitys;
-  const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
-  const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
-
-  const char* command2_input[] = {"1"};
-  const char* command2_output[] = {"2"};
-
-  const char* command3_input[] = {"2","9"};
-  const char* command3_output[] = {"4"};
-
-  const char* command4_input[] = {"4"};
-  const char* command4_output[] = {"5"};
-
-  const char* command5_input[] = {"5"};
-  const char* command5_output[] = {"6"};
-
-  const char* command6_input[] = {"6","7"};
-  const char* command6_output[] = {"8"};
-
-  bson_t   *project, experiment, agent, child;
+  bson_t   *project, experiment, agent;
   char     *project_str;
   bson_oid_t oid;
   int answer = 0;
@@ -809,7 +669,7 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
   char str_age_id[15];
   sprintf(str_age_id, "%d", ageOriginal->id);
 
-  bson_t activity, activities, child2;
+  bson_t activity, activities, child1, child2;
   BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
   //comandos daqui
   while(actOriginal->next !=NULL){
@@ -842,81 +702,21 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
     // USED FILES
     char str_mac_dataFiles_id[36];
 
-    BSON_APPEND_ARRAY_BEGIN(&activity, "files", &child);
-    if(actOriginal->id == 1){
-      for(i = 0; i< 1 /*sizeof actOriginal->command_input[i] /sizeof(char *)*/; ++i){
+    BSON_APPEND_ARRAY_BEGIN(&activity, "input_files", &child1);
+      for(i = 0; i < 2; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, actOriginal->command_input[i], -1);
+        if(strlen(actOriginal->command_input[i])>0)
+          bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
 
       }
-      for(i = 0; i< sizeof command1_output /sizeof(char *); ++i){
+    bson_append_array_end(&activity, &child1);
+    BSON_APPEND_ARRAY_BEGIN(&activity, "output_files", &child2);
+      for(i = 0; i< 1; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command1_output[i], -1);
+        bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
 
       }
-    }
-    if(actOriginal->id == 2){
-      for(i = 0; i< sizeof command2_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command2_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command2_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command2_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 3){
-      for(i = 0; i< sizeof command3_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command3_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command3_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command3_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 4){
-      for(i = 0; i< sizeof command4_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command4_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command4_output/sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command4_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 5){
-      for(i = 0; i< sizeof command5_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command5_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command5_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command5_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 6){
-      for(i = 0; i< sizeof command6_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command6_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command6_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command6_output[i], -1);
-
-      }
-    }
-
-    bson_append_array_end(&activity, &child);
+    bson_append_array_end(&activity, &child2);
 
     // END USED FILES
     BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
@@ -1119,7 +919,7 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
   char str_age_id[15];
   sprintf(str_age_id, "%d", ageOriginal->id);
 
-  bson_t activity, activities, child2, dataFile, dataFiles;
+  bson_t activity, activities,child1, child2, dataFile, dataFiles;
   BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
   //comandos daqui
   while(actOriginal !=NULL){
@@ -1674,25 +1474,7 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
 
 bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
   activity *actOriginal = activitys;
-  const char* command1_input[] = {"3"}; //arquivos usados pelos comandos. ver na main qual é qual
-  const char* command1_output[] = {"9"}; //arquivos usados pelos comandos. ver na main qual é qual
-
-  const char* command2_input[] = {"1"};
-  const char* command2_output[] = {"2"};
-
-  const char* command3_input[] = {"2","9"};
-  const char* command3_output[] = {"4"};
-
-  const char* command4_input[] = {"4"};
-  const char* command4_output[] = {"5"};
-
-  const char* command5_input[] = {"5"};
-  const char* command5_output[] = {"6"};
-
-  const char* command6_input[] = {"6","7"};
-  const char* command6_output[] = {"8"};
-
-  bson_t   child, *activity;
+  bson_t   child1, child2, *activity;
   char * activity_str;
   bson_oid_t oid;
   int answer = 0;
@@ -1739,81 +1521,21 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
     // USED FILES
     char str_mac_dataFiles_id[36];
 
-    BSON_APPEND_ARRAY_BEGIN(activity, "files", &child);
-    if(actOriginal->id == 1){
-      for(i = 0; i < 1 /*sizeof actOriginal->command_input[i] /sizeof(char *)*/; ++i){
+    BSON_APPEND_ARRAY_BEGIN(activity, "input_files", &child1);
+      for(i = 0; i < 2; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, actOriginal->command_input[i], -1);
+        if(strlen(actOriginal->command_input[i])>0)
+          bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
 
       }
-      for(i = 0; i< sizeof command1_output /sizeof(char *); ++i){
+    bson_append_array_end(activity, &child1);
+    BSON_APPEND_ARRAY_BEGIN(activity, "output_files", &child2);
+      for(i = 0; i< 1; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command1_output[i], -1);
+        bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
 
       }
-    }
-    if(actOriginal->id == 2){
-      for(i = 0; i< sizeof command2_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command2_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command2_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command2_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 3){
-      for(i = 0; i< sizeof command3_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command3_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command3_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command3_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 4){
-      for(i = 0; i< sizeof command4_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command4_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command4_output/sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command4_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 5){
-      for(i = 0; i< sizeof command5_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command5_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command5_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command5_output[i], -1);
-
-      }
-    }
-    if(actOriginal->id == 6){
-      for(i = 0; i< sizeof command6_input /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command6_input[i], -1);
-
-      }
-      for(i = 0; i< sizeof command6_output /sizeof(char *); ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command6_output[i], -1);
-
-      }
-    }
-
-    bson_append_array_end(activity, &child);
+    bson_append_array_end(activity, &child2);
 
     actOriginal = actOriginal->next;
     answer = 0;

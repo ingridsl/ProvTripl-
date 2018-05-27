@@ -22,10 +22,7 @@ typedef struct oid{
 	struct oid *next;
 
 }oid;
-//método obsoleto - inseria nó na lista de oids
-oid *add_oid(oid *o, char new[N]);
-//método obsoleto - libera lista
-void freedomOid();
+
 //pega o arquivo bruto e insere no mongo db em vários fragmentos
 int Convert(char fileName[N], char db_name[N], mongoc_client_t *client);
 //método não funcional - recupera ids dos documentos dos arquivos fragmentados
