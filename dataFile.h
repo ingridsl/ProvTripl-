@@ -28,5 +28,5 @@ dataFile *create_dataFile(char file_name[N]);
 dataFile *insert_dataFile(dataFile *origin, char file_name[N]);
 void freedom_dataFile(dataFile *origin);
 bool existsDataFileId(char fileName[N], dataFile *origin);
-
+int retrieveDataFileId(char fileName[N], dataFile *origin);
 #endif

@@ -5,6 +5,7 @@
 
 #include "dataFile.h"
 #include "machine.h"
+#include "activity.h"
 
 int dataFileId = 1;
 
@@ -42,8 +43,7 @@ dataFile *insert_dataFile(dataFile *origin, char file_name[N]){
 	if(existsDataFileId(file_name, origin)){
 		return origin;
 	}
-	printf("\n\nINSERTING");
-	getchar();
+	
 	dataFile *new = create_dataFile(file_name);
 	if(aux==NULL){
 	    aux = new;
@@ -75,7 +75,16 @@ bool existsDataFileId(char fileName[N], dataFile *origin){
     		return true;
        	aux = aux->next;
     }
-		printf("\n\nNOVO!!");
-		getchar();
 return false;
+}
+
+int retrieveDataFileId(char fileName[N], dataFile *origin){
+
+ 	dataFile *aux = returnUsedFiles();
+    while(aux!=NULL){
+    	if(strcmp(aux->name, fileName) == 0)
+    		return aux->id;
+       	aux = aux->next;
+    }
+return 0;
 }

@@ -42,10 +42,10 @@ int main (){
 
   activity *activitys = NULL;
   while(activityNumber < 7){
-    activitys = insert_activity(activitys, &activityNumber, "Homo_sapiens.GRCh38.dna.chromosome.22");
+    activitys = insert_activity(activitys, &activityNumber, "Homo_sapiens.GRCh38.dna.chromosome.22", dataFiles);
   }
-
-  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.fa"); //1
+  dataFiles = returnUsedFiles();
+/*  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.fa"); //1
   dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"); //2
   dataFiles = insert_dataFile(dataFiles, "SRR5181508.fastq"); //3
   dataFiles = insert_dataFile(dataFiles, "file.sam"); //4
@@ -54,7 +54,7 @@ int main (){
   dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.88.gtf"); //7
   dataFiles = insert_dataFile(dataFiles, "file.count"); //8
   dataFiles = insert_dataFile(dataFiles, "SRR5181508_FILTERED.fastq"); //9
-
+*/
   provider *providers = NULL;
   providers = insert_provider(providers);
 
@@ -67,6 +67,7 @@ int main (){
   /// NO INDEXES
   //////////////////////////// MODEL 1.0 - N COLLECTIONS - N DOCUMENTS /////////////////////////////////
   fprintf(log," \t---- MODEL 1.0 ----");
+ printf(" \t---- MODEL 1.0 ----");
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -78,6 +79,7 @@ int main (){
 
  //////////////////////////// MODEL 1.1 - 1 COLLECTIONS - N DOCUMENTS/////////////////////////////////
   fprintf(log," \t---- MODEL 1.1 ----");
+ printf(" \t---- MODEL 1.1 ----");
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -89,6 +91,7 @@ int main (){
 
   //////////////////////////// MODEL 2.0 - 1 COLLECTION - 1 DOCUMENT/////////////////////////////////
    fprintf(log," \t---- MODEL 2.0 ----");
+  printf(" \t---- MODEL 2.0 ----");
    t = time(NULL);
    tm = *localtime(&t);
    fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -101,6 +104,7 @@ int main (){
 
    //////////////////////////// MODEL 3.0 - REFERENCIA  /////////////////////////////////
     fprintf(log," \t---- MODEL 3.0 ----");
+   printf(" \t---- MODEL 3.0 ----");
     t = time(NULL);
     tm = *localtime(&t);
     fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -116,6 +120,7 @@ int main (){
       /// INDEXES
       //////////////////////////// MODEL 1.0 - N COLLECTIONS - N DOCUMENTS /////////////////////////////////
       fprintf(log," \t---- MODEL 1.0 ----");
+     printf(" \t---- MODEL 1.0 ----");
       t = time(NULL);
       tm = *localtime(&t);
       fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -127,6 +132,7 @@ int main (){
 
      //////////////////////////// MODEL 1.1 - 1 COLLECTIONS - N DOCUMENTS/////////////////////////////////
       fprintf(log," \t---- MODEL 1.1 ----");
+     printf(" \t---- MODEL 1.1 ----");
       t = time(NULL);
       tm = *localtime(&t);
       fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -138,6 +144,7 @@ int main (){
 
       //////////////////////////// MODEL 2.0 - 1 COLLECTION - 1 DOCUMENT/////////////////////////////////
        fprintf(log," \t---- MODEL 2.0 ----");
+      printf(" \t---- MODEL 2.0 ----");
        t = time(NULL);
        tm = *localtime(&t);
        fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
@@ -150,6 +157,7 @@ int main (){
 
        //////////////////////////// MODEL 3.0 - REFERENCIA  /////////////////////////////////
         fprintf(log," \t---- MODEL 3.0 ----");
+       printf(" \t---- MODEL 3.0 ----");
         t = time(NULL);
         tm = *localtime(&t);
         fprintf(log,"\nBEGIN: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);

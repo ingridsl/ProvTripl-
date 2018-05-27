@@ -7,6 +7,7 @@
 //files *used_files = NULL;
 
 dataFile *used_files = NULL;
+
 dataFile *returnUsedFiles(){
 	return used_files;
 }
@@ -44,17 +45,22 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 		printf("\nError");
 	    exit(1);
 	}
-
+	int value;
 	char inputFile1[N], inputFile2[N], inputFile3[N], outputFile[N];
 	char command[N] = "";
 	switch((*activityNumber)){
 		case 1:
 			strcpy(command, " ");
-			strcpy(inputFile1, "SRR5181508.fastq");
+				strcpy(inputFile1, "SRR5181508.fastq");
 		   	strcpy(outputFile, "SRR5181508_FILTERED.fastq");
 
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, outputFile);
+
+				value = retrieveDataFileId(inputFile1, used_files);
+				sprintf(original->command_input[0],"%d", value);
+				value = retrieveDataFileId(outputFile, used_files);
+				sprintf(original->command_output[0],"%d", value);
 		   	strcpy(command, "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25");
 
 		    printf("\n\t:::::: COMANDO 1 :::::: \n%s \n", command);
@@ -86,11 +92,13 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 		break;
 		case 2:
 			strcpy(command, " ");
-			strcpy(inputFile1, "Homo_sapiens.GRCh38.88.dna.chromosome.22.fa");
+				strcpy(inputFile1, "Homo_sapiens.GRCh38.88.dna.chromosome.22.fa");
 		   	strcpy(outputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
 		   	//printf("insertd");
 		   	strcat(inputFile1, ".fa");
 		   	strcat(outputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
+				used_files = insert_dataFile(used_files, inputFile1);
+				used_files = insert_dataFile(used_files, outputFile);
 
 			strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
 
@@ -128,9 +136,12 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 			strcpy(inputFile1, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
 
 		   	//strcat(inputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
-		   	strcpy(inputFile1, "SRR5181508_FILTERED.fastq"); //file_1.fq
+		   	strcpy(inputFile2, "SRR5181508_FILTERED.fastq"); //file_1.fq
 		   	//strcpy(inputFile2, "file_2.fq"); //file_2.fq
-			//strcpy(outputFile, "file.sam"); // file.sam
+				strcpy(outputFile, "file.sam"); // file.sam
+				used_files = insert_dataFile(used_files, inputFile1);
+				used_files = insert_dataFile(used_files, inputFile2);
+				used_files = insert_dataFile(used_files, outputFile);
 
 			strcpy(command, "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam");
 
@@ -172,6 +183,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 		   	strcpy(inputFile1, "file.sam");
 		   	strcpy(outputFile, "file.bam");
+				used_files = insert_dataFile(used_files, inputFile1);
+				used_files = insert_dataFile(used_files, outputFile);
 
 			strcpy(command, "samtools view -bS ");
 		    strcat(command, inputFile1);
@@ -213,6 +226,9 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 		    strcat(command, " ");
 		    strcat(command, outputFile);
 
+				used_files = insert_dataFile(used_files, inputFile1);
+				used_files = insert_dataFile(used_files, outputFile);
+
 		    printf("\n:::::: COMANDO 5 :::::: \n%s \n", command);
    			printf("::::::");
 			// GET TIME
@@ -243,6 +259,10 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 			strcpy(inputFile1, "file_sorted.sn.bam");
 			strcpy(inputFile2, "Homo_sapiens.GRCh38.88.gtf");
 		   	strcpy(outputFile, "file.count");
+
+				used_files = insert_dataFile(used_files, inputFile1);
+				used_files = insert_dataFile(used_files, inputFile2);
+				used_files = insert_dataFile(used_files, outputFile);
 
 			strcpy(command, "htseq-count -m intersection-nonempty -s no -a 10 ");
 		    strcat(command, inputFile1);

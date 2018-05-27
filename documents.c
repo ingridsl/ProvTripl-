@@ -281,9 +281,9 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
 
     BSON_APPEND_ARRAY_BEGIN(&activity, "files", &child);
     if(actOriginal->id == 1){
-      for(i = 0; i< sizeof command1_input /sizeof(char *); ++i){
+      for(i = 0; i< 1 /*sizeof actOriginal->command_input[0] /sizeof(char *)*/; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command1_input[i], -1);
+        bson_append_utf8(&child, key, (int) keylen, actOriginal->command_input[0], -1);
 
       }
       for(i = 0; i< sizeof command1_output /sizeof(char *); ++i){
@@ -465,7 +465,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       //printf("\n2.0");
       /////////////////////////
 
-      printf("\n\n COMEÇANDO AQUI!! 1");
+  //    printf("\n\n COMEÇANDO AQUI!! 1");
     //  ////getchar();
 iov.iov_base = (void*) buf;
 iov.iov_len = sizeof buf;
@@ -527,129 +527,6 @@ file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
 return 1;
 }
 
-//tentativa sem busca sequencial. não funciona.
-void GetDocuments2(mongoc_database_t *database, mongoc_collection_t *collection){
-  const bson_t *doc, *doc2;
-  char *str;
-  bson_error_t error;
-  char partial[3000];
-  mongoc_cursor_t *cursor, *cursor2;
-  bson_t *opts, *opts2;
-  printf("\nquery0");
-  printf("\nquery1");
-  bson_t *query = bson_new ();
-  opts = BCON_NEW ( "limit", BCON_INT64 (1),"sort", "{", "_id", BCON_INT32 (1), "}");
-
-  printf("\nquery2");
-  cursor = mongoc_collection_find_with_opts (collection, query, opts, NULL);
-  printf("\nquery3");
-  /*	while (*/mongoc_cursor_next (cursor, &doc);//) {
-  //printf(">> loop 0.2");
-  str = bson_as_json(doc, NULL);
-  strncpy(partial, str + 22, 24);
-  partial[24]='\0';
-  printf("\n>>> %s", partial);
-  //printf ("\n\npartial = %s\n", partial);
-  if(oidNumbers == NULL){
-    printf("\n\né null!ta sussa!");
-    oidNumbers = add_oid(oidNumbers,partial);
-  }
-  //bson_free (str);
-  //}
-
-  //bson_destroy (query);
-  //	mongoc_cursor_destroy (cursor);
-
-  printf("\nquery4");
-  printf("\nquery4");
-  printf("\nquery4");
-  opts2 = BCON_NEW ( "limit", BCON_INT64 (1),"sort", "{", "_id", BCON_INT32 (-1), "}");
-  printf("\nquery5");
-  cursor2 = mongoc_collection_find_with_opts (collection, query, opts2, NULL);
-  printf("\nquery6");
-  mongoc_cursor_next (cursor2, &doc2);
-  if (mongoc_cursor_error (cursor2, &error)) {
-    fprintf (stderr, "An error occurred: %s\n", error.message);
-  }
-  printf("\nquery7");
-  printf("\nquery7");
-  printf("\nquery7");
-  char *str2 = {'\0'};
-  strcpy(str2,bson_as_json(doc2, NULL));
-  if(str2[0]== '\0'){
-    printf("nul nçao [e bom");
-  }
-  printf("\nquery8");
-  printf("\nquery8");
-  printf("\nquery8");
-  printf("\n>>> %s ", partial);
-  printf("\nquery8");
-  printf("\nquery8");
-  printf("\nquery8");
-  printf("\n>>> %s ", str2);
-
-  strncpy(partial, str2 + 22, 24);
-  partial[24]='\0';
-  printf("\nquery9");
-  printf("\nquery9");
-  printf("\nquery9");
-  printf("\nquery9");
-  printf("\n>>> %s", partial);
-  oidNumbers = add_oid(oidNumbers,partial);
-
-  printf("\nquery9.1");
-  printf("\nquery9.1");
-  printf("\nquery9.1");
-  printf("\nquery9.1");
-  /* bson_free (str);
-  bson_destroy (query);
-  mongoc_cursor_destroy (cursor);
-  bson_free (str2);
-  mongoc_cursor_destroy (cursor2);*/
-  printf("\nquery10");
-  printf("\nquery10");
-  printf("\nquery10");
-  printf("\nquery10");
-
-}
-//tentativa com busca sequencial. não funciona.
-void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection){
-  const bson_t *doc;
-  bson_t *query;
-  char *str, partial[30];
-  mongoc_cursor_t *cursor;
-
-  printf("\nquery0");
-  query = bson_new ();
-  printf("\nquery1");
-  cursor = mongoc_collection_find_with_opts (collection, query, NULL, NULL);
-  printf("\nquery2");printf("\nquery2");printf("\nquery2");printf("\nquery2");printf("\nquery2");printf("\nquery2");printf("\nquery2");
-  while (mongoc_cursor_next (cursor, &doc)) {
-    //printf(">> loop 0.2");
-    str = bson_as_json (doc, NULL);
-    //printf ("\n\n%s\n", str);
-    if(*str)
-    strncpy(partial, str + 22, 24);
-    partial[24]='\0';
-    //printf ("\n\npartial = %s\n", partial);
-    oidNumbers = add_oid(oidNumbers,partial);
-    bson_free (str);
-  }
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-  printf("\n>> loop 0.3");
-
-  bson_destroy (query);
-  mongoc_cursor_destroy (cursor);
-
-}
-
 //inserção documento data
 bson_t   *DATA_DOC(bool index, dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log , mongoc_client_t *client){
 
@@ -687,7 +564,7 @@ bson_t   *DATA_DOC(bool index, dataFile *dataOriginal, mongoc_database_t *databa
 
   );
   printf("\n FILE = %s", auxData->name);
-  Convert(auxData->name, "model10", client);
+//  Convert(auxData->name, "model10", client);
 
   //lista de ids dos arquivos brutos. não funciona
   /*
@@ -967,9 +844,9 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
 
     BSON_APPEND_ARRAY_BEGIN(&activity, "files", &child);
     if(actOriginal->id == 1){
-      for(i = 0; i< sizeof command1_input /sizeof(char *); ++i){
+      for(i = 0; i< 1 /*sizeof actOriginal->command_input[i] /sizeof(char *)*/; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command1_input[i], -1);
+        bson_append_utf8(&child, key, (int) keylen, actOriginal->command_input[i], -1);
 
       }
       for(i = 0; i< sizeof command1_output /sizeof(char *); ++i){
@@ -1113,7 +990,7 @@ bson_t   *DATA_DOC_S(bool index, dataFile *dataOriginal, mongoc_database_t *data
   );
 
 
-//  Convert(auxData->name, "model11", client);
+////  Convert(auxData->name, "model11", client);
   //lista de ids dos arquivos brutos. não funciona
   /*
   printf("\nFILE NAME:  %s",auxData->name);*/
@@ -1283,9 +1160,9 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+    //    //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command1_input[0]){
-          printf("achei!");
+    //      printf("achei!");
           char str_data_id[15];
           sprintf(str_data_id, "%d", auxFiles->id);
           char str_data_size[15];
@@ -1314,7 +1191,7 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command1_output[0]){
           printf("achei!");
           char str_data_id[15];
@@ -1347,9 +1224,9 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+    //    //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command2_input[0]){
-          printf("achei!");
+  //      printf("achei!");
           char str_data_id[15];
           sprintf(str_data_id, "%d", auxFiles->id);
           char str_data_size[15];
@@ -1378,9 +1255,9 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+  //      //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command2_output[0]){
-          printf("achei!");
+  //        printf("achei!");
           char str_data_id[15];
           sprintf(str_data_id, "%d",auxFiles->id);
           char str_data_size[15];
@@ -1411,9 +1288,9 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n -----> TRES \n", auxFiles->id);
+  //      //printf("While \n: auxFiles->id %d \n -----> TRES \n", auxFiles->id);
         if(auxFiles->id == command3_input[0] || auxFiles->id == command3_input[1]){
-          printf("achei!");
+  //        printf("achei!");
           char str_data_id[15];
           sprintf(str_data_id, "%d", auxFiles->id);
           char str_data_size[15];
@@ -1442,9 +1319,9 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d OUTPUT\n", auxFiles->id);
+//        //printf("While \n: auxFiles->id %d OUTPUT\n", auxFiles->id);
         if(auxFiles->id == command3_output[0]){
-          printf("achei!");
+  //        printf("achei!");
           char str_data_id[15];
           sprintf(str_data_id, "%d", auxFiles->id);
           char str_data_size[15];
@@ -1475,9 +1352,9 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n----> QUATRO \n", auxFiles->id);
+  //      //printf("While \n: auxFiles->id %d \n----> QUATRO \n", auxFiles->id);
         if(auxFiles->id == command4_input[0]){
-          printf("achei!");
+  //        printf("achei!");
           char str_data_id[15];
           sprintf(str_data_id, "%d", auxFiles->id);
           char str_data_size[15];
@@ -1506,7 +1383,7 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command4_output[0]){
           printf("achei!");
           char str_data_id[15];
@@ -1539,7 +1416,7 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+      //  //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command5_input[0] || auxFiles->id == command5_input[1]){
           printf("achei!");
           char str_data_id[15];
@@ -1570,7 +1447,7 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+    //    //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command5_output[0]){
           printf("achei!");
           char str_data_id[15];
@@ -1603,7 +1480,7 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command6_input[0] || auxFiles->id == command6_input[1]){
           printf("achei!");
           char str_data_id[15];
@@ -1634,7 +1511,7 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        printf("While \n: auxFiles->id %d \n", auxFiles->id);
+        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
         if(auxFiles->id == command6_output[0]){
           printf("achei!");
           char str_data_id[15];
@@ -1864,9 +1741,9 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
 
     BSON_APPEND_ARRAY_BEGIN(activity, "files", &child);
     if(actOriginal->id == 1){
-      for(i = 0; i< sizeof command1_input /sizeof(char *); ++i){
+      for(i = 0; i < 1 /*sizeof actOriginal->command_input[i] /sizeof(char *)*/; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child, key, (int) keylen, command1_input[i], -1);
+        bson_append_utf8(&child, key, (int) keylen, actOriginal->command_input[i], -1);
 
       }
       for(i = 0; i< sizeof command1_output /sizeof(char *); ++i){

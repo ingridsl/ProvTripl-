@@ -49,6 +49,9 @@ typedef struct activity{
 	char end_hour[N];
 	int execution_status;
 
+  char command_input[2][N];
+  char command_output[2][N];
+
 	//dentro de experimento
 	int experiment_id;
   int agent_id;
