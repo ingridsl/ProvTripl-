@@ -845,25 +845,11 @@ return dataFile;
 bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
   activity *actOriginal = activitys;
   dataFile *auxFiles = dataOriginal;
-
-  int command1_input[1] = {3}; //arquivos usados pelos comandos. ver na main qual é qual
-  int command1_output[1] = {9}; //arquivos usados pelos comandos. ver na main qual é qual
-
-  int command2_input[1] = {1};
-  int command2_output[1] = {2};
-
-  int command3_input[2] = {2,9};
-  int command3_output[1] = {4};
-
-  int command4_input[1] = {4};
-  int command4_output[1] = {5};
-
-  int command5_input[2] = {5};
-  int command5_output[1] = {6};
-
-  int command6_input[2] = {6,7};
-  int command6_output[1] = {8};
-
+  char str_mac_dataFiles_id[36];
+  char  buf2[16];
+  const char *key2;
+  size_t  keylen2;
+  char filesId[2];
   bson_t   *project, experiment, agent, child;
   char     *project_str;
   bson_oid_t oid;
@@ -923,19 +909,12 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
   BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
   //comandos daqui
   while(actOriginal !=NULL){
-
     char str_act_id[15];
     sprintf(str_act_id, "%d", actOriginal->id);
-
-    //BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
-
     uint32_t    i;
     char        buf[16];
     const       char *key;
     size_t      keylen;
-
-
-    //for (y = 0; y < sizeof actOriginal->program_name / sizeof (char *); ++y) {
     keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
     bson_append_document_begin (&activities, key, (int) keylen, &activity);
     BSON_APPEND_UTF8 (&activity, "id", str_act_id);
@@ -950,395 +929,76 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
     BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);
     //}
     // USED FILES
-    char str_mac_dataFiles_id[36];
 
-    char        buf2[16];
-    const       char *key2;
-    size_t      keylen2;
-    if(actOriginal->id == 1){
       //input files
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-    //    //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command1_input[0]){
-    //      printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization",auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
+        sprintf(filesId, "%d", auxFiles->id);
+        for(i = 0; i < 2 ; i++){
+          if(strlen(actOriginal->command_input[i])>0){
+            if(strcmp(filesId, actOriginal->command_input[i])== 0){
+              char str_data_id[15];
+              sprintf(str_data_id, "%d", auxFiles->id);
+              char str_data_size[15];
+              sprintf(str_data_size, "%d", auxFiles->size);
+              char str_data_machine_id[15];
+              sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
+              keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
+              bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
+              BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
+              BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
+              BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
+              BSON_APPEND_UTF8 (&dataFile,"localization",auxFiles->localization);
+              BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
+              BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
+              BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
+              BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
+              BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
+              bson_append_document_end(&dataFiles, &dataFile);
+            }
+          }
         }
         auxFiles = auxFiles->next;
       }
-      bson_append_document_end(&dataFiles, &dataFile);
+      //bson_append_document_end(&dataFiles, &dataFile);
       bson_append_array_end(&activity, &dataFiles);
       // end of input files
       //output files
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
       auxFiles = dataOriginal;
       while(auxFiles != NULL){
-        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command1_output[0]){
-          printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
+        sprintf(filesId, "%d", auxFiles->id);
+        for(i = 0; i<2; i++){
+          if(strlen(actOriginal->command_output[i])){
+            if(strcmp(filesId,actOriginal->command_output[i]) == 0){
+              printf("achei!");
+              char str_data_id[15];
+              sprintf(str_data_id, "%d", auxFiles->id);
+              char str_data_size[15];
+              sprintf(str_data_size, "%d", auxFiles->size);
+              char str_data_machine_id[15];
+              sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
+              keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
+              bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
+              BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
+              BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
+              BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
+              BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
+              BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
+              BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
+              BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
+              BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
+              BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
+              bson_append_document_end(&dataFiles, &dataFile);
+            }
+          }
         }
         auxFiles = auxFiles->next;
       }
-      bson_append_document_end(&dataFiles, &dataFile);
+      //bson_append_document_end(&dataFiles, &dataFile);
       bson_append_array_end(&activity, &dataFiles);
       // end of output files
-    }
-    else if(actOriginal->id == 2){
-      //input files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-    //    //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command2_input[0]){
-  //      printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name",auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_document_end(&dataFiles, &dataFile);
-      bson_append_array_end(&activity, &dataFiles);
-      // end of input files
-      //output files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-  //      //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command2_output[0]){
-  //        printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d",auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization",auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_document_end(&dataFiles, &dataFile);
-      bson_append_array_end(&activity, &dataFiles);
-      // end of output files
-    }
-    else if(actOriginal->id == 3){
-      //input files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-  //      //printf("While \n: auxFiles->id %d \n -----> TRES \n", auxFiles->id);
-        if(auxFiles->id == command3_input[0] || auxFiles->id == command3_input[1]){
-  //        printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-          bson_append_document_end(&dataFiles, &dataFile);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_array_end(&activity, &dataFiles);
-      // end of input files
-      //output files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-//        //printf("While \n: auxFiles->id %d OUTPUT\n", auxFiles->id);
-        if(auxFiles->id == command3_output[0]){
-  //        printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description",auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_document_end(&dataFiles, &dataFile);
-      bson_append_array_end(&activity, &dataFiles);
-      // end of output files
-    }
-    else if(actOriginal->id == 4){
-      //input files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-  //      //printf("While \n: auxFiles->id %d \n----> QUATRO \n", auxFiles->id);
-        if(auxFiles->id == command4_input[0]){
-  //        printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation",auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_document_end(&dataFiles, &dataFile);
-      bson_append_array_end(&activity, &dataFiles);
-      // end of input files
-      //output files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command4_output[0]){
-          printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_document_end(&dataFiles, &dataFile);
-      bson_append_array_end(&activity, &dataFiles);
-      // end of output files
-    }
-    else if(actOriginal->id == 5){
-      //input files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-      //  //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command5_input[0] || auxFiles->id == command5_input[1]){
-          printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-          bson_append_document_end(&dataFiles, &dataFile);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_array_end(&activity, &dataFiles);
-      // end of input files
-      //output files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-    //    //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command5_output[0]){
-          printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_document_end(&dataFiles, &dataFile);
-      bson_append_array_end(&activity, &dataFiles);
-      // end of output files
-    }
-    else if(actOriginal->id == 6){
-      //input files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command6_input[0] || auxFiles->id == command6_input[1]){
-          printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name",auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-          bson_append_document_end(&dataFiles, &dataFile);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_array_end(&activity, &dataFiles);
-      // end of input files
-      //output files
-      BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-        //printf("While \n: auxFiles->id %d \n", auxFiles->id);
-        if(auxFiles->id == command6_output[0]){
-          printf("achei!");
-          char str_data_id[15];
-          sprintf(str_data_id, "%d", auxFiles->id);
-          char str_data_size[15];
-          sprintf(str_data_size, "%d", auxFiles->size);
-          char str_data_machine_id[15];
-          sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
-          keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
-          bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-          BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-          BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-          BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-          BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-          BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
-          BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-          BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
-          BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-          BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
-
-        }
-        auxFiles = auxFiles->next;
-      }
-      bson_append_document_end(&dataFiles, &dataFile);
-      bson_append_array_end(&activity, &dataFiles);
-      // end of output files
-    }
     printf("sai2!\n");
     BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
     BSON_APPEND_UTF8 (&agent, "id", str_age_id);
