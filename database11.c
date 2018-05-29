@@ -63,7 +63,7 @@ void CreateDatabase11(bool index, provider *provOriginal, cluster *cluOriginal, 
 
    while(aux1!=NULL){
 
-      fileDoc = DATA_DOC_S(index, aux1, model, collection, log, client);
+      fileDoc = DATA_DOC_S(index,databaseName, aux1, log, client);
       if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
       }

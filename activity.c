@@ -92,11 +92,11 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 		break;
 		case 2:
 			strcpy(command, " ");
-				strcpy(inputFile1, "Homo_sapiens.GRCh38.88.dna.chromosome.22.fa");
-		   	strcpy(outputFile, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
+				strcpy(inputFile1, "Homo_sapiens.GRCh38.dna.chromosome.22.fa");
+		   	strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
 		   	//printf("insertd");
-		   	strcat(inputFile1, ".fa");
-		   	strcat(outputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
+		   	//strcat(inputFile1, ".fa");
+		   	//strcat(outputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, outputFile);
 
@@ -138,7 +138,7 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 		case 3:
 			strcpy(command, " ");
 
-			strcpy(inputFile1, "Homo_sapiens.GRCh38.88.dna.chromosome.22.hisat2.idx");
+			strcpy(inputFile1, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
 
 		   	//strcat(inputFile, ".hisat2.idx"); //22_20-21M.hisat2.idx
 		   	strcpy(inputFile2, "SRR5181508_FILTERED.fastq"); //file_1.fq
@@ -242,6 +242,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 		    strcat(command, inputFile1);
 		    strcat(command, " ");
 		    strcat(command, outputFile);
+
+				strcat(outputFile, ".bam");
 
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, outputFile);

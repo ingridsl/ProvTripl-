@@ -71,7 +71,7 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
 
    while(auxDatafile!=NULL){
 
-      fileDoc = DATA_DOC(index, auxDatafile, model30, data3, log, client);
+      fileDoc = DATA_DOC(index, databaseName, auxDatafile, log, client);
       if (!mongoc_collection_insert(data3, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
       }

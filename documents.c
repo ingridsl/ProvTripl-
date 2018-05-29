@@ -93,22 +93,6 @@ bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, 
   BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
   BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
   BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
-  /*char str_mac_dataFiles_id[36];
-  uint32_t    i;
-  char        buf[16];
-  const       char *key;
-  size_t      keylen;
-  BSON_APPEND_ARRAY_BEGIN(&machine, "data_file_id", &dataFiles);
-  while(aux != NULL){ //insere o id da lista de arquivos na máquina
-  sprintf(str_mac_dataFiles_id, "%d", aux->id);
-  keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
-  bson_append_utf8 (&dataFiles, key, (int) keylen, str_mac_dataFiles_id, -1);
-
-  i++;
-  aux = aux->next;
-}
-
-bson_append_array_end(&machine, &dataFiles);*/
 bson_append_document_end(&cluster, &machine);
 
 bson_append_document_end(provider, &cluster);
@@ -124,8 +108,6 @@ bson_free (provider_str);
 */
 return provider;
 }
-
-
 
 bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
   activity *actOriginal = activitys;
@@ -191,15 +173,11 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
     char str_act_id[15];
     sprintf(str_act_id, "%d", actOriginal->id);
 
-    //BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
-
     uint32_t    i;
     char        buf[16];
     const       char *key;
     size_t      keylen;
 
-
-    //for (y = 0; y < sizeof actOriginal->program_name / sizeof (char *); ++y) {
     keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
     bson_append_document_begin (&activities, key, (int) keylen, &activity);
     BSON_APPEND_UTF8 (&activity, "id", str_act_id);
@@ -212,7 +190,6 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
     BSON_APPEND_UTF8 (&activity, "end_date", actOriginal->end_date);
     BSON_APPEND_UTF8 (&activity, "end_hour", actOriginal->end_hour);
     BSON_APPEND_UTF8 (&activity, "execution_status", str_act_execution_status);
-    //}
     // USED FILES
     char str_mac_dataFiles_id[36];
 
@@ -298,7 +275,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       counter++;
       //printf("\n \n file name: %s", name);
     }
-    //printf("\n>>>>FILE NAME: %s", name);
+    printf("\n>>>>FILE NAME: %s", name);
     strcpy(nameExtraFile, name);
     strcat(nameExtraFile, ".created.txt");
     FILE *fp = fopen(nameExtraFile, "w+");
@@ -308,17 +285,17 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
 
     }
     // VERSÃO MONGOC
-  //  printf("\n1.0");
+    printf("\n1.0");
   /* grab a gridfs handle in test prefixed by fs */
   gridfs = mongoc_client_get_gridfs (client, db_name, "fs", &error);
   assert (gridfs);
 
-  //printf("\n1.1");
+      printf("\n1.1");
 
-  stream = mongoc_stream_file_new_for_path (name, O_RDONLY, 0);
+      stream = mongoc_stream_file_new_for_path (name, O_RDONLY, 0);
       assert (stream);
 
-      //printf("\n1.3");
+      printf("\n1.3");
 
       opt.filename = name;
 
@@ -326,7 +303,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       file = mongoc_gridfs_create_file_from_stream (gridfs, stream, &opt);
       assert (file);
 
-      //printf("\n1.5");
+      printf("\n1.5");
       id.value_type = BSON_TYPE_INT32;
       id.value.v_int32 = 1;
 
@@ -340,11 +317,11 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       mongoc_gridfs_file_save (file);
       mongoc_gridfs_file_destroy (file);
 
-      //printf("\n2.0");
+      printf("\n2.0");
       /////////////////////////
 
-  //    printf("\n\n COMEÇANDO AQUI!! 1");
-    //  ////getchar();
+      printf("\n\n COMEÇANDO AQUI!! 1");
+    //  //getchar();
 iov.iov_base = (void*) buf;
 iov.iov_len = sizeof buf;
 file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
@@ -361,10 +338,10 @@ file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
          if (r == 0) {
             break;
          }
-          ////getchar();
+          //getchar();
          if (fwrite (iov.iov_base, 1, r, fp) != r) {
            printf("ERROR");
-           ////getchar();
+           //getchar();
             MONGOC_ERROR ("Failed to write to stdout. Exiting.\n");
             exit (1);
          }
@@ -374,9 +351,10 @@ file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
       mongoc_gridfs_file_destroy (file);
 
       ////////////////// LIST
-      printf("\n\n COMEÇANDO AQUI!! 2");
 
-      //////getchar();
+      printf("\n\n COMEÇANDO AQUI!! 2");
+      ////getchar();
+      /*
       bson_init (&filter);
 
       bson_init (&opts);
@@ -391,12 +369,12 @@ file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
 
       while ((file = mongoc_gridfs_file_list_next (list))) {
          const char *name2 = mongoc_gridfs_file_get_filename (file);
-         //printf ("%s\n", name2 ? name2 : "?");
+         printf ("%s\n", name2 ? name2 : "?");
 
          mongoc_gridfs_file_destroy (file);
       }
 
-      mongoc_gridfs_file_list_destroy (list);
+      mongoc_gridfs_file_list_destroy (list);*/
       if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")!=0){
         counter=9;
       }
@@ -406,7 +384,7 @@ return 1;
 }
 
 //inserção documento data
-bson_t   *DATA_DOC(bool index, dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log , mongoc_client_t *client){
+bson_t   *DATA_DOC(bool index, char databaseName[N], dataFile *dataOriginal, FILE *log , mongoc_client_t *client){
 
   dataFile *auxData = dataOriginal;
   oid *aux = oidNumbers;
@@ -442,52 +420,8 @@ bson_t   *DATA_DOC(bool index, dataFile *dataOriginal, mongoc_database_t *databa
 
   );
   printf("\n FILE = %s", auxData->name);
-//  Convert(auxData->name, "model10", client);
+  Convert(auxData->name, databaseName, client);
 
-  //lista de ids dos arquivos brutos. não funciona
-  /*
-  printf("\nFILE NAME:  %s",auxData->name);*/
-  //result = Convert(auxData->name, collection, database); DESCOMENTAR ESSA LINHA PARA INSERIR DADOS BRUTOS
-  /*printf("\n file: %s", auxData->name);
-  GetDocuments(database,collection); // NAO FUNCIONA - INSERÇÃO DOS IDS DOS DADOS BRUTOS
-  printf("voltou0");
-  printf("voltou0");
-  printf("voltou0");
-  aux = oidNumbers;
-  char str_id[36];
-  uint32_t    i;
-  char        buf[16];
-  const       char *key;
-  size_t keylen;
-  BSON_APPEND_ARRAY_BEGIN(dataFile, "data_file_id", &dataFiles);
-  while(aux != NULL){
-
-  //printf("voltou1");
-  if(!aux->posto){
-  sprintf(str_id, "%s", aux->oid);
-  //printf("\n%s\n", aux->oid);
-  aux->posto = true;
-  keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
-  bson_append_utf8 (&dataFiles, key, (int) keylen, str_id, -1);
-  i++;
-}
-aux = aux->next;
-//printf("aux");
-//////getchar();
-if(aux == NULL){
-
-//printf("tá null!");
-}
-}
-printf("saiu!! ");
-bson_append_array_end(dataFile, &dataFiles);*/
-/*
-* Print the document as a JSON string.
-*/
-
-/*
-* Clean up allocated bson documents.
-*/
 dataFile_str = bson_as_json (dataFile, NULL);
 printf ("\n\t%s\n\n", dataFile_str);
 fprintf(log,"\n\t%s\n\n", dataFile_str);
@@ -577,22 +511,6 @@ bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal
   BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
   BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
   BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
-  /*char str_mac_dataFiles_id[36];
-  uint32_t    i;
-  char        buf[16];
-  const       char *key;
-  size_t      keylen;
-  BSON_APPEND_ARRAY_BEGIN(&machine, "data_file_id", &dataFiles);
-  while(aux != NULL){ //insere o id da lista de arquivos na máquina
-  sprintf(str_mac_dataFiles_id, "%d", aux->id);
-  keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
-  bson_append_utf8 (&dataFiles, key, (int) keylen, str_mac_dataFiles_id, -1);
-
-  i++;
-  aux = aux->next;
-}
-
-bson_append_array_end(&machine, &dataFiles);*/
 bson_append_document_end(&cluster, &machine);
 
 bson_append_document_end(provider, &cluster);
@@ -608,8 +526,6 @@ bson_free (provider_str);
 */
 return provider;
 }
-
-
 
 bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
   activity *actOriginal = activitys;
@@ -677,15 +593,10 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
     char str_act_id[15];
     sprintf(str_act_id, "%d", actOriginal->id);
 
-    //BSON_APPEND_DOCUMENT_BEGIN(&activities, "", &activity);
-
     uint32_t    i;
     char        buf[16];
     const       char *key;
     size_t      keylen;
-
-
-    //for (y = 0; y < sizeof actOriginal->program_name / sizeof (char *); ++y) {
     keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
     bson_append_document_begin (&activities, key, (int) keylen, &activity);
     BSON_APPEND_UTF8 (&activity, "id", str_act_id);
@@ -752,7 +663,7 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
   return project;
 }
 //inserção documento data
-bson_t   *DATA_DOC_S(bool index, dataFile *dataOriginal, mongoc_database_t *database, mongoc_collection_t *collection, FILE *log, mongoc_client_t *client){
+bson_t   *DATA_DOC_S(bool index, char *databaseName, dataFile *dataOriginal, FILE *log, mongoc_client_t *client){
 
   dataFile *auxData = dataOriginal;
   oid *aux = oidNumbers;
@@ -789,48 +700,7 @@ bson_t   *DATA_DOC_S(bool index, dataFile *dataOriginal, mongoc_database_t *data
 
   );
 
-
-////  Convert(auxData->name, "model11", client);
-  //lista de ids dos arquivos brutos. não funciona
-  /*
-  printf("\nFILE NAME:  %s",auxData->name);*/
-  //result = Convert(auxData->name, collection, database); DESCOMENTAR ESSA LINHA PARA INSERIR DADOS BRUTOS
-  /*printf("\n file: %s", auxData->name);
-  GetDocuments(database,collection); // NAO FUNCIONA - INSERÇÃO DOS IDS DOS DADOS BRUTOS
-  printf("voltou0");
-  printf("voltou0");
-  printf("voltou0");
-  aux = oidNumbers;
-  char str_id[36];
-  uint32_t    i;
-  char        buf[16];
-  const       char *key;
-  size_t keylen;
-  BSON_APPEND_ARRAY_BEGIN(dataFile, "data_file_id", &dataFiles);
-  while(aux != NULL){
-
-  //printf("voltou1");
-  if(!aux->posto){
-  sprintf(str_id, "%s", aux->oid);
-  //printf("\n%s\n", aux->oid);
-  aux->posto = true;
-  keylen = bson_uint32_to_string (i, &key, buf, sizeof buf);
-  bson_append_utf8 (&dataFiles, key, (int) keylen, str_id, -1);
-  i++;
-}
-aux = aux->next;
-//printf("aux");
-//////getchar();
-if(aux == NULL){
-
-//printf("tá null!");
-}
-}
-printf("saiu!! ");
-bson_append_array_end(dataFile, &dataFiles);*/
-/*
-* Print the document as a JSON string.
-*/
+  Convert(auxData->name, databaseName, client);
 
 /*
 * Clean up allocated bson documents.
@@ -842,9 +712,9 @@ bson_free (dataFile_str);
 return dataFile;
 }
 
-bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log){
+bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log, mongoc_client_t *client){
   activity *actOriginal = activitys;
-  dataFile *auxFiles = dataOriginal;
+  dataFile *auxData = dataOriginal;
   char str_mac_dataFiles_id[36];
   char  buf2[16];
   const char *key2;
@@ -932,69 +802,69 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
 
       //input files
       BSON_APPEND_ARRAY_BEGIN(&activity, "inputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-        sprintf(filesId, "%d", auxFiles->id);
+      auxData = dataOriginal;
+      while(auxData != NULL){
+        sprintf(filesId, "%d", auxData->id);
         for(i = 0; i < 2 ; i++){
           if(strlen(actOriginal->command_input[i])>0){
             if(strcmp(filesId, actOriginal->command_input[i])== 0){
               char str_data_id[15];
-              sprintf(str_data_id, "%d", auxFiles->id);
+              sprintf(str_data_id, "%d", auxData->id);
               char str_data_size[15];
-              sprintf(str_data_size, "%d", auxFiles->size);
+              sprintf(str_data_size, "%d", auxData->size);
               char str_data_machine_id[15];
-              sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
+              sprintf(str_data_machine_id, "%d", auxData->machine_id);
               keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
               bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
               BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-              BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-              BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-              BSON_APPEND_UTF8 (&dataFile,"localization",auxFiles->localization);
-              BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
+              BSON_APPEND_UTF8 (&dataFile,"name", auxData->name);
+              BSON_APPEND_UTF8 (&dataFile, "description", auxData->description);
+              BSON_APPEND_UTF8 (&dataFile,"localization",auxData->localization);
+              BSON_APPEND_UTF8 (&dataFile,"annotation", auxData->annotation);
               BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-              BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
+              BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxData->insertion_date);
               BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-              BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
+              BSON_APPEND_UTF8 (&dataFile,"type", auxData->type);
               bson_append_document_end(&dataFiles, &dataFile);
             }
           }
         }
-        auxFiles = auxFiles->next;
+        auxData = auxData->next;
       }
       //bson_append_document_end(&dataFiles, &dataFile);
       bson_append_array_end(&activity, &dataFiles);
       // end of input files
       //output files
       BSON_APPEND_ARRAY_BEGIN(&activity, "outputFiles", &dataFiles);
-      auxFiles = dataOriginal;
-      while(auxFiles != NULL){
-        sprintf(filesId, "%d", auxFiles->id);
+      auxData = dataOriginal;
+      while(auxData != NULL){
+        sprintf(filesId, "%d", auxData->id);
         for(i = 0; i<2; i++){
           if(strlen(actOriginal->command_output[i])){
             if(strcmp(filesId,actOriginal->command_output[i]) == 0){
               printf("achei!");
               char str_data_id[15];
-              sprintf(str_data_id, "%d", auxFiles->id);
+              sprintf(str_data_id, "%d", auxData->id);
               char str_data_size[15];
-              sprintf(str_data_size, "%d", auxFiles->size);
+              sprintf(str_data_size, "%d", auxData->size);
               char str_data_machine_id[15];
-              sprintf(str_data_machine_id, "%d", auxFiles->machine_id);
+              sprintf(str_data_machine_id, "%d", auxData->machine_id);
               keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
               bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
               BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
-              BSON_APPEND_UTF8 (&dataFile,"name", auxFiles->name);
-              BSON_APPEND_UTF8 (&dataFile, "description", auxFiles->description);
-              BSON_APPEND_UTF8 (&dataFile,"localization", auxFiles->localization);
-              BSON_APPEND_UTF8 (&dataFile,"annotation", auxFiles->annotation);
+              BSON_APPEND_UTF8 (&dataFile,"name", auxData->name);
+              BSON_APPEND_UTF8 (&dataFile, "description", auxData->description);
+              BSON_APPEND_UTF8 (&dataFile,"localization", auxData->localization);
+              BSON_APPEND_UTF8 (&dataFile,"annotation", auxData->annotation);
               BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
-              BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxFiles->insertion_date);
+              BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxData->insertion_date);
               BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
-              BSON_APPEND_UTF8 (&dataFile,"type", auxFiles->type);
+              BSON_APPEND_UTF8 (&dataFile,"type", auxData->type);
               bson_append_document_end(&dataFiles, &dataFile);
             }
           }
         }
-        auxFiles = auxFiles->next;
+        auxData = auxData->next;
       }
       //bson_append_document_end(&dataFiles, &dataFile);
       bson_append_array_end(&activity, &dataFiles);
@@ -1020,6 +890,12 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
   bson_append_array_end(&experiment, &activities);
   //até aqui
   bson_append_document_end(project, &experiment);
+
+  auxData = dataOriginal;
+  while(auxData!=NULL){
+    Convert(auxData->name, databaseName, client);
+    auxData = auxData->next;
+  }
   /*
   * Print the document as a JSON string.
   */
@@ -1032,9 +908,6 @@ bson_t   *SINGLE_DOC_2(bool index, project *proOriginal, experiment *expOriginal
   */
   return project;
 }
-
-
-
 
 
 bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
@@ -1075,9 +948,6 @@ bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
   */
   return project;
 }
-
-
-
 
 bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
 
@@ -1129,8 +999,6 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
   */
   return experiment;
 }
-
-
 
 bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
   activity *actOriginal = activitys;

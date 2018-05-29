@@ -45,16 +45,6 @@ int main (){
     activitys = insert_activity(activitys, &activityNumber, "Homo_sapiens.GRCh38.dna.chromosome.22", dataFiles);
   }
   dataFiles = returnUsedFiles();
-/*  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.fa"); //1
-  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"); //2
-  dataFiles = insert_dataFile(dataFiles, "SRR5181508.fastq"); //3
-  dataFiles = insert_dataFile(dataFiles, "file.sam"); //4
-  dataFiles = insert_dataFile(dataFiles, "file.bam"); //5
-  dataFiles = insert_dataFile(dataFiles, "file_sorted.sn.bam"); //6
-  dataFiles = insert_dataFile(dataFiles, "Homo_sapiens.GRCh38.88.gtf"); //7
-  dataFiles = insert_dataFile(dataFiles, "file.count"); //8
-  dataFiles = insert_dataFile(dataFiles, "SRR5181508_FILTERED.fastq"); //9
-*/
   provider *providers = NULL;
   providers = insert_provider(providers);
 
@@ -115,7 +105,7 @@ int main (){
     fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-
+/*
 
       /// INDEXES
       //////////////////////////// MODEL 1.0 - N COLLECTIONS - N DOCUMENTS /////////////////////////////////
@@ -166,7 +156,7 @@ int main (){
         t = time(NULL);
         tm = *localtime(&t);
         fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-
+*/
   //limpeza
 
 

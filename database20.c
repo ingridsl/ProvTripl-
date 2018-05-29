@@ -61,7 +61,7 @@ void CreateDatabase20(bool index, provider *provOriginal, cluster *cluOriginal, 
   tm = *localtime(&t);
   fprintf(log,"\nSingleDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-   bson_t   *projectDoc = SINGLE_DOC_2(index, projOriginal, expOriginal, actOriginal, ageOriginal, auxdata, log);
+   bson_t   *projectDoc = SINGLE_DOC_2(index,databaseName, projOriginal, expOriginal, actOriginal, ageOriginal, auxdata, log, client);
    if (!mongoc_collection_insert(collection, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
