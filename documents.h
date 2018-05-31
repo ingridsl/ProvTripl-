@@ -13,6 +13,7 @@
 #include "experiment.h"
 #include "activity.h"
 #include "agent.h"
+#include "grid.h"
 
 //classe obsoleta - era usada para pegar ids dos documentos gerados com a inclusão do arquivo bruto
 typedef struct oid{
@@ -23,8 +24,6 @@ typedef struct oid{
 
 }oid;
 
-//pega o arquivo bruto e insere no mongo db em vários fragmentos
-int Convert(char fileName[N], char db_name[N], mongoc_client_t *client);
 //método não funcional - recupera ids dos documentos dos arquivos fragmentados
 void GetDocuments(mongoc_database_t *database, mongoc_collection_t *collection);
 

@@ -12,14 +12,17 @@
 #include "database11.h"
 #include "database20.h"
 #include "database30.h"
+#include "grid.h"
 #define N 300
 
 int activityNumber = 1;
 int main (){
   time_t t;
   struct tm tm;
-
-
+printf("GRID VEGIN");
+getGridID();
+printf("GRID END");
+getchar();
   FILE *log = fopen("log.txt", "a+");
   fprintf(log,"\n\n\t--------- LOG ---------");
 
