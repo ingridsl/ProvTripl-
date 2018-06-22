@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "activity.h"
+#include "commands.h"
 
 //files *used_files = NULL;
 
@@ -10,30 +11,6 @@ dataFile *used_files = NULL;
 
 dataFile *returnUsedFiles(){
 	return used_files;
-}
-
-char *searchProgramUsed(char command[N]){
-	if(strstr(command, "sickle")!=NULL){
-		return sickle;
-	}else if(strstr(command, "hisat2")!=NULL){
-		return hisat;
-	}else if(strstr(command, "samtools")!=NULL){
-		return samtools;
-	}else if(strstr(command, "htseq")!=NULL){
-		return htseq;
-	}
-}
-
-char *searchProgramVersion(char command[N]){
-	if(strstr(command, "sickle")!=NULL){
-		return sickleversion;
-	}else if(strstr(command, "hisat2")!=NULL){
-		return hisatversion;
-	}else if(strstr(command, "samtools")!=NULL){
-		return samtoolsversion;
-	}else if(strstr(command, "htseq")!=NULL){
-		return htseqversion;
-	}
 }
 
 activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig){ //falta incluir aquivos na lista de arquivos

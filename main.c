@@ -13,6 +13,7 @@
 #include "database20.h"
 #include "database30.h"
 #include "grid.h"
+#include "commands.h"
 #define N 300
 
 int activityNumber = 1;

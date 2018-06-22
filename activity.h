@@ -6,20 +6,9 @@
 #define activity_h
 #include "machine.h"
 #include "dataFile.h"
+#include "commands.h"
 
 #define N 300
-
-#define hisatversion "2.0.5"
-#define hisat "hisat2"
-
-#define htseqversion "0.7.2"
-#define htseq "htseq"
-
-#define samtoolsversion "1.4.4"
-#define samtools "samtools"
-
-#define sickleversion "1.33"
-#define sickle "sickle"
 
 typedef struct files{
   char file_name[N];
@@ -62,8 +51,6 @@ typedef struct activity{
 	struct activity *next;
 }activity;
 dataFile *returnUsedFiles();
-char *searchProgramUsed(char command[N]);
-char *searchProgramVersion(char command[N]);
 activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig);
 activity *create_activity();
 activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig);
