@@ -16,6 +16,7 @@ typedef struct project{
 	char start_date[N];
 	char end_date[N];
 	struct project *next;
+	char experiment_id[N];
 }project;
 
 //inicializa variaveis do projeto

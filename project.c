@@ -20,13 +20,14 @@ project *create_project(){
 	strcpy(new->coordinator, "Maristela Holanda");
 	strcpy(new->start_date, "2018-01-02");
 	strcpy(new->end_date, "2018-04-01");
+	strcpy(new->experiment_id, "1");
 	return new;
 }
 
 
 project *insert_project(project *origin){
 	project *aux = origin;
-    
+
 	project *new = create_project(new);
 	if(aux==NULL){
 	    aux = new;
@@ -49,4 +50,3 @@ void freedom_project(project *origin){
         	aux1 = aux2;
     	}
 }
-

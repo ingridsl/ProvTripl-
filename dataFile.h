@@ -20,7 +20,7 @@ typedef struct dataFile{
 	char insertion_date[N];
 	int machine_id;
 	char type[N];
-	FILE *file;
+	char oid[25];
 	struct dataFile *next;
 }dataFile;
 
@@ -29,4 +29,5 @@ dataFile *insert_dataFile(dataFile *origin, char file_name[N]);
 void freedom_dataFile(dataFile *origin);
 bool existsDataFileId(char fileName[N], dataFile *origin);
 int retrieveDataFileId(char fileName[N], dataFile *origin);
+char *convertMultipleFiles(char *fileName, char *name);
 #endif

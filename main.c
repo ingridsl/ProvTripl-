@@ -19,10 +19,6 @@ int activityNumber = 1;
 int main (){
   time_t t;
   struct tm tm;
-printf("GRID VEGIN");
-getGridID();
-printf("GRID END");
-getchar();
   FILE *log = fopen("log.txt", "a+");
   fprintf(log,"\n\n\t--------- LOG ---------");
 
@@ -71,7 +67,7 @@ getchar();
   fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
  //////////////////////////// MODEL 1.1 - 1 COLLECTIONS - N DOCUMENTS/////////////////////////////////
-  fprintf(log," \t---- MODEL 1.1 ----");
+/*  fprintf(log," \t---- MODEL 1.1 ----");
  printf(" \t---- MODEL 1.1 ----");
   t = time(NULL);
   tm = *localtime(&t);
@@ -81,7 +77,7 @@ getchar();
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-
+*/
   //////////////////////////// MODEL 2.0 - 1 COLLECTION - 1 DOCUMENT/////////////////////////////////
    fprintf(log," \t---- MODEL 2.0 ----");
   printf(" \t---- MODEL 2.0 ----");

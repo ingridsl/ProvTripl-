@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "grid.h"
 
-void getGridID(){
+char *getGridID(char *modelName, char *fileName, char str[25]){
   const char *uri_str = "mongodb://localhost:27017";
   mongoc_client_t *client;
   char     *id_str;
@@ -31,29 +31,19 @@ void getGridID(){
   mongoc_client_set_appname (client, "ProvenanceMongoDB2");
 
 
-  gridfs = mongoc_client_get_gridfs (client, "model10-NI", "fs", &error);
+  gridfs = mongoc_client_get_gridfs (client, modelName, "fs", &error);
   assert (gridfs);
-  file = mongoc_gridfs_find_one_by_filename (gridfs, "file.sam", &error);
+  file = mongoc_gridfs_find_one_by_filename (gridfs, fileName, &error);
+  if(!file){
+    printf("\n\n  FILE NOT FOUND : %s\n\n", fileName);
+    return "notFound";
+  }
   const bson_value_t *returnedValue = mongoc_gridfs_file_get_id (file);
 
-  //value = bson_iter_value (&returnedValue);
-
-  //if (returnedValue->value_type == BSON_TYPE_INT32) {
-     printf ("%d\n", returnedValue->value.v_int32);
-     char str[25];
-     bson_oid_to_string(&returnedValue->value.v_oid, str);
-     printf("\n\n%s", str);
-    // printf ("%s\n", returnedValue->value.v_oid);
-  //}
-  /*
-  * Print the document as a JSON string.
-  */
-  /*id_str = bson_as_json (returnedValue, NULL);
-  printf ("\n\t%s\n\n", id_str);
-  fprintf(log,"\n\t%s\n\n", id_str);
-  bson_free (id_str);*/
-  getchar();
-
+  printf ("%d\n", returnedValue->value.v_int32);
+  bson_oid_to_string(&returnedValue->value.v_oid, str);
+  printf("\n\n%s", str);
+  return str;
 }
 
 //pegar arquivo bruto, converter, fragmentar e inserir no mongo
@@ -108,7 +98,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       stream = mongoc_stream_file_new_for_path (name, O_RDONLY, 0);
       assert (stream);
 
-      printf("\n1.3");
+      printf("\n1.3 >>>>>>>>>>>>> %s", name);
 
       opt.filename = name;
 
@@ -135,9 +125,9 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
 
       printf("\n\n COMEÇANDO AQUI!! 1");
     //  //getchar();
-iov.iov_base = (void*) buf;
-iov.iov_len = sizeof buf;
-file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
+      iov.iov_base = (void*) buf;
+      iov.iov_len = sizeof buf;
+      file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
       assert (file);
 
       stream = mongoc_stream_gridfs_new (file);

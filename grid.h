@@ -6,7 +6,7 @@
 #define grid_h
 #define N 300
 
-void getGridID();
+char *getGridID(char *modelName, char *fileName, char *str);
 
 
 int Convert(char fileName[N], char db_name[N], mongoc_client_t *client);

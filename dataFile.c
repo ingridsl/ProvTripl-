@@ -8,8 +8,11 @@
 #include "activity.h"
 
 int dataFileId = 1;
+int fileCounter = 1;
 
 dataFile *create_dataFile(char file_name[N]){
+	printf("\n new datafile: %s", file_name);
+	//getchar();
 	dataFile *new = (dataFile*)malloc(sizeof(dataFile));
 
   if(!new){
@@ -25,6 +28,7 @@ dataFile *create_dataFile(char file_name[N]){
 	strcpy(new->annotation, "annotation");
 	strcpy(new->type, "type");
 	new->machine_id = 1;
+
 	strcpy(new->insertion_date, "insertion_date");
 	new->size = 0;
 
@@ -39,12 +43,33 @@ dataFile *create_dataFile(char file_name[N]){
 
 dataFile *insert_dataFile(dataFile *origin, char file_name[N]){
 	dataFile *aux = origin;
-
 	if(existsDataFileId(file_name, origin)){
 		return origin;
 	}
-	
-	dataFile *new = create_dataFile(file_name);
+
+	dataFile *new;
+	//char fileNewName[N];
+	/*if(strcmp(file_name, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
+		while(fileCounter<9){
+			printf("converted");
+			file_name = convertMultipleFiles(file_name, file_name);
+			if(existsDataFileId(file_name, origin)){
+				return origin;
+			}
+			new = create_dataFile(file_name);
+			while(aux->next!=NULL){
+				aux = aux->next;
+			}
+			aux->next = new;
+			new->next = NULL;
+			strcpy(file_name,"Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
+			fileCounter++;
+		}
+	}else{
+		printf("not converted");*/
+		new = create_dataFile(file_name);
+	//}
+
 	if(aux==NULL){
 	    aux = new;
 	    new->next = NULL;
@@ -56,6 +81,17 @@ dataFile *insert_dataFile(dataFile *origin, char file_name[N]){
 	aux->next = new;
 	new->next = NULL;
 	return origin;
+}
+char *convertMultipleFiles(char *fileName, char *name){
+		char extensao[7];
+		strcpy(name, fileName);
+			//if(strcmp(fileName, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
+				strcpy(name, fileName);
+				sprintf(extensao, ".%d.ht2", fileCounter);
+				strcat(name, extensao);
+				printf("\n>> filename3: %s", name);
+			//}
+		return name;
 }
 
 void freedom_dataFile(dataFile *origin){

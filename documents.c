@@ -63,7 +63,7 @@ bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, 
   sprintf(str_mac_price_type, "%ld", macOriginal->price_type);
 
   provider = BCON_NEW (
-    "id", str_pro_id,
+    "_id", str_pro_id,
     "name", proOriginal->name,
     "url", proOriginal->url,
     "description", proOriginal->description,
@@ -73,13 +73,13 @@ bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, 
   );
 
   BSON_APPEND_DOCUMENT_BEGIN(provider, "cluster", &cluster);
-  BSON_APPEND_UTF8 (&cluster, "id", str_clu_id);
+  BSON_APPEND_UTF8 (&cluster, "_id", str_clu_id);
   BSON_APPEND_UTF8 (&cluster, "name", cluOriginal->name);
   BSON_APPEND_UTF8 (&cluster, "number_machines", str_clu_number_machines);
   BSON_APPEND_UTF8 (&cluster, "description", cluOriginal->description);
 
   BSON_APPEND_DOCUMENT_BEGIN(&cluster, "machine", &machine);
-  BSON_APPEND_UTF8 (&machine, "id", str_mac_id);
+  BSON_APPEND_UTF8 (&machine, "_id", str_mac_id);
   BSON_APPEND_UTF8 (&machine, "hostname", macOriginal->hostname);
   BSON_APPEND_UTF8 (&machine, "ip", str_mac_ip);
   BSON_APPEND_UTF8 (&machine, "type", macOriginal->type);
@@ -140,18 +140,19 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
   sprintf(str_act_execution_status, "%d", actOriginal->execution_status);
 
   project = BCON_NEW (
-    "id", str_pro_id,
+    "_id", str_pro_id,
     "name", proOriginal->name,
     "description", proOriginal->description,
     "inst_funders", proOriginal->inst_funders,
     "inst_participants", proOriginal->inst_participants,
     "coordinator", proOriginal->coordinator,
     "start_date", proOriginal->start_date,
-    "end_date", proOriginal->end_date
+    "end_date", proOriginal->end_date,
+    "experiment_id", proOriginal->experiment_id
   );
 
   BSON_APPEND_DOCUMENT_BEGIN(project, "experiment", &experiment);
-  BSON_APPEND_UTF8 (&experiment, "id", str_exp_id);
+  BSON_APPEND_UTF8 (&experiment, "_id", str_exp_id);
   BSON_APPEND_UTF8 (&experiment, "name", expOriginal->name);
   BSON_APPEND_UTF8 (&experiment, "description", expOriginal->description);
   BSON_APPEND_UTF8 (&experiment, "local", expOriginal->local);
@@ -169,7 +170,7 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
   bson_t activity, activities,child1, child2;
   BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
   //comandos daqui
-  while(actOriginal->next !=NULL){
+  while(actOriginal !=NULL){
 
     char str_act_id[15];
     sprintf(str_act_id, "%d", actOriginal->id);
@@ -181,7 +182,7 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
 
     keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
     bson_append_document_begin (&activities, key, (int) keylen, &activity);
-    BSON_APPEND_UTF8 (&activity, "id", str_act_id);
+    BSON_APPEND_UTF8 (&activity, "_id", str_act_id);
     BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
     BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
     BSON_APPEND_UTF8 (&activity, "program_version", actOriginal->program_version);
@@ -195,7 +196,7 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
     char str_mac_dataFiles_id[36];
 
     BSON_APPEND_ARRAY_BEGIN(&activity, "input_files", &child1);
-      for(i = 0; i < 2; ++i){
+      for(i = 0; i < array; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
         if(strlen(actOriginal->command_input[i])>0)
           bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
@@ -203,8 +204,9 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
       }
     bson_append_array_end(&activity, &child1);
     BSON_APPEND_ARRAY_BEGIN(&activity, "output_files", &child2);
-      for(i = 0; i< 1; ++i){
+      for(i = 0; i < array; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        if(strlen(actOriginal->command_output[i])>0)
         bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
 
       }
@@ -213,7 +215,7 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
 
     // END USED FILES
     BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
-    BSON_APPEND_UTF8 (&agent, "id", str_age_id);
+    BSON_APPEND_UTF8 (&agent, "_id", str_age_id);
     BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
     BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
     BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
@@ -269,8 +271,11 @@ bson_t   *DATA_DOC(bool index, char databaseName[N], dataFile *dataOriginal, FIL
   char str_data_machine_id[15];
   sprintf(str_data_machine_id, "%d", dataOriginal->machine_id);
 
+  printf("\n FILE = %s", auxData->name);
+  Convert(auxData->name, databaseName, client);
+
   dataFile = BCON_NEW (
-    "id", str_data_id,
+    "_id", str_data_id,
     "name", dataOriginal->name,
     "description", dataOriginal->description,
     "localization", dataOriginal->localization,
@@ -278,11 +283,10 @@ bson_t   *DATA_DOC(bool index, char databaseName[N], dataFile *dataOriginal, FIL
     "size", str_data_size,
     "insertion_date",dataOriginal->insertion_date,
     "machine_id", str_data_machine_id,
-    "type", dataOriginal->type
+    "type", dataOriginal->type,
+    "oid",getGridID(databaseName, auxData->name, auxData->oid)
 
   );
-  printf("\n FILE = %s", auxData->name);
-  Convert(auxData->name, databaseName, client);
 
 dataFile_str = bson_as_json (dataFile, NULL);
 printf ("\n\t%s\n\n", dataFile_str);
@@ -341,7 +345,7 @@ bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal
   sprintf(str_mac_price_type, "%ld", macOriginal->price_type);
 
   provider = BCON_NEW (
-    "id", str_pro_id,
+    "_id", str_pro_id,
     "isProvider", "true",
     "name", proOriginal->name,
     "url", proOriginal->url,
@@ -352,13 +356,13 @@ bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal
   );
 
   BSON_APPEND_DOCUMENT_BEGIN(provider, "cluster", &cluster);
-  BSON_APPEND_UTF8 (&cluster, "id", str_clu_id);
+  BSON_APPEND_UTF8 (&cluster, "_id", str_clu_id);
   BSON_APPEND_UTF8 (&cluster, "name", cluOriginal->name);
   BSON_APPEND_UTF8 (&cluster, "number_machines", str_clu_number_machines);
   BSON_APPEND_UTF8 (&cluster, "description", cluOriginal->description);
 
   BSON_APPEND_DOCUMENT_BEGIN(&cluster, "machine", &machine);
-  BSON_APPEND_UTF8 (&machine, "id", str_mac_id);
+  BSON_APPEND_UTF8 (&machine, "_id", str_mac_id);
   BSON_APPEND_UTF8 (&machine, "hostname", macOriginal->hostname);
   BSON_APPEND_UTF8 (&machine, "ip", str_mac_ip);
   BSON_APPEND_UTF8 (&machine, "type", macOriginal->type);
@@ -419,7 +423,7 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
   sprintf(str_act_execution_status, "%d", actOriginal->execution_status);
 
   project = BCON_NEW (
-    "id", str_pro_id,
+    "_id", str_pro_id,
     "isProject", "true",
     "name", proOriginal->name,
     "description", proOriginal->description,
@@ -431,7 +435,7 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
   );
 
   BSON_APPEND_DOCUMENT_BEGIN(project, "experiment", &experiment);
-  BSON_APPEND_UTF8 (&experiment, "id", str_exp_id);
+  BSON_APPEND_UTF8 (&experiment, "_id", str_exp_id);
   BSON_APPEND_UTF8 (&experiment, "name", expOriginal->name);
   BSON_APPEND_UTF8 (&experiment, "description", expOriginal->description);
   BSON_APPEND_UTF8 (&experiment, "local", expOriginal->local);
@@ -450,7 +454,7 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
   bson_t activity, activities, child1, child2;
   BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
   //comandos daqui
-  while(actOriginal->next !=NULL){
+  while(actOriginal !=NULL){
 
     char str_act_id[15];
     sprintf(str_act_id, "%d", actOriginal->id);
@@ -461,7 +465,7 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
     size_t      keylen;
     keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
     bson_append_document_begin (&activities, key, (int) keylen, &activity);
-    BSON_APPEND_UTF8 (&activity, "id", str_act_id);
+    BSON_APPEND_UTF8 (&activity, "_id", str_act_id);
     BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
     BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
     BSON_APPEND_UTF8 (&activity, "program_version", actOriginal->program_version);
@@ -476,7 +480,7 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
     char str_mac_dataFiles_id[36];
 
     BSON_APPEND_ARRAY_BEGIN(&activity, "input_files", &child1);
-      for(i = 0; i < 2; ++i){
+      for(i = 0; i < array; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
         if(strlen(actOriginal->command_input[i])>0)
           bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
@@ -484,16 +488,17 @@ bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOrigina
       }
     bson_append_array_end(&activity, &child1);
     BSON_APPEND_ARRAY_BEGIN(&activity, "output_files", &child2);
-      for(i = 0; i< 1; ++i){
+      for(i = 0; i < array; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
+          if(strlen(actOriginal->command_output[i])>0)
+            bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
 
       }
     bson_append_array_end(&activity, &child2);
 
     // END USED FILES
     BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
-    BSON_APPEND_UTF8 (&agent, "id", str_age_id);
+    BSON_APPEND_UTF8 (&agent, "_id", str_age_id);
     BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
     BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
     BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
@@ -548,8 +553,11 @@ bson_t   *DATA_DOC_S(bool index, char *databaseName, dataFile *dataOriginal, FIL
   char str_data_machine_id[15];
   sprintf(str_data_machine_id, "%d", dataOriginal->machine_id);
 
+
+  Convert(auxData->name, databaseName, client);
+
   dataFile = BCON_NEW (
-    "id", str_data_id,
+    "_id", str_data_id,
     "isDataFile", "true",
     "name", dataOriginal->name,
     "description", dataOriginal->description,
@@ -558,11 +566,10 @@ bson_t   *DATA_DOC_S(bool index, char *databaseName, dataFile *dataOriginal, FIL
     "size", str_data_size,
     "insertion_date",dataOriginal->insertion_date,
     "machine_id", str_data_machine_id,
-    "type", dataOriginal->type
+    "type", dataOriginal->type,
+    "oid",getGridID(databaseName, auxData->name, auxData->oid)
 
   );
-
-  Convert(auxData->name, databaseName, client);
 
 /*
 * Clean up allocated bson documents.
@@ -608,8 +615,14 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
   char str_act_execution_status[15];
   sprintf(str_act_execution_status, "%d", actOriginal->execution_status);
 
+  auxData = dataOriginal;
+  while(auxData!=NULL){
+    Convert(auxData->name, databaseName, client);
+    auxData = auxData->next;
+  }
+  auxData = dataOriginal;
   project = BCON_NEW (
-    "id", str_pro_id,
+    "_id", str_pro_id,
     "name", proOriginal->name,
     "description", proOriginal->description,
     "inst_funders", proOriginal->inst_funders,
@@ -620,7 +633,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
   );
 
   BSON_APPEND_DOCUMENT_BEGIN(project, "experiment", &experiment);
-  BSON_APPEND_UTF8 (&experiment, "id", str_exp_id);
+  BSON_APPEND_UTF8 (&experiment, "_id", str_exp_id);
   BSON_APPEND_UTF8 (&experiment, "name", expOriginal->name);
   BSON_APPEND_UTF8 (&experiment, "description", expOriginal->description);
   BSON_APPEND_UTF8 (&experiment, "local", expOriginal->local);
@@ -649,7 +662,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
     size_t      keylen;
     keylen = bson_uint32_to_string (y, &key, buf, sizeof buf);
     bson_append_document_begin (&activities, key, (int) keylen, &activity);
-    BSON_APPEND_UTF8 (&activity, "id", str_act_id);
+    BSON_APPEND_UTF8 (&activity, "_id", str_act_id);
     BSON_APPEND_UTF8 (&activity, "name", actOriginal->name);
     BSON_APPEND_UTF8 (&activity, "program_name", actOriginal->program_name);
     BSON_APPEND_UTF8 (&activity, "program_version", actOriginal->program_version);
@@ -667,7 +680,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
       auxData = dataOriginal;
       while(auxData != NULL){
         sprintf(filesId, "%d", auxData->id);
-        for(i = 0; i < 2 ; i++){
+        for(i = 0; i < array ; i++){
           if(strlen(actOriginal->command_input[i])>0){
             if(strcmp(filesId, actOriginal->command_input[i])== 0){
               char str_data_id[15];
@@ -678,7 +691,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
               sprintf(str_data_machine_id, "%d", auxData->machine_id);
               keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
               bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-              BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
+              BSON_APPEND_UTF8 (&dataFile,"_id", str_data_id);
               BSON_APPEND_UTF8 (&dataFile,"name", auxData->name);
               BSON_APPEND_UTF8 (&dataFile, "description", auxData->description);
               BSON_APPEND_UTF8 (&dataFile,"localization",auxData->localization);
@@ -687,6 +700,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
               BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxData->insertion_date);
               BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
               BSON_APPEND_UTF8 (&dataFile,"type", auxData->type);
+              BSON_APPEND_UTF8 (&dataFile,"oid",getGridID(databaseName, auxData->name, auxData->oid));
               bson_append_document_end(&dataFiles, &dataFile);
             }
           }
@@ -702,7 +716,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
       while(auxData != NULL){
         sprintf(filesId, "%d", auxData->id);
         for(i = 0; i<2; i++){
-          if(strlen(actOriginal->command_output[i])){
+          if(strlen(actOriginal->command_output[i])>0){
             if(strcmp(filesId,actOriginal->command_output[i]) == 0){
               printf("achei!");
               char str_data_id[15];
@@ -713,7 +727,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
               sprintf(str_data_machine_id, "%d", auxData->machine_id);
               keylen2 = bson_uint32_to_string (y, &key2, buf2, sizeof buf2);
               bson_append_document_begin (&dataFiles, key2, (int) keylen2, &dataFile);
-              BSON_APPEND_UTF8 (&dataFile,"id", str_data_id);
+              BSON_APPEND_UTF8 (&dataFile,"_id", str_data_id);
               BSON_APPEND_UTF8 (&dataFile,"name", auxData->name);
               BSON_APPEND_UTF8 (&dataFile, "description", auxData->description);
               BSON_APPEND_UTF8 (&dataFile,"localization", auxData->localization);
@@ -722,6 +736,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
               BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxData->insertion_date);
               BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
               BSON_APPEND_UTF8 (&dataFile,"type", auxData->type);
+              BSON_APPEND_UTF8 (&dataFile, "oid",getGridID(databaseName, auxData->name, auxData->oid));
               bson_append_document_end(&dataFiles, &dataFile);
             }
           }
@@ -733,7 +748,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
       // end of output files
     printf("sai2!\n");
     BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
-    BSON_APPEND_UTF8 (&agent, "id", str_age_id);
+    BSON_APPEND_UTF8 (&agent, "_id", str_age_id);
     BSON_APPEND_UTF8 (&agent, "name", ageOriginal->name);
     BSON_APPEND_UTF8 (&agent, "login", ageOriginal->login);
     BSON_APPEND_UTF8 (&agent, "instituition", ageOriginal->instituition);
@@ -753,11 +768,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
   //até aqui
   bson_append_document_end(project, &experiment);
 
-  auxData = dataOriginal;
-  while(auxData!=NULL){
-    Convert(auxData->name, databaseName, client);
-    auxData = auxData->next;
-  }
+
   /*
   * Print the document as a JSON string.
   */
@@ -788,7 +799,7 @@ bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
 
 
   project = BCON_NEW (
-    "id", str_pro_id,
+    "_id", str_pro_id,
     "name", proOriginal->name,
     "description", proOriginal->description,
     "inst_funders", proOriginal->inst_funders,
@@ -813,8 +824,9 @@ bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
 
 bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
 
-  bson_t   *experiment;
+  bson_t   *experiment, child1;
   char     *experiment_str;
+  char * activities[] = {"1", "2", "3", "4", "5", "6"};
   bson_oid_t oid;
   int answer = 0;
   if(index){
@@ -837,7 +849,7 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
   sprintf(str_exp_project_id, "%d", expOriginal->project_id);
 
   experiment = BCON_NEW (
-    "id", str_exp_id,
+    "_id", str_exp_id,
     "name", expOriginal->name,
     "description", expOriginal->description,
     "local", expOriginal->local,
@@ -847,11 +859,20 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
     "version", str_exp_version,
     "version_date", expOriginal->version_date,
     "execution_time", str_exp_execution_time,
-    "execution_cost", str_exp_execution_cost,
-    "project_id",str_exp_project_id
+    "execution_cost", str_exp_execution_cost//,
+    //"project_id",str_exp_project_id
 
   );
-
+  uint32_t    i;
+  char        buf[16];
+  const       char *key;
+  size_t      keylen;
+  BSON_APPEND_ARRAY_BEGIN(experiment, "activity_id", &child1);
+  for(i = 0; i < array; ++i){
+      keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child1, key, (int) keylen, activities[i], -1);
+  }
+  bson_append_array_end(experiment, &child1);
   experiment_str = bson_as_json (experiment, NULL);
   printf ("\n\t%s\n\n", experiment_str);
   fprintf(log,"\n\t%s\n\n", experiment_str);
@@ -894,7 +915,7 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
     const       char *key;
     size_t      keylen;
     activity = BCON_NEW(
-        "id", str_act_id,
+        "_id", str_act_id,
         "name", actOriginal->name,
         "program_name", actOriginal->program_name,
         "program_version", actOriginal->program_version,
@@ -912,7 +933,7 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
     char str_mac_dataFiles_id[36];
 
     BSON_APPEND_ARRAY_BEGIN(activity, "input_files", &child1);
-      for(i = 0; i < 2; ++i){
+      for(i = 0; i < array; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
         if(strlen(actOriginal->command_input[i])>0)
           bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
@@ -920,9 +941,10 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
       }
     bson_append_array_end(activity, &child1);
     BSON_APPEND_ARRAY_BEGIN(activity, "output_files", &child2);
-      for(i = 0; i< 1; ++i){
+      for(i = 0; i < array; ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
+          if(strlen(actOriginal->command_output[i])>0)
+          bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
 
       }
     bson_append_array_end(activity, &child2);
@@ -973,7 +995,7 @@ bson_t   *AGENT_DOC_3(bool index, mongoc_database_t *db, agent *ageOriginal, FIL
     const       char *key2;
     size_t      keylen2;
 
-      BSON_APPEND_UTF8 (agent,"id", str_age_id);
+      BSON_APPEND_UTF8 (agent,"_id", str_age_id);
       BSON_APPEND_UTF8 (agent,"name", ageOriginal->name);
       BSON_APPEND_UTF8 (agent,"login", ageOriginal->login);
       BSON_APPEND_UTF8 (agent,"instituition", ageOriginal->instituition);
