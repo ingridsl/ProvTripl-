@@ -18,8 +18,22 @@
 #define sickleversion "1.33"
 #define sickle "sickle"
 
+char inputFile[N];
+char outputFile[N];
+char inputFile2[N];
+
+
+char *getInputFile();
+char *getInputFile2();
+char *getOutputFile();
+
+void resetInputFile();
+void resetInputFile2();
+void resetOutputFile();
+
 char *searchProgramUsed(char command[N]);
 char *searchProgramVersion(char command[N]);
+void getFileName(char command[N]);
 
 
 

@@ -18,6 +18,11 @@
 
 int activityNumber = 1;
 int main (){
+
+//  getFileName("sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25");
+
+
+  getchar();
   time_t t;
   struct tm tm;
   FILE *log = fopen("log.txt", "a+");
