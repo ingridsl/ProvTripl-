@@ -31,6 +31,8 @@ typedef struct machine{
 
 	dataFile *dataFiles;
 
+	int cluster_id;
+
 	struct machine *next;
 }machine;
 //inicializa variaveis da maquina

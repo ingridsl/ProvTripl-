@@ -75,14 +75,17 @@ void CreateDatabase10(bool index, provider *provOriginal, cluster *cluOriginal, 
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nDataDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-  /* // PROVIDER
+
+
+
+   // PROVIDER
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
 
-   bson_t   *providerDoc = PROVIDER_DOC(provOriginal, cluOriginal, macOriginal, log);
+   bson_t   *providerDoc = PROVIDER_DOC(index, provOriginal, cluOriginal, macOriginal, log);
    if (!mongoc_collection_insert(provider1, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
@@ -90,7 +93,7 @@ void CreateDatabase10(bool index, provider *provOriginal, cluster *cluOriginal, 
    t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-  */
+
 
   t = time(NULL);
   tm = *localtime(&t);
@@ -105,10 +108,6 @@ t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProjectDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-
-  // bson_destroy (providerDoc);
-  // bson_destroy (projectDoc);
-   //bson_destroy (fileDoc);
    mongoc_collection_destroy(data1);
    mongoc_collection_destroy(project1);
    mongoc_collection_destroy(provider1);

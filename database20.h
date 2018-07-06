@@ -15,6 +15,12 @@
 #include "agent.h"
 #include "dataFile.h"
 
+
+#ifndef database20_h
+#define database20_h
+
 #define N 300
 
 void CreateDatabase20(bool index, provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
+
+#endif

@@ -40,6 +40,8 @@ machine *create_machine(dataFile *data){
 	strcpy(new->localization_region, "region");
 	strcpy(new->localization_zone, "zone");
 
+  new->cluster_id = 1;
+
 	new->dataFiles = data;
 
 	return new;
@@ -48,7 +50,7 @@ machine *create_machine(dataFile *data){
 
 machine *insert_machine(machine *origin, dataFile *originDataFile){
 	machine *aux = origin;
-    
+
 	machine *new = create_machine(originDataFile);
 	if(aux==NULL){
 	    aux = new;

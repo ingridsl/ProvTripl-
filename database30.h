@@ -15,6 +15,10 @@
 #include "agent.h"
 #include "dataFile.h"
 
+
+#ifndef database30_h
+#define database30_h
+
 #define N 300
 
 void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, machine *macOriginal, project *projOriginal, experiment *expOriginal, activity *actOriginal, agent *ageOriginal, dataFile *dataOriginal, FILE *log);
@@ -22,3 +26,5 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
 void CleanDatabase30(mongoc_client_t *client,
                 mongoc_database_t *database,
                 mongoc_collection_t *collection);
+
+#endif

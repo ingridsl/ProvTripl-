@@ -16,7 +16,7 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
    const char *uri_str = "mongodb://localhost:27017";
    mongoc_client_t *client;
    mongoc_database_t *model30;
-   mongoc_collection_t *project3, * provider3, * data3, *activity3,*experiment3, *agent3;
+   mongoc_collection_t *project3, * data3, *activity3,*experiment3, *agent3, * provider3, *cluster3, *machine3;
    bson_t *command, reply, *insert;
    bson_error_t error;
    char *str;
@@ -55,10 +55,12 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
    printf("collection \n");
    data3 = mongoc_client_get_collection (client,databaseName, "data3");
    project3 = mongoc_client_get_collection (client, databaseName, "project3");
-   provider3 = mongoc_client_get_collection (client, databaseName, "provider3");
    agent3 = mongoc_client_get_collection (client, databaseName, "agent3");
    experiment3 = mongoc_client_get_collection (client, databaseName, "experiment3");
    activity3 = mongoc_client_get_collection (client, databaseName, "activity3");
+   provider3 = mongoc_client_get_collection (client, databaseName, "provider3");
+   cluster3 = mongoc_client_get_collection (client, databaseName, "cluster3");
+   machine3 = mongoc_client_get_collection (client, databaseName, "machine3");
    dataFile *auxDatafile = auxdata;
    activity *auxActivity = actOriginal;
 
@@ -81,22 +83,53 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nDataDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-  /* // PROVIDER
+  // PROVIDER
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-
-   bson_t   *providerDoc = PROVIDER_DOC(provOriginal, cluOriginal, macOriginal, log);
-   if (!mongoc_collection_insert(provider1, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
+   bson_t   *providerDoc = PROVIDER_DOC_3(index, provOriginal, log);
+   if (!mongoc_collection_insert(provider3, MONGOC_INSERT_NONE, providerDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
 
    t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProviderDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-  */
+
+  //CLUSTER
+  t = time(NULL);
+  tm = *localtime(&t);
+  fprintf(log,"\nClusterDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+
+
+   bson_t   *clusterDoc = CLUSTER_DOC_3(index, cluOriginal, log);
+   if (!mongoc_collection_insert(cluster3, MONGOC_INSERT_NONE, clusterDoc, NULL, &error)) {
+      fprintf (stderr, "%s\n", error.message);
+   }
+
+   t = time(NULL);
+  tm = *localtime(&t);
+  fprintf(log,"\nClusterDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+  //MACHINE
+  t = time(NULL);
+  tm = *localtime(&t);
+  fprintf(log,"\nMachineDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+
+
+   bson_t   *machineDoc = MACHINE_DOC_3(index, macOriginal, log);
+   if (!mongoc_collection_insert(machine3, MONGOC_INSERT_NONE, machineDoc, NULL, &error)) {
+      fprintf (stderr, "%s\n", error.message);
+   }
+
+   t = time(NULL);
+  tm = *localtime(&t);
+  fprintf(log,"\nMachineDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
 
   t = time(NULL);
   tm = *localtime(&t);
@@ -115,7 +148,7 @@ t = time(NULL);
 
   t = time(NULL);
   tm = *localtime(&t);
-  fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  fprintf(log,"\nExperimentDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
    bson_t   *experimentDoc = EXPERIMENT_DOC_3(index, expOriginal, log);
@@ -124,12 +157,12 @@ t = time(NULL);
    }
   t = time(NULL);
   tm = *localtime(&t);
-  fprintf(log,"\nProjectDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  fprintf(log,"\nExperimentDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
   t = time(NULL);
   tm = *localtime(&t);
-  fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  fprintf(log,"\nActivityDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
  while(auxActivity!=NULL){
    bson_t   *activityDoc = ACTIVITY_DOC_3(index, auxActivity, log);
@@ -140,12 +173,12 @@ t = time(NULL);
  }
   t = time(NULL);
   tm = *localtime(&t);
-  fprintf(log,"\nProjectDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  fprintf(log,"\nActivityDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
   t = time(NULL);
   tm = *localtime(&t);
-  fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  fprintf(log,"\nAgentDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
    bson_t   *agentDoc = AGENT_DOC_3(index, model30, ageOriginal, log);
@@ -154,7 +187,7 @@ t = time(NULL);
    }
   t = time(NULL);
   tm = *localtime(&t);
-  fprintf(log,"\nProjectDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+  fprintf(log,"\nAgentDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
   // bson_destroy (providerDoc);

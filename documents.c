@@ -13,17 +13,18 @@
 bool novo = false;
 oid *oidNumbers = NULL;
 
+
+
 bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
   //parametros
   dataFile *aux = macOriginal->dataFiles;
   bson_t   *provider, cluster, machine, dataFiles;
   char     *provider_str;
   bson_oid_t oid;
-
   //inicializa documento com index
   if(index){
-  bson_oid_init (&oid, NULL);
-  provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+    bson_oid_init (&oid, NULL);
+    provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
   }
   //conversão para strings é necessária
   char str_clu_id[15];
@@ -94,20 +95,19 @@ bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, 
   BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
   BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
   BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
-bson_append_document_end(&cluster, &machine);
-
-bson_append_document_end(provider, &cluster);
-/*
-* Print the document as a JSON string.
-*/
-provider_str = bson_as_json (provider, NULL);
-printf ("\n\t%s\n\n", provider_str);
-fprintf(log,"\n\t%s\n\n", provider_str);
-bson_free (provider_str);
-/*
-* Clean up allocated bson documents.
-*/
-return provider;
+  bson_append_document_end(&cluster, &machine);
+  bson_append_document_end(provider, &cluster);
+  /*
+  * Print the document as a JSON string.
+  */
+  provider_str = bson_as_json (provider, NULL);
+  printf ("\n\t%s\n\n", provider_str);
+  fprintf(log,"\n\t%s\n\n", provider_str);
+  bson_free (provider_str);
+  /*
+  * Clean up allocated bson documents.
+  */
+  return provider;
 }
 
 bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
@@ -288,13 +288,12 @@ bson_t   *DATA_DOC(bool index, char databaseName[N], dataFile *dataOriginal, FIL
 
   );
 
-dataFile_str = bson_as_json (dataFile, NULL);
-printf ("\n\t%s\n\n", dataFile_str);
-fprintf(log,"\n\t%s\n\n", dataFile_str);
-bson_free (dataFile_str);
-return dataFile;
+  dataFile_str = bson_as_json (dataFile, NULL);
+  printf ("\n\t%s\n\n", dataFile_str);
+  fprintf(log,"\n\t%s\n\n", dataFile_str);
+  bson_free (dataFile_str);
+  return dataFile;
 }
-
 
 bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
   dataFile *aux = macOriginal->dataFiles;
@@ -377,20 +376,20 @@ bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal
   BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
   BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
   BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
-bson_append_document_end(&cluster, &machine);
+  bson_append_document_end(&cluster, &machine);
 
-bson_append_document_end(provider, &cluster);
-/*
-* Print the document as a JSON string.
-*/
-provider_str = bson_as_json (provider, NULL);
-printf ("\n\t%s\n\n", provider_str);
-fprintf(log,"\n\t%s\n\n", provider_str);
-bson_free (provider_str);
-/*
-* Clean up allocated bson documents.
-*/
-return provider;
+  bson_append_document_end(provider, &cluster);
+  /*
+  * Print the document as a JSON string.
+  */
+  provider_str = bson_as_json (provider, NULL);
+  printf ("\n\t%s\n\n", provider_str);
+  fprintf(log,"\n\t%s\n\n", provider_str);
+  bson_free (provider_str);
+  /*
+  * Clean up allocated bson documents.
+  */
+  return provider;
 }
 
 bson_t   *PROJECT_DOC_S(bool index, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, FILE *log){
@@ -571,17 +570,17 @@ bson_t   *DATA_DOC_S(bool index, char *databaseName, dataFile *dataOriginal, FIL
 
   );
 
-/*
-* Clean up allocated bson documents.
-*/
-dataFile_str = bson_as_json (dataFile, NULL);
-printf ("\n\t%s\n\n", dataFile_str);
-fprintf(log,"\n\t%s\n\n", dataFile_str);
-bson_free (dataFile_str);
-return dataFile;
+  /*
+  * Clean up allocated bson documents.
+  */
+  dataFile_str = bson_as_json (dataFile, NULL);
+  printf ("\n\t%s\n\n", dataFile_str);
+  fprintf(log,"\n\t%s\n\n", dataFile_str);
+  bson_free (dataFile_str);
+  return dataFile;
 }
 
-bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, FILE *log, mongoc_client_t *client){
+bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, experiment *expOriginal, activity *activitys, agent *ageOriginal, dataFile *dataOriginal, provider *provOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log, mongoc_client_t *client){
   activity *actOriginal = activitys;
   dataFile *auxData = dataOriginal;
   char str_mac_dataFiles_id[36];
@@ -782,7 +781,6 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
   return project;
 }
 
-
 bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
 
   bson_t   *project;
@@ -961,31 +959,22 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
     * Clean up allocated bson documents.
     */
   //}
-return activity;
+  return activity;
 }
 
 bson_t   *AGENT_DOC_3(bool index, mongoc_database_t *db, agent *ageOriginal, FILE *log){
-  bson_t   *agent, child;
-  char     *agent_str;
-  int answer = 0;
-  bson_oid_t oid;
-  mongoc_client_t *client;
+    bson_t   *agent, child;
+    char     *agent_str;
+    int answer = 0;
+    bson_oid_t oid;
+    mongoc_client_t *client;
 
-  //query = bson_new ();
-    // BSON_APPEND_UTF8 (query, "hello", "world");
-  /*if(index){
-    printf("INDEXADO");
-    //getchar();
-    bson_oid_init (&oid, NULL);
-    agent = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
-  }else{*/
     agent = bson_new ();
-//}
-  int y = 0;
 
-  char str_age_id[15];
-  sprintf(str_age_id, "%d", ageOriginal->id);
+    int y = 0;
 
+    char str_age_id[15];
+    sprintf(str_age_id, "%d", ageOriginal->id);
     uint32_t    i;
     char        buf[16];
     const       char *key;
@@ -995,29 +984,185 @@ bson_t   *AGENT_DOC_3(bool index, mongoc_database_t *db, agent *ageOriginal, FIL
     const       char *key2;
     size_t      keylen2;
 
-      BSON_APPEND_UTF8 (agent,"_id", str_age_id);
-      BSON_APPEND_UTF8 (agent,"name", ageOriginal->name);
-      BSON_APPEND_UTF8 (agent,"login", ageOriginal->login);
-      BSON_APPEND_UTF8 (agent,"instituition", ageOriginal->instituition);
-      BSON_APPEND_UTF8 (agent,"position", ageOriginal->position);
-      BSON_APPEND_UTF8 (agent,"role", ageOriginal->role);
-      BSON_APPEND_UTF8 (agent,"annotation", ageOriginal->annotation);
+    BSON_APPEND_UTF8 (agent,"_id", str_age_id);
+    BSON_APPEND_UTF8 (agent,"name", ageOriginal->name);
+    BSON_APPEND_UTF8 (agent,"login", ageOriginal->login);
+    BSON_APPEND_UTF8 (agent,"instituition", ageOriginal->instituition);
+    BSON_APPEND_UTF8 (agent,"position", ageOriginal->position);
+    BSON_APPEND_UTF8 (agent,"role", ageOriginal->role);
+    BSON_APPEND_UTF8 (agent,"annotation", ageOriginal->annotation);
+    if(index){
+        indexingDocument("agent3", db, "_id");
+    }
+    /*
+    * Print the document as a JSON string.
+    */
+    agent_str = bson_as_json (agent, NULL);
+    printf ("\n\t%s\n\n", agent_str);
+    fprintf(log,"\n\t%s\n\n", agent_str);
+    bson_free (agent_str);
+    /*
+    * Clean up allocated bson documents.
+    */
+    return agent;
+}
 
-      if(index){
-          indexingDocument("agent3", db, "_id");
-      }
+bson_t   *PROVIDER_DOC_3(bool index, provider *proOriginal, FILE *log){
+  //parametros
+  //dataFile *aux = macOriginal->dataFiles;
+  bson_t   *provider/*, cluster, machine, dataFiles*/;
+  char     *provider_str;
+  bson_oid_t oid;
+  //inicializa documento com index
+  if(index){
+    bson_oid_init (&oid, NULL);
+    provider = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
+
+  char str_pro_id[15];
+  sprintf(str_pro_id, "%d", proOriginal->id);
+
+  char str_pro_localization_id[15];
+  sprintf(str_pro_localization_id, "%d", proOriginal->localization_id);
+
+  provider = BCON_NEW (
+    "_id", str_pro_id,
+    "name", proOriginal->name,
+    "url", proOriginal->url,
+    "description", proOriginal->description,
+    "localization_id", str_pro_localization_id,
+    "localization_region", proOriginal->localization_region,
+    "localization_zone", proOriginal->localization_zone
+  );
+
   /*
   * Print the document as a JSON string.
   */
-  agent_str = bson_as_json (agent, NULL);
-  printf ("\n\t%s\n\n", agent_str);
-  fprintf(log,"\n\t%s\n\n", agent_str);
-  bson_free (agent_str);
+  provider_str = bson_as_json (provider, NULL);
+  printf ("\n\t%s\n\n", provider_str);
+  fprintf(log,"\n\t%s\n\n", provider_str);
+  bson_free (provider_str);
   /*
   * Clean up allocated bson documents.
   */
-  return agent;
+  return provider;
 }
+
+bson_t   *CLUSTER_DOC_3(bool index, cluster *cluOriginal, FILE *log){
+  //parametros
+  //dataFile *aux = macOriginal->dataFiles;
+  bson_t   *cluster;
+  char     *cluster_str;
+  bson_oid_t oid;
+  //inicializa documento com index
+  if(index){
+    bson_oid_init (&oid, NULL);
+    cluster = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
+  //conversão para strings é necessária
+  char str_clu_id[15];
+  sprintf(str_clu_id, "%d", cluOriginal->id);
+
+  char str_clu_number_machines[15];
+  sprintf(str_clu_number_machines, "%d", cluOriginal->number_machines);
+
+  char str_clu_provider_id[15];
+  sprintf(str_clu_provider_id, "%d", cluOriginal->provider_id);
+
+  cluster = BCON_NEW(
+    "_id", str_clu_id,
+    "name", cluOriginal->name,
+    "number_machines", str_clu_number_machines,
+    "description", cluOriginal->description,
+    "provider_id", str_clu_provider_id
+  );
+
+  /*
+  * Print the document as a JSON string.
+  */
+  cluster_str = bson_as_json (cluster, NULL);
+  printf ("\n\t%s\n\n", cluster_str);
+  fprintf(log,"\n\t%s\n\n", cluster_str);
+  bson_free (cluster_str);
+  /*
+  * Clean up allocated bson documents.
+  */
+  return cluster;
+}
+
+bson_t   *MACHINE_DOC_3(bool index, machine *macOriginal, FILE *log){
+  //parametros
+  dataFile *aux = macOriginal->dataFiles;
+  bson_t   *machine, dataFiles;
+  char     *machine_str;
+  bson_oid_t oid;
+  //inicializa documento com index
+  if(index){
+    bson_oid_init (&oid, NULL);
+    machine = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
+  }
+  //conversão para strings é necessária
+  char str_mac_id[15];
+  sprintf(str_mac_id, "%d", macOriginal->id);
+
+  char str_mac_localization_id[15];
+  sprintf(str_mac_localization_id, "%d", macOriginal->localization_id);
+
+  char str_mac_ip[36];
+  sprintf(str_mac_ip, "%ld", macOriginal->ip);
+
+  char str_mac_cpu[15];
+  sprintf(str_mac_cpu, "%d", macOriginal->cpu);
+
+  char str_mac_ram_memory[15];
+  sprintf(str_mac_ram_memory, "%d", macOriginal->ram_memory);
+
+  char str_mac_disk[36];
+  sprintf(str_mac_disk, "%ld", macOriginal->disk);
+
+  char str_mac_price[36];
+  sprintf(str_mac_price, "%ld", macOriginal->price);
+
+  char str_mac_price_type[36];
+  sprintf(str_mac_price_type, "%ld", macOriginal->price_type);
+
+  char str_mac_cluster_id[36];
+  sprintf(str_mac_cluster_id, "%d", macOriginal->cluster_id);
+
+
+  machine = BCON_NEW(
+    "_id", str_mac_id,
+    "hostname", macOriginal->hostname,
+    "ip", str_mac_ip,
+    "type", macOriginal->type,
+    "operational_system", macOriginal->operational_system,
+    "cpu", str_mac_cpu,
+    "ram_memory", str_mac_ram_memory,
+    "disk", str_mac_disk,
+    "disk_type", macOriginal->disk_type,
+    "localization", macOriginal->localization,
+    "price", str_mac_price,
+    "price_type", str_mac_price_type,
+    "localization_id", str_mac_localization_id,
+    "localization_region", macOriginal->localization_region,
+    "localization_zone", macOriginal->localization_zone,
+    "cluster_id", str_mac_cluster_id
+  );
+  /*
+  * Print the document as a JSON string.
+  */
+  machine_str = bson_as_json (machine, NULL);
+  printf ("\n\t%s\n\n", machine_str);
+  fprintf(log,"\n\t%s\n\n", machine_str);
+  bson_free (machine_str);
+  /*
+  * Clean up allocated bson documents.
+  */
+  return machine;
+}
+
+
+
 
 void indexingDocument (char *collection_name, mongoc_database_t *db, char *label) {
 

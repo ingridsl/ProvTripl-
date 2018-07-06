@@ -16,6 +16,7 @@ cluster *create_cluster(){
 	new->id = 1;
 	strcpy(new->name,"ProvBio-BIBM");
 	new->number_machines = 1;
+	new->provider_id = 1;
 	strcpy(new->description,"description here");
 	return new;
 }
@@ -23,7 +24,7 @@ cluster *create_cluster(){
 
 cluster *insert_cluster(cluster *origin, provider *originPro){
 	cluster *aux = origin;
-    
+
 	cluster *new = create_cluster(new);
 	if(aux==NULL){
 	    aux = new;
