@@ -13,7 +13,7 @@ dataFile *returnUsedFiles(){
 	return used_files;
 }
 
-activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig){ //falta incluir aquivos na lista de arquivos
+activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig, bool teste){ //falta incluir aquivos na lista de arquivos
 	activity *original = (activity*)malloc(sizeof(activity));
 
    	time_t t;
@@ -23,7 +23,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 	    exit(1);
 	}
 	int value;
-	char inputFile[N],inputFile1[N], inputFile2[N], inputFile3[N], outputFile[N];
+	char inputFile[N],inputFile1[N], inputFile2[N], inputFile3[N], inputFileDefault[N];
+	char outputFile[N], outputFileDefault[N];
 	char command[N] = "";
 	switch((*activityNumber)){
 		case 1:
@@ -32,14 +33,19 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 		   	strcpy(command, "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25");
 				getFileName(command);
 
-				strcpy(inputFile1, getInputFile());
-		   	strcpy(outputFile, getOutputFile());
+				if(teste){
+					strcpy(inputFile1, "SRR5181508.fastq");
+		   		strcpy(outputFile, "SRR5181508_FILTERED.fastq");
+				}else{
+					strcpy(inputFile1, getInputFile());
+		   		strcpy(outputFile, getOutputFile());
+				}
 
 				used_files = insert_dataFile(used_files, inputFile1);
-				used_files = insert_dataFile(used_files, outputFile);
-
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
+
+				used_files = insert_dataFile(used_files, outputFile);
 				value = retrieveDataFileId(outputFile, used_files);
 				sprintf(original->command_output[0],"%d", value);
 
@@ -75,55 +81,73 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 			resetOutputFile();
 		break;
 		case 2:
+
+		resetFileNumber();
 				strcpy(command, " ");
 				strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
 				getFileName(command);
 
-				strcpy(inputFile1, getInputFile());
+
+				if(teste){
+					strcpy(inputFile1, "Homo_sapiens.GRCh38.dna.chromosome.22.fa");
+				}else{
+					strcpy(inputFile1, getInputFile());
+				}
+
 				used_files = insert_dataFile(used_files, inputFile1);
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
 
-				strcpy(inputFile1, getOutputFile());
-				if(strcmp(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")){
-			   	//strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2");
+				if(teste){
+					strcpy(outputFileDefault, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
+				}else{
+					strcpy(outputFileDefault, getOutputFile());
+				}
+				printf("\n\nentrou!!! %s\n", outputFile);
+				if(strcmp(outputFileDefault, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx") ==0){
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[0],"%d", value);
-
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2");
+					//////////////////////////////////////////////////////////////////////////
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[1],"%d", value);
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2");
+					//////////////////////////////////////////////////////////////////////////
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[2],"%d", value);
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2");
+					//////////////////////////////////////////////////////////////////////////
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[3],"%d", value);
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2");
+					//////////////////////////////////////////////////////////////////////////
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[4],"%d", value);
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2");
+					//////////////////////////////////////////////////////////////////////////
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[5],"%d", value);
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2");
+					//////////////////////////////////////////////////////////////////////////
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[6],"%d", value);
-					strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2");
+					//////////////////////////////////////////////////////////////////////////
+					buildFileName(outputFileDefault, outputFile);
 					used_files = insert_dataFile(used_files, outputFile);
 
 					value = retrieveDataFileId(outputFile, used_files);
@@ -162,72 +186,95 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 			resetOutputFile();
 			break;
 		case 3:
+
+		resetFileNumber();
 			strcpy(command, " ");
 			strcpy(command, "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam");
-			getFileName(command);
 
+
+			getFileName(command);
 			//strcpy(inputFile1, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
-			strcpy(inputFile, getInputFile());
-			if(strcmp(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")){
+			if(teste){
+				strcpy(inputFileDefault, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
+			}else{
+				strcpy(inputFileDefault, getInputFile());
+			}
+
+			if(strcmp(inputFileDefault, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
 			//strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2");
+
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files, inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[0],"%d", value);
+				//////////////////////////////////////////////////////////////////////////
 
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2");
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files, inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[1],"%d", value);
+				//////////////////////////////////////////////////////////////////////////
 
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2");
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files, inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[2],"%d", value);
 
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2");
+				//////////////////////////////////////////////////////////////////////////
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files, inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[3],"%d", value);
+				//////////////////////////////////////////////////////////////////////////
 
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2");
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files, inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[4],"%d", value);
+				//////////////////////////////////////////////////////////////////////////
 
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2");
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files, inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[5],"%d", value);
+				//////////////////////////////////////////////////////////////////////////
 
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2");
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files,inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[6],"%d", value);
+				//////////////////////////////////////////////////////////////////////////
 
-				strcpy(inputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2");
+				buildFileName(inputFileDefault, inputFile);
 				used_files = insert_dataFile(used_files, inputFile);
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[7],"%d", value);
 			}
 
-		   	strcpy(inputFile1, getInputFile2()); //file_1.fq
-				strcpy(outputFile, getOutputFile()); // file.sam
+				if(teste){
+					strcpy(inputFile1, "SRR5181508_FILTERED.fastq"); //file_1.fq
+					strcpy(outputFile, "file.sam"); // file.sam
+				}else{
+					strcpy(inputFile1, getInputFile2()); //file_1.fq
+					strcpy(outputFile, getOutputFile()); // file.sam
+				}
+
 				used_files = insert_dataFile(used_files, inputFile1);
-				used_files = insert_dataFile(used_files, outputFile);
 
 				//value = retrieveDataFileId(inputFile1, used_files);
 				//sprintf(original->command_input[0],"%d", value);
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[8],"%d", value);
+
+				used_files = insert_dataFile(used_files, outputFile);
 				value = retrieveDataFileId(outputFile, used_files);
 				sprintf(original->command_output[0],"%d", value);
 
@@ -256,27 +303,45 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 			sprintf(original->end_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
+
 			original->id = *activityNumber;
 			strcpy(original->name, "nome");
 			strcpy(original->program_name, searchProgramUsed(command));
 			strcpy(original->program_version, searchProgramVersion(command));
 			strcpy(original->command_line,command);
 			(*activityNumber)++;
+
 			resetInputFile();
 			resetInputFile2();
 			resetOutputFile();
+			printf("\ncase 3.3");
+			printf("\ncase 3");
+			printf("\ncase 3");
+			printf("\ncase 3");
+
 			break;
 		case 4:
+			printf("case 4");
+				printf("case 4");
+					printf("case 4");
+						printf("case 4");
 			strcpy(command, " ");
 			strcpy(command,"samtools view -bS file.sam > file.bam");
 			getFileName(command);
-		   	strcpy(inputFile1, getInputFile());
-		   	strcpy(outputFile, getOutputFile());
+			if(teste){
+				strcpy(inputFile1, "file.sam");
+				strcpy(outputFile, "file.bam");
+			}else{
+				strcpy(inputFile1, getInputFile());
+				strcpy(outputFile, getOutputFile());
+			}
+
 				used_files = insert_dataFile(used_files, inputFile1);
-				used_files = insert_dataFile(used_files, outputFile);
 
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
+
+				used_files = insert_dataFile(used_files, outputFile);
 				value = retrieveDataFileId(outputFile, used_files);
 				sprintf(original->command_output[0],"%d", value);
 
@@ -319,15 +384,23 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 			strcpy(command, "samtools sort -n file.bam file_sorted.sn");
 
-		    strcpy(inputFile1, getInputFile());
+			if(teste){
+				strcpy(inputFile1, "file.bam");
+		    strcpy(outputFile, "file_sorted.sn.bam");
+			}else{
+				strcpy(inputFile1, getInputFile());
 		    strcpy(outputFile, getOutputFile());
 				strcat(outputFile, ".bam");
+			}
+
 
 				used_files = insert_dataFile(used_files, inputFile1);
-				used_files = insert_dataFile(used_files, outputFile);
 
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
+
+				used_files = insert_dataFile(used_files, outputFile);
+
 				value = retrieveDataFileId(outputFile, used_files);
 				sprintf(original->command_output[0],"%d", value);
 
@@ -362,17 +435,27 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 			break;
 		case 6:
 			strcpy(command, "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count");
-			strcpy(inputFile1, getInputFile());
-			strcpy(inputFile2, getInputFile2());
-		   	strcpy(outputFile, getOutputFile());
+
+			if(teste){
+				strcpy(inputFile1, "file_sorted.sn.bam");
+				strcpy(inputFile2, "Homo_sapiens.GRCh38.88.gtf");
+			   	strcpy(outputFile, "file.count");
+			}else{
+				strcpy(inputFile1, getInputFile());
+				strcpy(inputFile2, getInputFile2());
+			   	strcpy(outputFile, getOutputFile());
+			}
+
+
 
 				used_files = insert_dataFile(used_files, inputFile1);
 				used_files = insert_dataFile(used_files, inputFile2);
-				used_files = insert_dataFile(used_files, outputFile);
 
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
 				value = retrieveDataFileId(inputFile2, used_files);
+
+				used_files = insert_dataFile(used_files, outputFile);
 				sprintf(original->command_input[1],"%d", value);
 				value = retrieveDataFileId(outputFile, used_files);
 				sprintf(original->command_output[0],"%d", value);
@@ -411,6 +494,11 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 	}
 
+	printf("\n saiu ");
+
+	printf("\n saiu ");
+
+	printf("\n saiu ");
 	original->experiment_id = 1;
 	original->agent_id = 1;
 	return original;
@@ -456,9 +544,26 @@ activity *create_activity(){
 //insere o node
 activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig){
 	activity *aux = origin;
+	if(aux==NULL){
+		printf("\n\nANTES NULL");
+		//getchar();
+	}
+	if(origin==NULL){
+		printf("\n\n ANTES NULL");
+		//getchar();
+	}
 	//activity *new = create_activity(); //trocar
 
-	activity *new = define_activity(activityNumber, fileBaseName, &(*dataFileOrig));
+	activity *new = define_activity(activityNumber, fileBaseName, &(*dataFileOrig), true);
+
+	if(aux==NULL){
+		printf("\n\nNULL");
+		//getchar();
+	}
+	if(origin==NULL){
+		printf("\n\nNULL");
+		//getchar();
+	}
 	/*if(!existsExperimentId(new->experiment_id, originExp)){
 		printf("\nError: There is no experiment with this number");
 		return origin;
@@ -467,14 +572,34 @@ activity *insert_activity(activity *origin, int *activityNumber, char fileBaseNa
 		printf("\nError: There is no machine with this number");
 		return origin;
 	}*/
+	printf("\n>>> SAINDO!");
+	printf("\n>>> SAINDO!");
+	printf("\n>>> SAINDO!");
+	printf("\n>>> SAINDO!");
+	printf("\n>>> SAINDO!");
 	if(aux==NULL){
+	printf("\n>>> SAINDOnao!");
+	printf("\n>>> SAINDOnao!");
+	printf("\n>>> SAINDOnao!");
+	printf("\n>>> SAINDOnao!");
+	printf("\n>>> SAINDOnao!");
+	printf("\n>>> SAINDOnao!");
 	    aux = new;
 	    new->next = NULL;
 	    return new;
 	}
+	printf("\n>>> SAINDO2!");
+	printf("\n>>> SAINDO2!");
+	printf("\n>>> SAINDO2!");
+	printf("\n>>> SAINDO2!");
+	printf("\n>>> SAINDO2!");
 	while(aux->next!=NULL){
 		aux = aux->next;
 	}
+	printf("\n>>> SAINDO3!");
+	printf("\n>>> SAINDO3!");
+	printf("\n>>> SAINDO3!");
+	printf("\n>>> SAINDO3! %s", origin->command_line);
 	aux->next = new;
 	new->next = NULL;
 	return origin;
@@ -497,7 +622,7 @@ bool existsExperimentId(int expIdExp, experiment *originExp){
        	aux = aux->next;
     }
 
-return false;
+		return false;
 }
 /*
 bool existsAgentId(int expIdAg, agent *originAg){

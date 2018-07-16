@@ -22,7 +22,7 @@ int main (){
 //  getFileName("sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25");
 
 
-  getchar();
+  ////getchar();
   time_t t;
   struct tm tm;
   FILE *log = fopen("log.txt", "a+");
@@ -48,6 +48,12 @@ int main (){
   activity *activitys = NULL;
   while(activityNumber < 7){
     activitys = insert_activity(activitys, &activityNumber, "Homo_sapiens.GRCh38.dna.chromosome.22", dataFiles);
+    printf("\n >>. %d", activityNumber);
+      printf("\n >>. %d", activityNumber);
+        printf("\n >>. %d", activityNumber);
+          printf("\n >>. %d", activityNumber);
+    //getchar();
+
   }
   dataFiles = returnUsedFiles();
   provider *providers = NULL;

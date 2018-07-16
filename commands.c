@@ -5,6 +5,41 @@
 #include "commands.h"
 #include <unistd.h>
 
+
+//função para construir nome do arquivo que se diversifica usando o getFileNumber
+
+void buildFileName(char *fileName, char *newFile){
+	char num[2];
+
+	printf("\n\n%s", fileName);
+	printf("\n\n%s", fileName);
+	printf("\n\n%s", fileName);
+	printf("\n\n%s", fileName);
+	strcpy(newFile, fileName);
+	printf("%d",  fileNumber);
+	printf("%d",  fileNumber);
+	printf("%d",  fileNumber);
+	printf("%d",  fileNumber);
+		sprintf(num, "%d", fileNumber);
+		printf("\n\n%s", fileName);
+		printf("\n\n%s", fileName);
+		printf("\n\n%s", fileName);
+		printf("\n\n%s", fileName);
+		printf("\n\n%s", fileName);
+		printf("\n\n%s", fileName);
+			strcat(newFile, ".");
+			strcat(newFile, num);
+			strcat(newFile, ".ht2");
+			printf("\n\n%s", newFile);
+			fileNumber++;
+	//}
+	//return newFile;
+}
+
+int getFileNumber(){
+	return fileNumber;
+}
+
 char *getInputFile(){
 	return inputFile;
 }
@@ -22,6 +57,9 @@ void resetInputFile2(){
 }
 void resetOutputFile(){
 	strcpy(outputFile, " ");
+}
+void resetFileNumber(){
+	fileNumber = 1;
 }
 char *searchProgramUsed(char command[N]){
 	if(strstr(command, "sickle")!=NULL){
@@ -80,7 +118,7 @@ void getFileName(char command[N]){
 				}
 				strcpy(file, " ");
 				//printf("\n\n>>>>>>>>>>>> %s - %s - %s", inputFile, inputFile2, outputFile);
-				//getchar();
+				////getchar();
 				//resetInputFile();
 				//resetInputFile2();
 				//resetOutputFile();

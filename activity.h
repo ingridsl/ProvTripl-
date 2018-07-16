@@ -51,7 +51,7 @@ typedef struct activity{
 	struct activity *next;
 }activity;
 dataFile *returnUsedFiles();
-activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig);
+activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig, bool teste);
 activity *create_activity();
 activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig);
 void freedom_activity(activity *origin);

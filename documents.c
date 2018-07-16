@@ -197,18 +197,23 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
 
     BSON_APPEND_ARRAY_BEGIN(&activity, "input_files", &child1);
       for(i = 0; i < array; ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        if(strlen(actOriginal->command_input[i])>0)
+        if(strlen(actOriginal->command_input[i])>0){
+          keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
           bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
-
+        }else{
+          i = array;
+        }
       }
+      printf("\nsaiu");
     bson_append_array_end(&activity, &child1);
     BSON_APPEND_ARRAY_BEGIN(&activity, "output_files", &child2);
       for(i = 0; i < array; ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        if(strlen(actOriginal->command_output[i])>0)
-        bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
-
+        if(strlen(actOriginal->command_output[i])>0){
+          keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+          bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
+        }else{
+          i = array;
+        }
       }
     bson_append_array_end(&activity, &child2);
 
