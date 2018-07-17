@@ -71,7 +71,7 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
   fprintf(log,"\nDataDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-   while(auxDatafile!=NULL){
+  while(auxDatafile!=NULL){
 
       fileDoc = DATA_DOC(index, databaseName, auxDatafile, log, client);
       if (!mongoc_collection_insert(data3, MONGOC_INSERT_NONE, fileDoc, NULL, &error)) {
@@ -135,12 +135,14 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
   tm = *localtime(&t);
   fprintf(log,"\nProjectDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
+     printf("FIM PROJECT");
 
-   bson_t   *projectDoc = PROJECT_DOC_3(index, projOriginal, log);
+ bson_t   *projectDoc = PROJECT_DOC_3(index, projOriginal, log);
    if (!mongoc_collection_insert( project3, MONGOC_INSERT_NONE, projectDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
-t = time(NULL);
+
+   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nProjectDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
@@ -150,8 +152,7 @@ t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nExperimentDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-
-   bson_t   *experimentDoc = EXPERIMENT_DOC_3(index, expOriginal, log);
+  bson_t   *experimentDoc = EXPERIMENT_DOC_3(index, expOriginal, log);
    if (!mongoc_collection_insert(experiment3, MONGOC_INSERT_NONE, experimentDoc, NULL, &error)) {
       fprintf (stderr, "%s\n", error.message);
    }
@@ -159,10 +160,10 @@ t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nExperimentDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nActivityDoc begin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+printf("ACTIVITY ---");printf("ACTIVITY ---");
 
  while(auxActivity!=NULL){
    bson_t   *activityDoc = ACTIVITY_DOC_3(index, auxActivity, log);
@@ -190,14 +191,14 @@ t = time(NULL);
   fprintf(log,"\nAgentDoc end: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 
-  // bson_destroy (providerDoc);
-  // bson_destroy (projectDoc);
-   //bson_destroy (fileDoc);
+  /* bson_destroy (providerDoc);
+   bson_destroy (projectDoc);
+   bson_destroy (fileDoc);
    mongoc_collection_destroy(data3);
    mongoc_collection_destroy(project3);
-   mongoc_collection_destroy(provider3);
+   mongoc_collection_destroy(provider3);*/
    mongoc_collection_destroy(agent3);
-   mongoc_collection_destroy(experiment3);
+  // mongoc_collection_destroy(experiment3);
    mongoc_collection_destroy(activity3);
    mongoc_client_destroy(client);
    mongoc_cleanup();

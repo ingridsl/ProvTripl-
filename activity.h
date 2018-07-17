@@ -38,8 +38,8 @@ typedef struct activity{
 	char end_hour[N];
 	int execution_status;
 
-  char command_input[2][N];
-  char command_output[2][N];
+  char command_input[N][3];
+  char command_output[N][3];
 
 	//dentro de experimento
 	int experiment_id;
@@ -51,9 +51,9 @@ typedef struct activity{
 	struct activity *next;
 }activity;
 dataFile *returnUsedFiles();
-activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig, bool teste);
+activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool teste);
 activity *create_activity();
-activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig);
+activity *insert_activity(activity *origin, int *activityNumber, dataFile *dataFileOrig);
 void freedom_activity(activity *origin);
 bool existsExperimentId(int expIdExp, experiment *originExp);
 //bool existsAgentId(int expIdAg, agent *originAg);

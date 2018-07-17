@@ -13,7 +13,7 @@ dataFile *returnUsedFiles(){
 	return used_files;
 }
 
-activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig, bool teste){ //falta incluir aquivos na lista de arquivos
+activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool teste){ //falta incluir aquivos na lista de arquivos
 	activity *original = (activity*)malloc(sizeof(activity));
 
    	time_t t;
@@ -208,6 +208,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[0],"%d", value);
+				printf("\n>>%s", original->command_input[0]);
+				getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -215,6 +217,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[1],"%d", value);
+				printf("\n>>%s", original->command_input[1]);
+				getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -222,6 +226,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[2],"%d", value);
+				printf("\n>>%s", original->command_input[2]);
+				getchar();
 
 				//////////////////////////////////////////////////////////////////////////
 				buildFileName(inputFileDefault, inputFile);
@@ -229,6 +235,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[3],"%d", value);
+				printf("\n>>%s", original->command_input[3]);
+				getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -236,6 +244,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[4],"%d", value);
+				printf("\n>>%s", original->command_input[4]);
+				getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -243,6 +253,8 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[5],"%d", value);
+				printf("\n>>%s", original->command_input[5]);
+				getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -321,10 +333,6 @@ activity *define_activity(int *activityNumber, char fileBaseName[N], dataFile *d
 
 			break;
 		case 4:
-			printf("case 4");
-				printf("case 4");
-					printf("case 4");
-						printf("case 4");
 			strcpy(command, " ");
 			strcpy(command,"samtools view -bS file.sam > file.bam");
 			getFileName(command);
@@ -542,7 +550,7 @@ activity *create_activity(){
 }
 
 //insere o node
-activity *insert_activity(activity *origin, int *activityNumber, char fileBaseName[N], dataFile *dataFileOrig){
+activity *insert_activity(activity *origin, int *activityNumber, dataFile *dataFileOrig){
 	activity *aux = origin;
 	if(aux==NULL){
 		printf("\n\nANTES NULL");
@@ -554,7 +562,7 @@ activity *insert_activity(activity *origin, int *activityNumber, char fileBaseNa
 	}
 	//activity *new = create_activity(); //trocar
 
-	activity *new = define_activity(activityNumber, fileBaseName, &(*dataFileOrig), true);
+	activity *new = define_activity(activityNumber, &(*dataFileOrig), true);
 
 	if(aux==NULL){
 		printf("\n\nNULL");

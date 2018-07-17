@@ -42,19 +42,23 @@ int main (){
   agents = insert_agent(agents);
 
   dataFile *dataFiles = NULL;
-  char fileBaseName[N];
-
 
   activity *activitys = NULL;
   while(activityNumber < 7){
-    activitys = insert_activity(activitys, &activityNumber, "Homo_sapiens.GRCh38.dna.chromosome.22", dataFiles);
-    printf("\n >>. %d", activityNumber);
-      printf("\n >>. %d", activityNumber);
-        printf("\n >>. %d", activityNumber);
-          printf("\n >>. %d", activityNumber);
-    //getchar();
-
+    activitys = insert_activity(activitys, &activityNumber, dataFiles);
   }
+int i = 1;
+  activity *aux = activitys;
+  while(aux!= NULL){
+      printf("\n\n(%s - %d)",aux->command_input[0], i);
+    if(strlen(aux->command_input[2]) > 0)
+      printf("\n(2>>> %s - %d)",aux->command_input[2], i);
+i++;
+    getchar();
+    aux = aux->next;
+  }
+
+
   dataFiles = returnUsedFiles();
   provider *providers = NULL;
   providers = insert_provider(providers);

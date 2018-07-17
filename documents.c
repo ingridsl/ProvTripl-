@@ -217,7 +217,6 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
       }
     bson_append_array_end(&activity, &child2);
 
-
     // END USED FILES
     BSON_APPEND_DOCUMENT_BEGIN(&activity, "agent", &agent);
     BSON_APPEND_UTF8 (&agent, "_id", str_age_id);
@@ -794,6 +793,8 @@ bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
   int answer = 0;
 
   if(index){
+    printf("\n\nindex errado");
+    getchar();
     bson_oid_init (&oid, NULL);
     project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
   }
@@ -829,7 +830,7 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
 
   bson_t   *experiment, child1;
   char     *experiment_str;
-  char * activities[] = {"1", "2", "3", "4", "5", "6"};
+  char activities[6][2] = {"1", "2", "3", "4", "5", "6"};
   bson_oid_t oid;
   int answer = 0;
   if(index){
@@ -851,6 +852,10 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
   char str_exp_project_id[24];
   sprintf(str_exp_project_id, "%d", expOriginal->project_id);
 
+    printf("\n\nbasico");
+      printf("\n\nbasico");
+        printf("\n\nbasico");
+          printf("\n\nbasico");
   experiment = BCON_NEW (
     "_id", str_exp_id,
     "name", expOriginal->name,
@@ -866,20 +871,32 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
     //"project_id",str_exp_project_id
 
   );
+
+  printf("\n\nMEIO MEIO");
+    printf("\n\nMEIO MEIO");
+      printf("\n\nMEIO MEIO");
+        printf("\n\nMEIO MEIO");
   uint32_t    i;
   char        buf[16];
   const       char *key;
   size_t      keylen;
   BSON_APPEND_ARRAY_BEGIN(experiment, "activity_id", &child1);
-  for(i = 0; i < array; ++i){
+  for(i = 0; i < 6; ++i){
+    printf("\n > %s - %d", activities[i], i);
       keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        bson_append_utf8(&child1, key, (int) keylen, activities[i], -1);
+      bson_append_utf8(&child1, key, (int) keylen, activities[i], -1);
   }
   bson_append_array_end(experiment, &child1);
+  free((char*)key);
   experiment_str = bson_as_json (experiment, NULL);
   printf ("\n\t%s\n\n", experiment_str);
   fprintf(log,"\n\t%s\n\n", experiment_str);
   bson_free (experiment_str);
+
+    printf("\n\nfree");
+      printf("\n\nfree");
+        printf("\n\nfree");
+    printf("\n\nfree");
   /*
   * Clean up allocated bson documents.
   */
@@ -892,6 +909,8 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
   char * activity_str;
   bson_oid_t oid;
   int answer = 0;
+
+  const       char *key;
 
   if(index){
     bson_oid_init (&oid, NULL);
@@ -915,7 +934,6 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
 
     uint32_t    i;
     char        buf[16];
-    const       char *key;
     size_t      keylen;
     activity = BCON_NEW(
         "_id", str_act_id,
@@ -937,29 +955,35 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
 
     BSON_APPEND_ARRAY_BEGIN(activity, "input_files", &child1);
       for(i = 0; i < array; ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-        if(strlen(actOriginal->command_input[i])>0)
+        if(strlen(actOriginal->command_input[i])>0){
+          keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
           bson_append_utf8(&child1, key, (int) keylen, actOriginal->command_input[i], -1);
+        }else{
+          i = array;
+        }
 
       }
     bson_append_array_end(activity, &child1);
     BSON_APPEND_ARRAY_BEGIN(activity, "output_files", &child2);
       for(i = 0; i < array; ++i){
-        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
-          if(strlen(actOriginal->command_output[i])>0)
-          bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
+          if(strlen(actOriginal->command_output[i])>0){
+            keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+            bson_append_utf8(&child2, key, (int) keylen, actOriginal->command_output[i], -1);
+          }
+          else{
+            i = array;
+          }
 
       }
     bson_append_array_end(activity, &child2);
-
     actOriginal = actOriginal->next;
     answer = 0;
-
 
     activity_str = bson_as_json (activity, NULL);
     printf ("\n\t%s\n\n", activity_str);
     fprintf(log,"\n\t%s\n\n", activity_str);
     bson_free (activity_str);
+    free((char *)key);
     /*
     * Clean up allocated bson documents.
     */
@@ -980,14 +1004,6 @@ bson_t   *AGENT_DOC_3(bool index, mongoc_database_t *db, agent *ageOriginal, FIL
 
     char str_age_id[15];
     sprintf(str_age_id, "%d", ageOriginal->id);
-    uint32_t    i;
-    char        buf[16];
-    const       char *key;
-    size_t      keylen;
-
-    char        buf2[16];
-    const       char *key2;
-    size_t      keylen2;
 
     BSON_APPEND_UTF8 (agent,"_id", str_age_id);
     BSON_APPEND_UTF8 (agent,"name", ageOriginal->name);
