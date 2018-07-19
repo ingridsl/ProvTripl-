@@ -19,10 +19,6 @@
 int activityNumber = 1;
 int main (){
 
-//  getFileName("sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25");
-
-
-  ////getchar();
   time_t t;
   struct tm tm;
   FILE *log = fopen("log.txt", "a+");
@@ -47,17 +43,7 @@ int main (){
   while(activityNumber < 7){
     activitys = insert_activity(activitys, &activityNumber, dataFiles);
   }
-int i = 1;
   activity *aux = activitys;
-  while(aux!= NULL){
-      printf("\n\n(%s - %d)",aux->command_input[0], i);
-    if(strlen(aux->command_input[2]) > 0)
-      printf("\n(2>>> %s - %d)",aux->command_input[2], i);
-i++;
-    getchar();
-    aux = aux->next;
-  }
-
 
   dataFiles = returnUsedFiles();
   provider *providers = NULL;

@@ -220,7 +220,6 @@ bson_t   *PROJECT_DOC(bool index, project *proOriginal, experiment *expOriginal,
           i = array;
         }
       }
-      printf("\nsaiu");
     bson_append_array_end(&activity, &child1);
     BSON_APPEND_ARRAY_BEGIN(&activity, "output_files", &child2);
       for(i = 0; i < array; ++i){
@@ -903,8 +902,6 @@ bson_t   *PROJECT_DOC_3(bool index, project *proOriginal, FILE *log){
   int answer = 0;
 
   if(index){
-    printf("\n\nindex errado");
-    getchar();
     bson_oid_init (&oid, NULL);
     project = BCON_NEW ("_id", BCON_OID (&oid), "key", BCON_UTF8 ("old_value"));
   }
@@ -990,14 +987,10 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
   }
   bson_append_array_end(experiment, &child1);
   experiment_str = bson_as_json (experiment, NULL);
-  printf ("\n\t%s\n\n", experiment_str);
+  /printf ("\n\t%s\n\n", experiment_str);
   fprintf(log,"\n\t%s\n\n", experiment_str);
   bson_free (experiment_str);
 
-    printf("\n\nfree");
-      printf("\n\nfree");
-        printf("\n\nfree");
-    printf("\n\nfree");
   /*
   * Clean up allocated bson documents.
   */
@@ -1277,7 +1270,6 @@ bson_t   *MACHINE_DOC_3(bool index, machine *macOriginal, FILE *log){
       size_t      keylen;
       BSON_APPEND_ARRAY_BEGIN(machine, "dataFiles_id", &child1);
       for(i = 0; i < 14; ++i){
-        printf("\n > %s - %d", dataFilesIds[i], i);
           keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
           bson_append_utf8(&child1, key, (int) keylen, dataFilesIds[i], -1);
       }
