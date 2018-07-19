@@ -16,9 +16,9 @@ oid *oidNumbers = NULL;
 
 
 bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
-  //parametros
+  char dataFilesIds[14][3] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
   dataFile *aux = macOriginal->dataFiles;
-  bson_t   *provider, cluster, machine, dataFiles;
+  bson_t   *provider, cluster, machine, dataFiles, child1;
   char     *provider_str;
   bson_oid_t oid;
   //inicializa documento com index
@@ -95,6 +95,22 @@ bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, 
   BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
   BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
   BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
+
+
+    uint32_t    i;
+    char        buf[16];
+    const       char *key;
+    size_t      keylen;
+    BSON_APPEND_ARRAY_BEGIN(&machine, "dataFiles_id", &child1);
+    for(i = 0; i <14; ++i){
+        keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+        bson_append_utf8(&child1, key, (int) keylen, dataFilesIds[i], -1);
+    }
+    bson_append_array_end(&machine, &child1);
+
+
+
+
   bson_append_document_end(&cluster, &machine);
   bson_append_document_end(provider, &cluster);
   /*
@@ -300,8 +316,9 @@ bson_t   *DATA_DOC(bool index, char databaseName[N], dataFile *dataOriginal, FIL
 }
 
 bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
+  char dataFilesIds[14][3] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
   dataFile *aux = macOriginal->dataFiles;
-  bson_t   *provider, cluster, machine, dataFiles;
+  bson_t   *provider, cluster, machine, dataFiles, child1;
   char     *provider_str;
   bson_oid_t oid;
 
@@ -380,6 +397,20 @@ bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal
   BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
   BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
   BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
+
+      uint32_t    i;
+      char        buf[16];
+      const       char *key;
+      size_t      keylen;
+      BSON_APPEND_ARRAY_BEGIN(&machine, "dataFiles_id", &child1);
+      for(i = 0; i < 6; ++i){
+        printf("\n > %s - %d", dataFilesIds[i], i);
+          keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+          bson_append_utf8(&child1, key, (int) keylen, dataFilesIds[i], -1);
+      }
+      bson_append_array_end(&machine, &child1);
+
+
   bson_append_document_end(&cluster, &machine);
 
   bson_append_document_end(provider, &cluster);
@@ -647,6 +678,83 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
   BSON_APPEND_UTF8 (&experiment, "version_date", expOriginal->version_date);
   BSON_APPEND_UTF8 (&experiment, "execution_time", str_exp_execution_time);
   BSON_APPEND_UTF8 (&experiment, "execution_cost", str_exp_execution_cost);
+  bson_t provider, machine,cluster;
+
+    char str_prov_localization_id[15];
+    sprintf(str_prov_localization_id, "%d", provOriginal->localization_id);
+
+  BSON_APPEND_DOCUMENT_BEGIN(&experiment, "provider", &provider);
+  BSON_APPEND_UTF8 (&provider, "_id", str_exp_id);
+  BSON_APPEND_UTF8 (&provider, "name", provOriginal->name);
+  BSON_APPEND_UTF8 (&provider, "url", provOriginal->url);
+  BSON_APPEND_UTF8 (&provider, "description", provOriginal->description);
+  BSON_APPEND_UTF8 (&provider, "localization_id", str_prov_localization_id);
+  BSON_APPEND_UTF8 (&provider, "localization_region", provOriginal->localization_region);
+  BSON_APPEND_UTF8 (&provider, "localization_zone", provOriginal->localization_zone);
+
+  //conversão para strings é necessária
+  char str_clu_id[15];
+  sprintf(str_clu_id, "%d", cluOriginal->id);
+
+  char str_clu_number_machines[15];
+  sprintf(str_clu_number_machines, "%d", cluOriginal->number_machines);
+
+  char str_clu_provider_id[15];
+  sprintf(str_clu_provider_id, "%d", cluOriginal->provider_id);
+
+
+  BSON_APPEND_DOCUMENT_BEGIN(&provider, "cluster", &cluster);
+  BSON_APPEND_UTF8 (&cluster, "_id", str_clu_id);
+  BSON_APPEND_UTF8 (&cluster, "name", cluOriginal->name);
+  BSON_APPEND_UTF8 (&cluster, "number_machines", str_clu_number_machines);
+  BSON_APPEND_UTF8 (&cluster, "description", cluOriginal->description);
+
+  //conversão para strings é necessária
+  char str_mac_id[15];
+  sprintf(str_mac_id, "%d", macOriginal->id);
+
+  char str_mac_localization_id[15];
+  sprintf(str_mac_localization_id, "%d", macOriginal->localization_id);
+
+  char str_mac_ip[36];
+  sprintf(str_mac_ip, "%ld", macOriginal->ip);
+
+  char str_mac_cpu[15];
+  sprintf(str_mac_cpu, "%d", macOriginal->cpu);
+
+  char str_mac_ram_memory[15];
+  sprintf(str_mac_ram_memory, "%d", macOriginal->ram_memory);
+
+  char str_mac_disk[36];
+  sprintf(str_mac_disk, "%ld", macOriginal->disk);
+
+  char str_mac_price[36];
+  sprintf(str_mac_price, "%ld", macOriginal->price);
+
+  char str_mac_price_type[36];
+  sprintf(str_mac_price_type, "%ld", macOriginal->price_type);
+
+  char str_mac_cluster_id[36];
+  sprintf(str_mac_cluster_id, "%d", macOriginal->cluster_id);
+
+
+  BSON_APPEND_DOCUMENT_BEGIN(&cluster, "machine", &machine);
+  BSON_APPEND_UTF8 (&machine, "_id", str_mac_id);
+  BSON_APPEND_UTF8 (&machine, "hostname", macOriginal->hostname);
+  BSON_APPEND_UTF8 (&machine, "ip", str_mac_ip);
+  BSON_APPEND_UTF8 (&machine, "type", macOriginal->type);
+  BSON_APPEND_UTF8 (&machine, "operational_system", macOriginal->operational_system);
+  BSON_APPEND_UTF8 (&machine, "cpu", str_mac_cpu);
+  BSON_APPEND_UTF8 (&machine, "ram_memory", str_mac_ram_memory);
+  BSON_APPEND_UTF8 (&machine, "disk", str_mac_disk);
+  BSON_APPEND_UTF8 (&machine, "disk_type", macOriginal->disk_type);
+  BSON_APPEND_UTF8 (&machine, "localization", macOriginal->localization);
+  BSON_APPEND_UTF8 (&machine, "price", str_mac_price);
+  BSON_APPEND_UTF8 (&machine, "price_type", str_mac_price_type);
+  BSON_APPEND_UTF8 (&machine, "localization_id", str_mac_localization_id);
+  BSON_APPEND_UTF8 (&machine, "localization_region", macOriginal->localization_region);
+  BSON_APPEND_UTF8 (&machine, "localization_zone", macOriginal->localization_zone);
+
 
   int y = 0;
 
@@ -654,7 +762,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
   sprintf(str_age_id, "%d", ageOriginal->id);
 
   bson_t activity, activities,child1, child2, dataFile, dataFiles;
-  BSON_APPEND_ARRAY_BEGIN(&experiment, "activity", &activities);
+  BSON_APPEND_ARRAY_BEGIN(&machine, "activity", &activities);
   //comandos daqui
   while(actOriginal !=NULL){
     char str_act_id[15];
@@ -701,7 +809,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
               BSON_APPEND_UTF8 (&dataFile,"annotation", auxData->annotation);
               BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
               BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxData->insertion_date);
-              BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
+              //BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
               BSON_APPEND_UTF8 (&dataFile,"type", auxData->type);
               BSON_APPEND_UTF8 (&dataFile,"oid",getGridID(databaseName, auxData->name, auxData->oid));
               bson_append_document_end(&dataFiles, &dataFile);
@@ -737,7 +845,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
               BSON_APPEND_UTF8 (&dataFile,"annotation", auxData->annotation);
               BSON_APPEND_UTF8 (&dataFile,"size", str_data_size);
               BSON_APPEND_UTF8 (&dataFile,"insertion_date",auxData->insertion_date);
-              BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
+              //BSON_APPEND_UTF8 (&dataFile,"machine_id", str_data_machine_id);
               BSON_APPEND_UTF8 (&dataFile,"type", auxData->type);
               BSON_APPEND_UTF8 (&dataFile, "oid",getGridID(databaseName, auxData->name, auxData->oid));
               bson_append_document_end(&dataFiles, &dataFile);
@@ -766,8 +874,10 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
     bson_append_document_end(&activities, &activity);
     answer = 0;
   }
-
-  bson_append_array_end(&experiment, &activities);
+  bson_append_array_end(&machine, &activities);
+  bson_append_document_end(&cluster, &machine);
+  bson_append_document_end(&provider, &cluster);
+  bson_append_array_end(&experiment, &provider);
   //até aqui
   bson_append_document_end(project, &experiment);
 
@@ -852,10 +962,6 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
   char str_exp_project_id[24];
   sprintf(str_exp_project_id, "%d", expOriginal->project_id);
 
-    printf("\n\nbasico");
-      printf("\n\nbasico");
-        printf("\n\nbasico");
-          printf("\n\nbasico");
   experiment = BCON_NEW (
     "_id", str_exp_id,
     "name", expOriginal->name,
@@ -872,10 +978,6 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
 
   );
 
-  printf("\n\nMEIO MEIO");
-    printf("\n\nMEIO MEIO");
-      printf("\n\nMEIO MEIO");
-        printf("\n\nMEIO MEIO");
   uint32_t    i;
   char        buf[16];
   const       char *key;
@@ -887,7 +989,6 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
       bson_append_utf8(&child1, key, (int) keylen, activities[i], -1);
   }
   bson_append_array_end(experiment, &child1);
-  free((char*)key);
   experiment_str = bson_as_json (experiment, NULL);
   printf ("\n\t%s\n\n", experiment_str);
   fprintf(log,"\n\t%s\n\n", experiment_str);
@@ -983,7 +1084,6 @@ bson_t   *ACTIVITY_DOC_3(bool index, activity *activitys, FILE *log){
     printf ("\n\t%s\n\n", activity_str);
     fprintf(log,"\n\t%s\n\n", activity_str);
     bson_free (activity_str);
-    free((char *)key);
     /*
     * Clean up allocated bson documents.
     */
@@ -1112,9 +1212,9 @@ bson_t   *CLUSTER_DOC_3(bool index, cluster *cluOriginal, FILE *log){
 }
 
 bson_t   *MACHINE_DOC_3(bool index, machine *macOriginal, FILE *log){
-  //parametros
+  char dataFilesIds[14][3] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
   dataFile *aux = macOriginal->dataFiles;
-  bson_t   *machine, dataFiles;
+  bson_t   *machine, dataFiles, child1;
   char     *machine_str;
   bson_oid_t oid;
   //inicializa documento com index
@@ -1169,6 +1269,20 @@ bson_t   *MACHINE_DOC_3(bool index, machine *macOriginal, FILE *log){
     "localization_zone", macOriginal->localization_zone,
     "cluster_id", str_mac_cluster_id
   );
+
+
+      uint32_t    i;
+      char        buf[16];
+      const       char *key;
+      size_t      keylen;
+      BSON_APPEND_ARRAY_BEGIN(machine, "dataFiles_id", &child1);
+      for(i = 0; i < 14; ++i){
+        printf("\n > %s - %d", dataFilesIds[i], i);
+          keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
+          bson_append_utf8(&child1, key, (int) keylen, dataFilesIds[i], -1);
+      }
+      bson_append_array_end(machine, &child1);
+
   /*
   * Print the document as a JSON string.
   */
