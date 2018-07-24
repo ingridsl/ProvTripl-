@@ -11,7 +11,6 @@ int dataFileId = 1;
 int fileCounter = 1;
 
 dataFile *create_dataFile(char file_name[N]){
-	printf("\n new datafile: %s", file_name);
 	//getchar();
 	dataFile *new = (dataFile*)malloc(sizeof(dataFile));
 
@@ -89,7 +88,6 @@ char *convertMultipleFiles(char *fileName, char *name){
 				strcpy(name, fileName);
 				sprintf(extensao, ".%d.ht2", fileCounter);
 				strcat(name, extensao);
-				printf("\n>> filename3: %s", name);
 			//}
 		return name;
 }

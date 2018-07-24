@@ -209,7 +209,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[0],"%d", value);
 				printf("\n>>%s", original->command_input[0]);
-				getchar();
+
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -218,7 +218,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[1],"%d", value);
 				printf("\n>>%s", original->command_input[1]);
-				getchar();
+
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -227,7 +227,6 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[2],"%d", value);
 				printf("\n>>%s", original->command_input[2]);
-				getchar();
 
 				//////////////////////////////////////////////////////////////////////////
 				buildFileName(inputFileDefault, inputFile);
@@ -236,7 +235,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[3],"%d", value);
 				printf("\n>>%s", original->command_input[3]);
-				getchar();
+				//getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -245,7 +244,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[4],"%d", value);
 				printf("\n>>%s", original->command_input[4]);
-				getchar();
+				//getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -254,7 +253,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[5],"%d", value);
 				printf("\n>>%s", original->command_input[5]);
-				getchar();
+				//getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -326,11 +325,6 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			resetInputFile();
 			resetInputFile2();
 			resetOutputFile();
-			printf("\ncase 3.3");
-			printf("\ncase 3");
-			printf("\ncase 3");
-			printf("\ncase 3");
-
 			break;
 		case 4:
 			strcpy(command, " ");
@@ -502,11 +496,6 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 	}
 
-	printf("\n saiu ");
-
-	printf("\n saiu ");
-
-	printf("\n saiu ");
 	original->experiment_id = 1;
 	original->agent_id = 1;
 	return original;
@@ -552,62 +541,20 @@ activity *create_activity(){
 //insere o node
 activity *insert_activity(activity *origin, int *activityNumber, dataFile *dataFileOrig){
 	activity *aux = origin;
-	if(aux==NULL){
-		printf("\n\nANTES NULL");
-		//getchar();
-	}
-	if(origin==NULL){
-		printf("\n\n ANTES NULL");
-		//getchar();
-	}
+
 	//activity *new = create_activity(); //trocar
 
 	activity *new = define_activity(activityNumber, &(*dataFileOrig), true);
 
+
 	if(aux==NULL){
-		printf("\n\nNULL");
-		//getchar();
-	}
-	if(origin==NULL){
-		printf("\n\nNULL");
-		//getchar();
-	}
-	/*if(!existsExperimentId(new->experiment_id, originExp)){
-		printf("\nError: There is no experiment with this number");
-		return origin;
-	}
-	if(!existsMachineIdForActivity(new->machine_id, originMac)){
-		printf("\nError: There is no machine with this number");
-		return origin;
-	}*/
-	printf("\n>>> SAINDO!");
-	printf("\n>>> SAINDO!");
-	printf("\n>>> SAINDO!");
-	printf("\n>>> SAINDO!");
-	printf("\n>>> SAINDO!");
-	if(aux==NULL){
-	printf("\n>>> SAINDOnao!");
-	printf("\n>>> SAINDOnao!");
-	printf("\n>>> SAINDOnao!");
-	printf("\n>>> SAINDOnao!");
-	printf("\n>>> SAINDOnao!");
-	printf("\n>>> SAINDOnao!");
 	    aux = new;
 	    new->next = NULL;
 	    return new;
 	}
-	printf("\n>>> SAINDO2!");
-	printf("\n>>> SAINDO2!");
-	printf("\n>>> SAINDO2!");
-	printf("\n>>> SAINDO2!");
-	printf("\n>>> SAINDO2!");
 	while(aux->next!=NULL){
 		aux = aux->next;
 	}
-	printf("\n>>> SAINDO3!");
-	printf("\n>>> SAINDO3!");
-	printf("\n>>> SAINDO3!");
-	printf("\n>>> SAINDO3! %s", origin->command_line);
 	aux->next = new;
 	new->next = NULL;
 	return origin;

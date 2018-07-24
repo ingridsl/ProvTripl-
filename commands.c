@@ -11,22 +11,8 @@
 void buildFileName(char *fileName, char *newFile){
 	char num[2];
 
-	printf("\n\n%s", fileName);
-	printf("\n\n%s", fileName);
-	printf("\n\n%s", fileName);
-	printf("\n\n%s", fileName);
 	strcpy(newFile, fileName);
-	printf("%d",  fileNumber);
-	printf("%d",  fileNumber);
-	printf("%d",  fileNumber);
-	printf("%d",  fileNumber);
 		sprintf(num, "%d", fileNumber);
-		printf("\n\n%s", fileName);
-		printf("\n\n%s", fileName);
-		printf("\n\n%s", fileName);
-		printf("\n\n%s", fileName);
-		printf("\n\n%s", fileName);
-		printf("\n\n%s", fileName);
 			strcat(newFile, ".");
 			strcat(newFile, num);
 			strcat(newFile, ".ht2");

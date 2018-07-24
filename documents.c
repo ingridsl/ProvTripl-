@@ -987,7 +987,7 @@ bson_t   *EXPERIMENT_DOC_3(bool index, experiment *expOriginal, FILE *log){
   }
   bson_append_array_end(experiment, &child1);
   experiment_str = bson_as_json (experiment, NULL);
-  /printf ("\n\t%s\n\n", experiment_str);
+  printf ("\n\t%s\n\n", experiment_str);
   fprintf(log,"\n\t%s\n\n", experiment_str);
   bson_free (experiment_str);
 
