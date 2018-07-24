@@ -1,0 +1,1036 @@
+
+
+	--------- LOG ---------
+begin: 2018-7-19 17:23:50
+ 	---- MODEL 1.0 ----
+BEGIN: 2018-7-19 17:23:50
+
+DataDoc begin: 2018-7-19 17:23:50
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f357f0d235152b177a02" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f979f0d235152b177a04" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f97ff0d235152b177a06" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f984f0d235152b177a08" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f986f0d235152b177a0a" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f986f0d235152b177a0c" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f987f0d235152b177a0e" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f988f0d235152b177a10" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f989f0d235152b177a12" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f98bf0d235152b177a14" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f98bf0d235152b177a16" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50f98bf0d235152b177a18" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50fae7f0d235152b177a1a" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50fae7f0d235152b177a1c" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50fb45f0d235152b177a1e" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b50fbbff0d235152b177a20" }
+
+
+DataDoc end: 2018-7-19 17:59:43
+
+ProviderDoc begin: 2018-7-19 17:59:43
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] } } }
+
+
+ProviderDoc end: 2018-7-19 17:59:43
+
+ProjectDoc begin: 2018-7-19 17:59:43
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment_id" : "1", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "input_files" : [ "1" ], "output_files" : [ "2" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "input_files" : [ "12" ], "output_files" : [ "13" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "input_files" : [ "13" ], "output_files" : [ "14" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "input_files" : [ "14", "15" ], "output_files" : [ "16" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } }
+
+
+ProjectDoc end: 2018-7-19 17:59:43
+
+END: 2018-7-19 17:59:44
+ 	---- MODEL 2.0 ----
+BEGIN: 2018-7-19 17:59:44
+
+SingleDoc begin: 2018-7-19 17:59:44
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "provider" : { "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "inputFiles" : [ { "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fbc0f0d235152b177a23" } ], "outputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fec0f0d235152b177a24" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "inputFiles" : [ { "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fec8f0d235152b177a25" } ], "outputFiles" : [ { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fecdf0d235152b177a26" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed0f0d235152b177a27" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "inputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fec0f0d235152b177a24" }, { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fecdf0d235152b177a26" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed0f0d235152b177a27" }, { "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed4f0d235152b177a28" }, { "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed4f0d235152b177a29" }, { "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed4f0d235152b177a2a" }, { "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed6f0d235152b177a2b" }, { "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed7f0d235152b177a2c" }, { "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed7f0d235152b177a2d" } ], "outputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed7f0d235152b177a2e" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "inputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b50fed7f0d235152b177a2e" } ], "outputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b510064f0d235152b177a2f" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "inputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b510064f0d235152b177a2f" } ], "outputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b510064f0d235152b177a30" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "inputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b510064f0d235152b177a30" }, { "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5100c6f0d235152b177a31" } ], "outputFiles" : [ { "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b510140f0d235152b177a32" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } } } } }
+
+
+SingleDoc end: 2018-7-19 18:23:13
+
+END: 2018-7-19 18:23:13
+ 	---- MODEL 3.0 ----
+BEGIN: 2018-7-19 18:23:13
+
+DataDoc begin: 2018-7-19 18:23:13
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510142f0d235152b177a60" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51041df0d235152b177a62" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51042af0d235152b177a64" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51042df0d235152b177a66" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510430f0d235152b177a68" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510431f0d235152b177a6a" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510431f0d235152b177a6c" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510432f0d235152b177a6e" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510435f0d235152b177a70" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510436f0d235152b177a72" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510436f0d235152b177a74" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510436f0d235152b177a76" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5105e1f0d235152b177a78" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5105e2f0d235152b177a7a" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b510654f0d235152b177a7c" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5106d3f0d235152b177a7e" }
+
+
+DataDoc end: 2018-7-19 18:46:59
+
+ProviderDoc begin: 2018-7-19 18:46:59
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone" }
+
+
+ProviderDoc end: 2018-7-19 18:46:59
+
+ClusterDoc begin: 2018-7-19 18:46:59
+
+	{ "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "provider_id" : "1" }
+
+
+ClusterDoc end: 2018-7-19 18:47:0
+
+MachineDoc begin: 2018-7-19 18:47:0
+
+	{ "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster_id" : "1", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] }
+
+
+MachineDoc end: 2018-7-19 18:47:0
+
+ProjectDoc begin: 2018-7-19 18:47:0
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01" }
+
+
+ProjectDoc end: 2018-7-19 18:47:0
+
+ExperimentDoc begin: 2018-7-19 18:47:0
+
+	{ "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity_id" : [ "1", "2", "3", "4", "5", "6" ] }
+
+
+ExperimentDoc end: 2018-7-19 18:47:0
+
+ActivityDoc begin: 2018-7-19 18:47:0
+
+	{ "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "1" ], "output_files" : [ "2" ] }
+
+
+	{ "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ] }
+
+
+	{ "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ] }
+
+
+	{ "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "12" ], "output_files" : [ "13" ] }
+
+
+	{ "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "13" ], "output_files" : [ "14" ] }
+
+
+	{ "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-19", "start_hour" : "17:23:50", "end_date" : "2018-7-19", "end_hour" : "17:23:50", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "14", "15" ], "output_files" : [ "16" ] }
+
+
+ActivityDoc end: 2018-7-19 18:47:0
+
+AgentDoc begin: 2018-7-19 18:47:0
+
+	{ "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" }
+
+
+AgentDoc end: 2018-7-19 18:47:0
+
+END: 2018-7-19 18:47:0
+
+end: 2018-7-19 18:47:0
+ 	---- END OF EXECUTION ----
+
+	--------- LOG ---------
+begin: 2018-7-19 20:8:3
+ 	---- MODEL 1.0 ----
+BEGIN: 2018-7-19 20:8:4
+
+DataDoc begin: 2018-7-19 20:8:4
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5119d5f0d235395b2f21a2" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511ca2f0d235395b2f21a4" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cabf0d235395b2f21a6" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cb0f0d235395b2f21a8" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cb3f0d235395b2f21aa" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cb5f0d235395b2f21ac" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cb5f0d235395b2f21ae" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cb6f0d235395b2f21b0" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cb8f0d235395b2f21b2" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cbaf0d235395b2f21b4" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cbaf0d235395b2f21b6" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511cbaf0d235395b2f21b8" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511e4bf0d235395b2f21ba" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511e4bf0d235395b2f21bc" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511ec5f0d235395b2f21be" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b511f50f0d235395b2f21c0" }
+
+
+DataDoc end: 2018-7-19 20:31:28
+
+ProviderDoc begin: 2018-7-19 20:31:28
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] } } }
+
+
+ProviderDoc end: 2018-7-19 20:31:28
+
+ProjectDoc begin: 2018-7-19 20:31:28
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment_id" : "1", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-19", "start_hour" : "20:8:3", "end_date" : "2018-7-19", "end_hour" : "20:8:3", "execution_status" : "0", "input_files" : [ "1" ], "output_files" : [ "2" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "input_files" : [ "12" ], "output_files" : [ "13" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "input_files" : [ "13" ], "output_files" : [ "14" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "input_files" : [ "14", "15" ], "output_files" : [ "16" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } }
+
+
+ProjectDoc end: 2018-7-19 20:31:28
+
+END: 2018-7-19 20:31:29
+ 	---- MODEL 2.0 ----
+BEGIN: 2018-7-19 20:31:29
+
+SingleDoc begin: 2018-7-19 20:31:29
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "provider" : { "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-19", "start_hour" : "20:8:3", "end_date" : "2018-7-19", "end_hour" : "20:8:3", "execution_status" : "0", "inputFiles" : [ { "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b511f52f0d235395b2f21c3" } ], "outputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b512298f0d235395b2f21c4" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "inputFiles" : [ { "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122aaf0d235395b2f21c5" } ], "outputFiles" : [ { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122aff0d235395b2f21c6" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122b2f0d235395b2f21c7" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "inputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b512298f0d235395b2f21c4" }, { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122aff0d235395b2f21c6" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122b2f0d235395b2f21c7" }, { "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122b4f0d235395b2f21c8" }, { "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122b4f0d235395b2f21c9" }, { "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122b5f0d235395b2f21ca" }, { "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122b7f0d235395b2f21cb" }, { "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122bbf0d235395b2f21cc" }, { "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122bbf0d235395b2f21cd" } ], "outputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122bcf0d235395b2f21ce" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "inputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5122bcf0d235395b2f21ce" } ], "outputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5124a8f0d235395b2f21cf" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "inputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5124a8f0d235395b2f21cf" } ], "outputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5124a9f0d235395b2f21d0" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "inputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5124a9f0d235395b2f21d0" }, { "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51255af0d235395b2f21d1" } ], "outputFiles" : [ { "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b512606f0d235395b2f21d2" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } } } } }
+
+
+SingleDoc end: 2018-7-19 21:0:9
+
+END: 2018-7-19 21:0:9
+ 	---- MODEL 3.0 ----
+BEGIN: 2018-7-19 21:0:9
+
+DataDoc begin: 2018-7-19 21:0:9
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51260af0d235395b2f2200" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512967f0d235395b2f2202" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512975f0d235395b2f2204" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51297cf0d235395b2f2206" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51297ef0d235395b2f2208" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512980f0d235395b2f220a" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512980f0d235395b2f220c" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512981f0d235395b2f220e" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512984f0d235395b2f2210" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512987f0d235395b2f2212" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512987f0d235395b2f2214" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51298af0d235395b2f2216" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512b47f0d235395b2f2218" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512b49f0d235395b2f221a" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512bcdf0d235395b2f221c" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b512c77f0d235395b2f221e" }
+
+
+DataDoc end: 2018-7-19 21:27:35
+
+ProviderDoc begin: 2018-7-19 21:27:35
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone" }
+
+
+ProviderDoc end: 2018-7-19 21:27:37
+
+ClusterDoc begin: 2018-7-19 21:27:37
+
+	{ "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "provider_id" : "1" }
+
+
+ClusterDoc end: 2018-7-19 21:27:39
+
+MachineDoc begin: 2018-7-19 21:27:39
+
+	{ "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster_id" : "1", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] }
+
+
+MachineDoc end: 2018-7-19 21:27:39
+
+ProjectDoc begin: 2018-7-19 21:27:39
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01" }
+
+
+ProjectDoc end: 2018-7-19 21:27:39
+
+ExperimentDoc begin: 2018-7-19 21:27:39
+
+	{ "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity_id" : [ "1", "2", "3", "4", "5", "6" ] }
+
+
+ExperimentDoc end: 2018-7-19 21:27:39
+
+ActivityDoc begin: 2018-7-19 21:27:39
+
+	{ "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-19", "start_hour" : "20:8:3", "end_date" : "2018-7-19", "end_hour" : "20:8:3", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "1" ], "output_files" : [ "2" ] }
+
+
+	{ "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ] }
+
+
+	{ "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ] }
+
+
+	{ "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "12" ], "output_files" : [ "13" ] }
+
+
+	{ "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "13" ], "output_files" : [ "14" ] }
+
+
+	{ "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-19", "start_hour" : "20:8:4", "end_date" : "2018-7-19", "end_hour" : "20:8:4", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "14", "15" ], "output_files" : [ "16" ] }
+
+
+ActivityDoc end: 2018-7-19 21:27:39
+
+AgentDoc begin: 2018-7-19 21:27:39
+
+	{ "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" }
+
+
+AgentDoc end: 2018-7-19 21:27:40
+
+END: 2018-7-19 21:27:40
+
+end: 2018-7-19 21:27:40
+ 	---- END OF EXECUTION ----
+
+	--------- LOG ---------
+begin: 2018-7-20 0:0:52
+ 	---- MODEL 1.0 ----
+BEGIN: 2018-7-20 0:0:52
+
+DataDoc begin: 2018-7-20 0:0:52
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515066f0d23563b070a192" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515330f0d23563b070a194" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515337f0d23563b070a196" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51533cf0d23563b070a198" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515340f0d23563b070a19a" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515342f0d23563b070a19c" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515342f0d23563b070a19e" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515343f0d23563b070a1a0" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515344f0d23563b070a1a2" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515346f0d23563b070a1a4" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515346f0d23563b070a1a6" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515346f0d23563b070a1a8" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5154a1f0d23563b070a1aa" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5154a1f0d23563b070a1ac" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515505f0d23563b070a1ae" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515581f0d23563b070a1b0" }
+
+
+DataDoc end: 2018-7-20 0:22:41
+
+ProviderDoc begin: 2018-7-20 0:22:41
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] } } }
+
+
+ProviderDoc end: 2018-7-20 0:22:42
+
+ProjectDoc begin: 2018-7-20 0:22:42
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment_id" : "1", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "input_files" : [ "1" ], "output_files" : [ "2" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "input_files" : [ "12" ], "output_files" : [ "13" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "input_files" : [ "13" ], "output_files" : [ "14" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "input_files" : [ "14", "15" ], "output_files" : [ "16" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } }
+
+
+ProjectDoc end: 2018-7-20 0:22:42
+
+END: 2018-7-20 0:22:43
+ 	---- MODEL 2.0 ----
+BEGIN: 2018-7-20 0:22:43
+
+SingleDoc begin: 2018-7-20 0:22:43
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "provider" : { "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "inputFiles" : [ { "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515583f0d23563b070a1b3" } ], "outputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515865f0d23563b070a1b4" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "inputFiles" : [ { "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515874f0d23563b070a1b5" } ], "outputFiles" : [ { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515878f0d23563b070a1b6" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587af0d23563b070a1b7" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "inputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515865f0d23563b070a1b4" }, { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515878f0d23563b070a1b6" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587af0d23563b070a1b7" }, { "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587bf0d23563b070a1b8" }, { "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587bf0d23563b070a1b9" }, { "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587cf0d23563b070a1ba" }, { "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587ef0d23563b070a1bb" }, { "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587ff0d23563b070a1bc" }, { "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b51587ff0d23563b070a1bd" } ], "outputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515880f0d23563b070a1be" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "inputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515880f0d23563b070a1be" } ], "outputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515a0ff0d23563b070a1bf" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "inputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515a0ff0d23563b070a1bf" } ], "outputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515a0ff0d23563b070a1c0" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "inputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515a0ff0d23563b070a1c0" }, { "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515a81f0d23563b070a1c1" } ], "outputFiles" : [ { "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b515b0df0d23563b070a1c2" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } } } } }
+
+
+SingleDoc end: 2018-7-20 0:46:24
+
+END: 2018-7-20 0:46:24
+ 	---- MODEL 3.0 ----
+BEGIN: 2018-7-20 0:46:24
+
+DataDoc begin: 2018-7-20 0:46:24
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515b12f0d23563b070a1f0" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e40f0d23563b070a1f2" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e61f0d23563b070a1f4" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e6bf0d23563b070a1f6" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e6ef0d23563b070a1f8" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e71f0d23563b070a1fa" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e71f0d23563b070a1fc" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e74f0d23563b070a1fe" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e77f0d23563b070a200" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e79f0d23563b070a202" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e79f0d23563b070a204" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b515e79f0d23563b070a206" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b516030f0d23563b070a208" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b516030f0d23563b070a20a" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5160b6f0d23563b070a20c" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b51614ef0d23563b070a20e" }
+
+
+DataDoc end: 2018-7-20 1:13:2
+
+ProviderDoc begin: 2018-7-20 1:13:2
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone" }
+
+
+ProviderDoc end: 2018-7-20 1:13:3
+
+ClusterDoc begin: 2018-7-20 1:13:3
+
+	{ "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "provider_id" : "1" }
+
+
+ClusterDoc end: 2018-7-20 1:13:4
+
+MachineDoc begin: 2018-7-20 1:13:4
+
+	{ "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster_id" : "1", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] }
+
+
+MachineDoc end: 2018-7-20 1:13:4
+
+ProjectDoc begin: 2018-7-20 1:13:4
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01" }
+
+
+ProjectDoc end: 2018-7-20 1:13:4
+
+ExperimentDoc begin: 2018-7-20 1:13:4
+
+	{ "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity_id" : [ "1", "2", "3", "4", "5", "6" ] }
+
+
+ExperimentDoc end: 2018-7-20 1:13:4
+
+ActivityDoc begin: 2018-7-20 1:13:4
+
+	{ "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "1" ], "output_files" : [ "2" ] }
+
+
+	{ "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ] }
+
+
+	{ "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ] }
+
+
+	{ "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "12" ], "output_files" : [ "13" ] }
+
+
+	{ "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "13" ], "output_files" : [ "14" ] }
+
+
+	{ "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "0:0:52", "end_date" : "2018-7-20", "end_hour" : "0:0:52", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "14", "15" ], "output_files" : [ "16" ] }
+
+
+ActivityDoc end: 2018-7-20 1:13:4
+
+AgentDoc begin: 2018-7-20 1:13:4
+
+	{ "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" }
+
+
+AgentDoc end: 2018-7-20 1:13:4
+
+END: 2018-7-20 1:13:4
+
+end: 2018-7-20 1:13:4
+ 	---- END OF EXECUTION ----
+
+	--------- LOG ---------
+begin: 2018-7-20 17:15:20
+ 	---- MODEL 1.0 ----
+BEGIN: 2018-7-20 17:15:20
+
+DataDoc begin: 2018-7-20 17:15:20
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5242daf0d23514ef558362" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b524559f0d23514ef558364" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b524562f0d23514ef558366" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b524565f0d23514ef558368" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b524567f0d23514ef55836a" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b524569f0d23514ef55836c" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b524569f0d23514ef55836e" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52456af0d23514ef558370" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52456cf0d23514ef558372" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52456df0d23514ef558374" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52456df0d23514ef558376" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52456ff0d23514ef558378" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5246fcf0d23514ef55837a" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5246fdf0d23514ef55837c" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52475ef0d23514ef55837e" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5247dbf0d23514ef558380" }
+
+
+DataDoc end: 2018-7-20 17:36:43
+
+ProviderDoc begin: 2018-7-20 17:36:43
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] } } }
+
+
+ProviderDoc end: 2018-7-20 17:36:44
+
+ProjectDoc begin: 2018-7-20 17:36:44
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment_id" : "1", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "input_files" : [ "1" ], "output_files" : [ "2" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "input_files" : [ "12" ], "output_files" : [ "13" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "input_files" : [ "13" ], "output_files" : [ "14" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "input_files" : [ "14", "15" ], "output_files" : [ "16" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } }
+
+
+ProjectDoc end: 2018-7-20 17:36:44
+
+END: 2018-7-20 17:36:44
+ 	---- MODEL 2.0 ----
+BEGIN: 2018-7-20 17:36:44
+
+SingleDoc begin: 2018-7-20 17:36:44
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "provider" : { "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "inputFiles" : [ { "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5247ddf0d23514ef558383" } ], "outputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b79f0d23514ef558384" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "inputFiles" : [ { "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b81f0d23514ef558385" } ], "outputFiles" : [ { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b86f0d23514ef558386" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b88f0d23514ef558387" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "inputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b79f0d23514ef558384" }, { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b86f0d23514ef558386" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b88f0d23514ef558387" }, { "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b89f0d23514ef558388" }, { "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b89f0d23514ef558389" }, { "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b8af0d23514ef55838a" }, { "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b8bf0d23514ef55838b" }, { "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b8df0d23514ef55838c" }, { "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b8df0d23514ef55838d" } ], "outputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b8df0d23514ef55838e" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "inputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524b8df0d23514ef55838e" } ], "outputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524ce2f0d23514ef55838f" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "inputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524ce2f0d23514ef55838f" } ], "outputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524ce3f0d23514ef558390" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "inputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524ce3f0d23514ef558390" }, { "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524d40f0d23514ef558391" } ], "outputFiles" : [ { "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b524db0f0d23514ef558392" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } } } } }
+
+
+SingleDoc end: 2018-7-20 18:1:37
+
+END: 2018-7-20 18:1:37
+ 	---- MODEL 3.0 ----
+BEGIN: 2018-7-20 18:1:37
+
+DataDoc begin: 2018-7-20 18:1:37
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b524db2f0d23514ef5583c0" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52502ff0d23514ef5583c2" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b525037f0d23514ef5583c4" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52503cf0d23514ef5583c6" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52503ef0d23514ef5583c8" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52503ef0d23514ef5583ca" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52503ef0d23514ef5583cc" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52503ff0d23514ef5583ce" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b525041f0d23514ef5583d0" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b525042f0d23514ef5583d2" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b525042f0d23514ef5583d4" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b525043f0d23514ef5583d6" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5251ecf0d23514ef5583d8" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5251ecf0d23514ef5583da" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b525256f0d23514ef5583dc" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5252cef0d23514ef5583de" }
+
+
+DataDoc end: 2018-7-20 18:23:26
+
+ProviderDoc begin: 2018-7-20 18:23:26
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone" }
+
+
+ProviderDoc end: 2018-7-20 18:23:27
+
+ClusterDoc begin: 2018-7-20 18:23:27
+
+	{ "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "provider_id" : "1" }
+
+
+ClusterDoc end: 2018-7-20 18:23:27
+
+MachineDoc begin: 2018-7-20 18:23:27
+
+	{ "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster_id" : "1", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] }
+
+
+MachineDoc end: 2018-7-20 18:23:27
+
+ProjectDoc begin: 2018-7-20 18:23:27
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01" }
+
+
+ProjectDoc end: 2018-7-20 18:23:27
+
+ExperimentDoc begin: 2018-7-20 18:23:27
+
+	{ "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity_id" : [ "1", "2", "3", "4", "5", "6" ] }
+
+
+ExperimentDoc end: 2018-7-20 18:23:27
+
+ActivityDoc begin: 2018-7-20 18:23:27
+
+	{ "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "1" ], "output_files" : [ "2" ] }
+
+
+	{ "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ] }
+
+
+	{ "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ] }
+
+
+	{ "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "12" ], "output_files" : [ "13" ] }
+
+
+	{ "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "13" ], "output_files" : [ "14" ] }
+
+
+	{ "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "17:15:20", "end_date" : "2018-7-20", "end_hour" : "17:15:20", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "14", "15" ], "output_files" : [ "16" ] }
+
+
+ActivityDoc end: 2018-7-20 18:23:27
+
+AgentDoc begin: 2018-7-20 18:23:27
+
+	{ "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" }
+
+
+AgentDoc end: 2018-7-20 18:23:27
+
+END: 2018-7-20 18:23:27
+
+end: 2018-7-20 18:23:27
+ 	---- END OF EXECUTION ----
+
+	--------- LOG ---------
+begin: 2018-7-20 20:44:58
+ 	---- MODEL 1.0 ----
+BEGIN: 2018-7-20 20:44:58
+
+DataDoc begin: 2018-7-20 20:44:58
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5273fcf0d235393e2338a2" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52769ef0d235393e2338a4" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276a6f0d235393e2338a6" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276abf0d235393e2338a8" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276aef0d235393e2338aa" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276b0f0d235393e2338ac" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276b0f0d235393e2338ae" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276b0f0d235393e2338b0" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276b3f0d235393e2338b2" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276b4f0d235393e2338b4" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276b4f0d235393e2338b6" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5276b5f0d235393e2338b8" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b527864f0d235393e2338ba" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b527864f0d235393e2338bc" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5278fdf0d235393e2338be" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5279eef0d235393e2338c0" }
+
+
+DataDoc end: 2018-7-20 21:10:22
+
+ProviderDoc begin: 2018-7-20 21:10:22
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] } } }
+
+
+ProviderDoc end: 2018-7-20 21:10:22
+
+ProjectDoc begin: 2018-7-20 21:10:22
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment_id" : "1", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "input_files" : [ "1" ], "output_files" : [ "2" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "input_files" : [ "12" ], "output_files" : [ "13" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "input_files" : [ "13" ], "output_files" : [ "14" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "input_files" : [ "14", "15" ], "output_files" : [ "16" ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } }
+
+
+ProjectDoc end: 2018-7-20 21:10:23
+
+END: 2018-7-20 21:10:23
+ 	---- MODEL 2.0 ----
+BEGIN: 2018-7-20 21:10:23
+
+SingleDoc begin: 2018-7-20 21:10:23
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "experiment" : { "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "provider" : { "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster" : { "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "machine" : { "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "activity" : [ { "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "inputFiles" : [ { "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5279f0f0d235393e2338c3" } ], "outputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528171f0d235393e2338c4" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "inputFiles" : [ { "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528177f0d235393e2338c5" } ], "outputFiles" : [ { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b52817af0d235393e2338c6" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b52817cf0d235393e2338c7" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "inputFiles" : [ { "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528171f0d235393e2338c4" }, { "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b52817af0d235393e2338c6" }, { "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b52817cf0d235393e2338c7" }, { "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b52817df0d235393e2338c8" }, { "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b52817df0d235393e2338c9" }, { "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b52817ef0d235393e2338ca" }, { "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528180f0d235393e2338cb" }, { "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528182f0d235393e2338cc" }, { "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528182f0d235393e2338cd" } ], "outputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528182f0d235393e2338ce" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "inputFiles" : [ { "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528182f0d235393e2338ce" } ], "outputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5282c1f0d235393e2338cf" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "inputFiles" : [ { "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5282c1f0d235393e2338cf" } ], "outputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5282c2f0d235393e2338d0" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } }, { "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "inputFiles" : [ { "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b5282c2f0d235393e2338d0" }, { "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528328f0d235393e2338d1" } ], "outputFiles" : [ { "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "type" : "type", "oid" : "5b528398f0d235393e2338d2" } ], "agent" : { "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" } } ] } } } } }
+
+
+SingleDoc end: 2018-7-20 21:51:38
+
+END: 2018-7-20 21:51:38
+ 	---- MODEL 3.0 ----
+BEGIN: 2018-7-20 21:51:38
+
+DataDoc begin: 2018-7-20 21:51:38
+
+	{ "_id" : "1", "name" : "SRR5181508.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52839bf0d235393e233900" }
+
+
+	{ "_id" : "2", "name" : "SRR5181508_FILTERED.fastq", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285a7f0d235393e233902" }
+
+
+	{ "_id" : "3", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.fa", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285adf0d235393e233904" }
+
+
+	{ "_id" : "4", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b4f0d235393e233906" }
+
+
+	{ "_id" : "5", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.2.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b5f0d235393e233908" }
+
+
+	{ "_id" : "6", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.3.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b6f0d235393e23390a" }
+
+
+	{ "_id" : "7", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.4.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b6f0d235393e23390c" }
+
+
+	{ "_id" : "8", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.5.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b7f0d235393e23390e" }
+
+
+	{ "_id" : "9", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.6.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b8f0d235393e233910" }
+
+
+	{ "_id" : "10", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.7.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b9f0d235393e233912" }
+
+
+	{ "_id" : "11", "name" : "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.8.ht2", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b9f0d235393e233914" }
+
+
+	{ "_id" : "12", "name" : "file.sam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5285b9f0d235393e233916" }
+
+
+	{ "_id" : "13", "name" : "file.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5286e1f0d235393e233918" }
+
+
+	{ "_id" : "14", "name" : "file_sorted.sn.bam", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b5286e1f0d235393e23391a" }
+
+
+	{ "_id" : "15", "name" : "Homo_sapiens.GRCh38.88.gtf", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b528735f0d235393e23391c" }
+
+
+	{ "_id" : "16", "name" : "file.count", "description" : "description", "localization" : "localization", "annotation" : "annotation", "size" : "0", "insertion_date" : "insertion_date", "machine_id" : "1", "type" : "type", "oid" : "5b52879af0d235393e23391e" }
+
+
+DataDoc end: 2018-7-20 22:8:42
+
+ProviderDoc begin: 2018-7-20 22:8:42
+
+	{ "_id" : "1", "name" : "Google Cloud", "url" : "url", "description" : "description", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone" }
+
+
+ProviderDoc end: 2018-7-20 22:8:42
+
+ClusterDoc begin: 2018-7-20 22:8:42
+
+	{ "_id" : "1", "name" : "ProvBio-BIBM", "number_machines" : "1", "description" : "description here", "provider_id" : "1" }
+
+
+ClusterDoc end: 2018-7-20 22:8:42
+
+MachineDoc begin: 2018-7-20 22:8:42
+
+	{ "_id" : "1", "hostname" : "hostname", "ip" : "0", "type" : "type", "operational_system" : "Linux", "cpu" : "1", "ram_memory" : "2", "disk" : "1", "disk_type" : "disk type", "localization" : "", "price" : "0", "price_type" : "0", "localization_id" : "1", "localization_region" : "region", "localization_zone" : "zone", "cluster_id" : "1", "dataFiles_id" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ] }
+
+
+MachineDoc end: 2018-7-20 22:8:42
+
+ProjectDoc begin: 2018-7-20 22:8:42
+
+	{ "_id" : "1", "name" : "Management of data provenance for bioinformatics workflows using NoSQL database systems and a cloud computing environment", "description" : "Cloud bioinformatics workflow provenance", "inst_funders" : "funders", "inst_participants" : "University of Brasilia", "coordinator" : "Maristela Holanda", "start_date" : "2018-01-02", "end_date" : "2018-04-01" }
+
+
+ProjectDoc end: 2018-7-20 22:8:42
+
+ExperimentDoc begin: 2018-7-20 22:8:42
+
+	{ "_id" : "1", "name" : "BIBM2017", "description" : "Workflow for mapping reads to a reference", "local" : "local", "start_date" : "2018-01-02", "end_date" : "2018-04-01", "annotation" : "annotation", "version" : "1", "version_date" : "2018-01-02", "execution_time" : "0", "execution_cost" : "1.000000", "activity_id" : [ "1", "2", "3", "4", "5", "6" ] }
+
+
+ExperimentDoc end: 2018-7-20 22:8:42
+
+ActivityDoc begin: 2018-7-20 22:8:42
+
+	{ "_id" : "1", "name" : "nome", "program_name" : "sickle", "program_version" : "1.33", "command_line" : "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "1" ], "output_files" : [ "2" ] }
+
+
+	{ "_id" : "2", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "3" ], "output_files" : [ "4", "5", "6", "7", "8", "9", "10", "11" ] }
+
+
+	{ "_id" : "3", "name" : "nome", "program_name" : "hisat2", "program_version" : "2.0.5", "command_line" : "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "4", "5", "6", "7", "8", "9", "10", "11", "2" ], "output_files" : [ "12" ] }
+
+
+	{ "_id" : "4", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools view -bS file.sam > file.bam", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "12" ], "output_files" : [ "13" ] }
+
+
+	{ "_id" : "5", "name" : "nome", "program_name" : "samtools", "program_version" : "1.4.4", "command_line" : "samtools sort -n file.bam file_sorted.sn", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "13" ], "output_files" : [ "14" ] }
+
+
+	{ "_id" : "6", "name" : "nome", "program_name" : "htseq", "program_version" : "0.7.2", "command_line" : "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count", "start_date" : "2018-7-20", "start_hour" : "20:44:58", "end_date" : "2018-7-20", "end_hour" : "20:44:58", "execution_status" : "0", "experiment_id" : "1", "agent_id" : "1", "input_files" : [ "14", "15" ], "output_files" : [ "16" ] }
+
+
+ActivityDoc end: 2018-7-20 22:8:42
+
+AgentDoc begin: 2018-7-20 22:8:42
+
+	{ "_id" : "1", "name" : "Ingrid Santana", "login" : "ingrid.santana", "instituition" : "Universidade de Brasília", "position" : "Undergraduate student", "role" : "", "annotation" : "Systems Developer" }
+
+
+AgentDoc end: 2018-7-20 22:8:42
+
+END: 2018-7-20 22:8:42
+
+end: 2018-7-20 22:8:42
+ 	---- END OF EXECUTION ----
