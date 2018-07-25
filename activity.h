@@ -51,9 +51,9 @@ typedef struct activity{
 	struct activity *next;
 }activity;
 dataFile *returnUsedFiles();
-activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool teste);
+activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool teste, commands *thisCommand);
 activity *create_activity();
-activity *insert_activity(activity *origin, int *activityNumber, dataFile *dataFileOrig);
+activity *insert_activity(activity *origin, int *activityNumber, dataFile *dataFileOrig, commands *thisCommand);
 void freedom_activity(activity *origin);
 bool existsExperimentId(int expIdExp, experiment *originExp);
 //bool existsAgentId(int expIdAg, agent *originAg);

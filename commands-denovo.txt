@@ -1,0 +1,3 @@
+sickle se --fastq-file ERR885455_1.fastq --qual-type sanger --output-file ERR885455_1_FILTERED.fastq -q 30 -l 25
+sickle se --fastq-file ERR885455_2.fastq --qual-type sanger --output-file ERR885455_2_FILTERED.fastq -q 30 -l 25
+abyss-pe in='ERR885455_1_FILTERED.fastq ERR885455_2_FILTERED.fastq' k=25 name=ERR885455_KMER_28

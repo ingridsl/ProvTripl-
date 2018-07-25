@@ -8,6 +8,52 @@
 
 //função para construir nome do arquivo que se diversifica usando o getFileNumber
 
+
+commands *used_commands = NULL;
+int amount = 1;
+int getAmount(){
+
+	return amount;
+}
+commands *returnCommands(){
+	return used_commands;
+}
+
+void getCommands(){
+	char line[N];
+	FILE *fp = fopen("commands.txt", "r");
+	if(!fp){
+		exit(1);
+	}
+
+	while(fgets(line, sizeof(line), fp)!= NULL){
+
+			if(strcmp(line, "")!= 0){
+				commands *new = (commands*)malloc(sizeof(commands));
+				if(!new){
+				printf("\nError");
+		    	exit(1);
+				}
+				strcpy(new->command, line);
+				printf("reading file: %s  - %d", new->command, amount);
+				commands * aux = used_commands;
+				if(aux==NULL){
+				    aux = new;
+				    aux->next = NULL;
+						used_commands = aux;
+				}
+
+				while(aux->next!=NULL){
+					aux = aux->next;
+				}
+				aux->next = new;
+				new->next = NULL;
+				amount ++;
+		}
+	}
+	fclose(fp);
+
+}
 void buildFileName(char *fileName, char *newFile){
 	char num[2];
 
@@ -56,6 +102,8 @@ char *searchProgramUsed(char command[N]){
 		return samtools;
 	}else if(strstr(command, "htseq")!=NULL){
 		return htseq;
+	}else if(strstr(command, "abyss")!=NULL){
+		return abyss;
 	}
 }
 
@@ -68,6 +116,8 @@ char *searchProgramVersion(char command[N]){
 		return samtoolsversion;
 	}else if(strstr(command, "htseq")!=NULL){
 		return htseqversion;
+	}else if(strstr(command, "abyss")!=NULL){
+		return abyssversion;
 	}
 }
 

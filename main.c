@@ -28,6 +28,7 @@ int main (){
   tm = *localtime(&t);
   fprintf(log,"\nbegin: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
+  getCommands();
   project *projects = NULL;
   projects = insert_project(projects);
 
@@ -40,8 +41,10 @@ int main (){
   dataFile *dataFiles = NULL;
 
   activity *activitys = NULL;
-  while(activityNumber < 7){
-    activitys = insert_activity(activitys, &activityNumber, dataFiles);
+    commands * auxCommand = returnCommands();
+  while(activityNumber < getAmount()){
+    activitys = insert_activity(activitys, &activityNumber, dataFiles, auxCommand );
+    auxCommand = auxCommand->next;
   }
   activity *aux = activitys;
 

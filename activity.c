@@ -13,7 +13,8 @@ dataFile *returnUsedFiles(){
 	return used_files;
 }
 
-activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool teste){ //falta incluir aquivos na lista de arquivos
+activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool teste, commands *thisCommand){ //falta incluir aquivos na lista de arquivos
+
 	activity *original = (activity*)malloc(sizeof(activity));
 
    	time_t t;
@@ -29,8 +30,9 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 	switch((*activityNumber)){
 		case 1:
 			strcpy(command, " ");
-
-		   	strcpy(command, "sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181508_FILTERED.fastq -q 30 -l 25");
+			printf("thisCommand->command %s", thisCommand->command);
+			getchar();
+		   	strcpy(command, thisCommand->command);
 				getFileName(command);
 
 				if(teste){
@@ -40,7 +42,8 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 					strcpy(inputFile1, getInputFile());
 		   		strcpy(outputFile, getOutputFile());
 				}
-
+				printf("\n INPUTFILE: %s, OUTPUTFILE %s\n", inputFile1, outputFile);
+				getchar();
 				used_files = insert_dataFile(used_files, inputFile1);
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
@@ -60,7 +63,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -84,7 +87,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 		resetFileNumber();
 				strcpy(command, " ");
-				strcpy(command, "hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
+				strcpy(command, thisCommand->command);
 				getFileName(command);
 
 
@@ -152,7 +155,15 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 					value = retrieveDataFileId(outputFile, used_files);
 					sprintf(original->command_output[7],"%d", value);
+				}else{
+
+					used_files = insert_dataFile(used_files, outputFileDefault);
+					value = retrieveDataFileId(outputFileDefault, used_files);
+					sprintf(original->command_output[0],"%d", value);
+
 				}
+				printf("\n INPUTFILE: %s, OUTPUTFILE %s\n", inputFile1, outputFile);
+				getchar();
 
 		    printf("\n\t:::::: COMANDO 2 :::::: \n%s \n", command);
    			printf("::::::");
@@ -164,7 +175,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -189,7 +200,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 		resetFileNumber();
 			strcpy(command, " ");
-			strcpy(command, "hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam");
+			strcpy(command, thisCommand->command);
 
 
 			getFileName(command);
@@ -268,16 +279,25 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[7],"%d", value);
+			}else{
+
+				used_files = insert_dataFile(used_files, inputFileDefault);
+				value = retrieveDataFileId(inputFile, used_files);
+				sprintf(original->command_input[0],"%d", value);
+
 			}
 
 				if(teste){
 					strcpy(inputFile1, "SRR5181508_FILTERED.fastq"); //file_1.fq
 					strcpy(outputFile, "file.sam"); // file.sam
 				}else{
-					strcpy(inputFile1, getInputFile2()); //file_1.fq
+					if( strcmp(getInputFile2(), "") == 0 ){
+						strcpy(inputFile1, getInputFile2()); //file_1.fq
+					}
 					strcpy(outputFile, getOutputFile()); // file.sam
 				}
-
+				printf("\n INPUTFILE: %s, OUTPUTFILE %s\n", inputFileDefault, outputFile);
+				getchar();
 				used_files = insert_dataFile(used_files, inputFile1);
 
 				//value = retrieveDataFileId(inputFile1, used_files);
@@ -304,7 +324,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -328,7 +348,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			break;
 		case 4:
 			strcpy(command, " ");
-			strcpy(command,"samtools view -bS file.sam > file.bam");
+			strcpy(command,thisCommand->command);
 			getFileName(command);
 			if(teste){
 				strcpy(inputFile1, "file.sam");
@@ -384,7 +404,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 		case 5:
 			strcpy(command, " ");
 
-			strcpy(command, "samtools sort -n file.bam file_sorted.sn");
+			strcpy(command, thisCommand->command);
 
 			if(teste){
 				strcpy(inputFile1, "file.bam");
@@ -436,7 +456,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			resetOutputFile();
 			break;
 		case 6:
-			strcpy(command, "htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count");
+			strcpy(command, thisCommand->command);
 
 			if(teste){
 				strcpy(inputFile1, "file_sorted.sn.bam");
@@ -539,12 +559,12 @@ activity *create_activity(){
 }
 
 //insere o node
-activity *insert_activity(activity *origin, int *activityNumber, dataFile *dataFileOrig){
+activity *insert_activity(activity *origin, int *activityNumber, dataFile *dataFileOrig, commands *thisCommand){
 	activity *aux = origin;
 
 	//activity *new = create_activity(); //trocar
 
-	activity *new = define_activity(activityNumber, &(*dataFileOrig), true);
+	activity *new = define_activity(activityNumber, &(*dataFileOrig), false, thisCommand);
 
 
 	if(aux==NULL){

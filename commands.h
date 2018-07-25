@@ -17,13 +17,27 @@
 
 #define sickleversion "1.33"
 #define sickle "sickle"
+
+#define abyssversion "1.3.6"
+#define abyss "abyss"
+
+
 char inputFile[N];
 char outputFile[N];
 char inputFile2[N];
 
 
 int fileNumber;
-//char newFile[N];
+
+
+typedef struct commands{
+  char command[N];
+  struct commands *next;
+}commands;
+
+int getAmount();
+commands *returnCommands();
+void getCommands();
 
 int getFileNumber();
 void buildFileName(char *fileName, char *newFile);
