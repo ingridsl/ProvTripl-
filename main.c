@@ -21,6 +21,7 @@ int main (){
 
   time_t t;
   struct tm tm;
+
   FILE *log = fopen("log.txt", "a+");
   fprintf(log,"\n\n\t--------- LOG ---------");
 

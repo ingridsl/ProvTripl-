@@ -93,6 +93,27 @@ void resetOutputFile(){
 void resetFileNumber(){
 	fileNumber = 1;
 }
+
+void abyssOutput(char command[N]){
+	if(strstr(command, "abyss")!=NULL){
+		char *name;
+
+		name = strstr(command, "name=");
+		strcpy(outputFile, name);
+		printf("\n>>> %s", outputFile);
+		char temp = outputFile[0];
+		int y = strlen(outputFile);
+		int z;
+		for(z = 0; z < y-5 ; z++){
+			outputFile[z] = outputFile[z + 5];
+			outputFile[z + 5] = temp;
+		}
+		outputFile[y - 5] = '\0';
+		printf("\n>>> %s", outputFile);
+		getchar();
+	}
+}
+
 char *searchProgramUsed(char command[N]){
 	if(strstr(command, "sickle")!=NULL){
 		return sickle;

@@ -218,6 +218,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 					strcpy(inputFile1, getInputFile2()); //file_1.fq
 				}
 				strcpy(outputFile, getOutputFile()); // file.sam
+				abyssOutput(command);
 			}
 			used_files = insert_dataFile(used_files, inputFile1);
 
