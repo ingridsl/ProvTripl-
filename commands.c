@@ -139,7 +139,25 @@ void getFileName(char command[N]){
 					i++;
 					y++;
 				}
+
 				file[y]='\0';
+
+				if(file[0]== '\''){
+
+					char temp;
+					int z;
+					temp = file[0];
+					for(z = 0; z < y-1 ; z++){
+						file[z] = file[z + 1];
+						file[z + 1] = temp;
+					}
+
+				}
+				if(file[y-1]== '\''){
+					file[y-1]='\0';
+				}
+				printf("\n\n::: input file depois %s", file);
+				getchar();
 				final = i--;
 				//printf("\n\n>>>>>>>>>>>> %s", file);
 				if(access(file, F_OK) != -1){ // file exists
