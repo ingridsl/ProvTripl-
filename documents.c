@@ -7,6 +7,7 @@
 #include "documents.h"
 #include "dataFile.h"
 #include "machine.h"
+#include "activity.h"
 #include "agent.h"
 #include "grid.h"
 
@@ -16,7 +17,7 @@ oid *oidNumbers = NULL;
 
 
 bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
-  char dataFilesIds[14][3] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
+  char dataFilesIds[41][3] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16", "17","18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41" };
   dataFile *aux = macOriginal->dataFiles;
   bson_t   *provider, cluster, machine, dataFiles, child1;
   char     *provider_str;
@@ -102,7 +103,7 @@ bson_t   *PROVIDER_DOC(bool index, provider *proOriginal, cluster *cluOriginal, 
     const       char *key;
     size_t      keylen;
     BSON_APPEND_ARRAY_BEGIN(&machine, "dataFiles_id", &child1);
-    for(i = 0; i <14; ++i){
+    for(i = 0; i < getFileAmount(); ++i){
         keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
         bson_append_utf8(&child1, key, (int) keylen, dataFilesIds[i], -1);
     }
@@ -315,7 +316,7 @@ bson_t   *DATA_DOC(bool index, char databaseName[N], dataFile *dataOriginal, FIL
 }
 
 bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal, machine *macOriginal, FILE *log){
-  char dataFilesIds[14][3] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
+  char dataFilesIds[41][3] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16", "17","18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41" };
   dataFile *aux = macOriginal->dataFiles;
   bson_t   *provider, cluster, machine, dataFiles, child1;
   char     *provider_str;
@@ -402,8 +403,7 @@ bson_t   *PROVIDER_DOC_S(bool index, provider *proOriginal, cluster *cluOriginal
       const       char *key;
       size_t      keylen;
       BSON_APPEND_ARRAY_BEGIN(&machine, "dataFiles_id", &child1);
-      for(i = 0; i < 6; ++i){
-        printf("\n > %s - %d", dataFilesIds[i], i);
+      for(i = 0; i < getFileAmount(); ++i){
           keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
           bson_append_utf8(&child1, key, (int) keylen, dataFilesIds[i], -1);
       }
@@ -1205,7 +1205,7 @@ bson_t   *CLUSTER_DOC_3(bool index, cluster *cluOriginal, FILE *log){
 }
 
 bson_t   *MACHINE_DOC_3(bool index, machine *macOriginal, FILE *log){
-  char dataFilesIds[14][3] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
+  char dataFilesIds[41][3] ={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16", "17","18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41" };
   dataFile *aux = macOriginal->dataFiles;
   bson_t   *machine, dataFiles, child1;
   char     *machine_str;
@@ -1269,7 +1269,7 @@ bson_t   *MACHINE_DOC_3(bool index, machine *macOriginal, FILE *log){
       const       char *key;
       size_t      keylen;
       BSON_APPEND_ARRAY_BEGIN(machine, "dataFiles_id", &child1);
-      for(i = 0; i < 14; ++i){
+      for(i = 0; i < getFileAmount(); ++i){
           keylen = bson_uint32_to_string(i, &key, buf, sizeof buf);
           bson_append_utf8(&child1, key, (int) keylen, dataFilesIds[i], -1);
       }

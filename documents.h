@@ -15,7 +15,7 @@
 #include "agent.h"
 #include "grid.h"
 
-#define array 10
+#define array 42
 
 //classe obsoleta - era usada para pegar ids dos documentos gerados com a inclusão do arquivo bruto
 typedef struct oid{

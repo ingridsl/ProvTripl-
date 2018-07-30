@@ -78,7 +78,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       counter++;
       //printf("\n \n file name: %s", name);
     }
-    printf("\n>>>>FILE NAME: %s", name);
+
     strcpy(nameExtraFile, name);
     strcat(nameExtraFile, ".created.txt");
     FILE *fp = fopen(nameExtraFile, "w+");
@@ -106,7 +106,6 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       file = mongoc_gridfs_create_file_from_stream (gridfs, stream, &opt);
       assert (file);
 
-      printf("\n1.5");
       id.value_type = BSON_TYPE_INT32;
       id.value.v_int32 = 1;
 

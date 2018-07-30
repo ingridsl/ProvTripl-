@@ -108,7 +108,7 @@ void abyssOutput(char command[N]){
 			outputFile[z] = outputFile[z + 5];
 			outputFile[z + 5] = temp;
 		}
-		outputFile[y - 5] = '\0';
+		outputFile[y - 6] = '\0';
 		printf("\n>>> %s", outputFile);
 		getchar();
 	}
@@ -151,7 +151,7 @@ void getFileName(char command[N]){
 		final=0;
 		y =0;
 		if(command[i] == '.'){
-				while(command[i] != ' '){
+				while(command[i] != ' ' && command[i] != '='){
 					i--;
 				}
 				begin = i++;
