@@ -123,7 +123,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       /////////////////////////
 
       printf("\n\n COMEÇANDO AQUI!! 1");
-    //  //getchar();
+    //  ////getchar();
       iov.iov_base = (void*) buf;
       iov.iov_len = sizeof buf;
       file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
@@ -140,10 +140,10 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
          if (r == 0) {
             break;
          }
-          //getchar();
+          ////getchar();
          if (fwrite (iov.iov_base, 1, r, fp) != r) {
            printf("ERROR");
-           //getchar();
+           ////getchar();
             MONGOC_ERROR ("Failed to write to stdout. Exiting.\n");
             exit (1);
          }
@@ -155,7 +155,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       ////////////////// LIST
 
       printf("\n\n COMEÇANDO AQUI!! 2");
-      ////getchar();
+      //////getchar();
       /*
       bson_init (&filter);
 

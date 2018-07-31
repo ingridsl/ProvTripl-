@@ -49,7 +49,7 @@ void CreateDatabase30(bool index, provider *provOriginal, cluster *cluOriginal, 
    if(index){
      strcpy(databaseName, "model30-I");
    }else{
-       strcpy(databaseName, "model30-denovo");
+       strcpy(databaseName, "model30-chro");
    }
    model30 = mongoc_client_get_database (client, databaseName);
    printf("collection \n");

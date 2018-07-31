@@ -36,7 +36,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 		case 1:
 			strcpy(command, " ");
 			printf("thisCommand->command %s", thisCommand->command);
-			//getchar();
+			////getchar();
 		   	strcpy(command, thisCommand->command);
 				getFileName(command);
 
@@ -48,7 +48,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 		   		strcpy(outputFile, getOutputFile());
 				}
 				printf("\n INPUTFILE: %s, OUTPUTFILE %s\n", inputFile1, outputFile);
-				//getchar();
+				////getchar();
 				used_files = insert_dataFile(used_files, inputFile1);
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
@@ -94,7 +94,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				strcpy(command, " ");
 				strcpy(command, thisCommand->command);
 				printf("COMAND QUE CHEGOU: %s", command);
-				//getchar();
+				////getchar();
 				getFileName(command);
 
 
@@ -170,7 +170,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 				}
 				printf("\n INPUTFILE: %s, OUTPUTFILE %s\n", inputFile1, outputFileDefault);
-				//getchar();
+				////getchar();
 
 		    printf("\n\t:::::: COMANDO 2 :::::: \n%s \n", command);
    			printf("::::::");
@@ -236,7 +236,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->command_input[0],"%d", value);
 
 			printf("\n INPUTFILE: %s, INPUTFILE2: %s, OUTPUTFILE %s\n", inputFileDefault, inputFile1, outputFile);
-			//getchar();
+			////getchar();
 
 			if(strcmp(inputFileDefault, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx")==0){
 				//strcpy(outputFile, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx");
@@ -273,7 +273,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[4],"%d", value);
 				printf("\n>>%s", original->command_input[4]);
-				////getchar();
+				//////getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -282,7 +282,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[5],"%d", value);
 				printf("\n>>%s", original->command_input[5]);
-				////getchar();
+				//////getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -291,7 +291,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[6],"%d", value);
 				printf("\n>>%s", original->command_input[6]);
-				////getchar();
+				//////getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -316,7 +316,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 
 				printf("\n INPUTFILE: %s, INPUTFILE2: %s, OUTPUTFILE %s\n", inputFileDefault, inputFile1, outputFile);
-				//getchar();
+				////getchar();
 				if(strstr(command, "abyss")!=NULL){
 
 					//"coverage.hist"

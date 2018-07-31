@@ -825,7 +825,7 @@ bson_t   *SINGLE_DOC_2(bool index, char *databaseName, project *proOriginal, exp
       auxData = dataOriginal;
       while(auxData != NULL){
         sprintf(filesId, "%d", auxData->id);
-        for(i = 0; i<2; i++){
+        for(i = 0; i<array; i++){
           if(strlen(actOriginal->command_output[i])>0){
             if(strcmp(filesId,actOriginal->command_output[i]) == 0){
               printf("achei!");

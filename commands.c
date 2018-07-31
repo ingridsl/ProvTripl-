@@ -35,7 +35,7 @@ void getCommands(){
 		    	exit(1);
 				}
 				strcpy(new->command, line);
-				printf("reading file: %s  - %d", new->command, amount);
+				//printf("reading file: %s  - %d", new->command, amount);
 				commands * aux = used_commands;
 				if(aux==NULL){
 				    aux = new;
@@ -62,7 +62,7 @@ void buildFileName(char *fileName, char *newFile){
 			strcat(newFile, ".");
 			strcat(newFile, num);
 			strcat(newFile, ".ht2");
-			printf("\n\n%s", newFile);
+			//printf("\n\n%s", newFile);
 			fileNumber++;
 	//}
 	//return newFile;
@@ -100,7 +100,7 @@ void abyssOutput(char command[N]){
 
 		name = strstr(command, "name=");
 		strcpy(outputFile, name);
-		printf("\n>>> %s", outputFile);
+		//printf("\n>>> %s", outputFile);
 		char temp = outputFile[0];
 		int y = strlen(outputFile);
 		int z;
@@ -109,8 +109,8 @@ void abyssOutput(char command[N]){
 			outputFile[z + 5] = temp;
 		}
 		outputFile[y - 6] = '\0';
-		printf("\n>>> %s", outputFile);
-		getchar();
+		//printf("\n>>> %s", outputFile);
+		//getchar();
 	}
 }
 
@@ -177,8 +177,8 @@ void getFileName(char command[N]){
 				if(file[y-1]== '\''){
 					file[y-1]='\0';
 				}
-				printf("\n\n::: input file depois %s", file);
-				getchar();
+				//printf("\n\n::: input file depois %s", file);
+				//getchar();
 				final = i--;
 				//printf("\n\n>>>>>>>>>>>> %s", file);
 				if(access(file, F_OK) != -1){ // file exists
@@ -193,7 +193,7 @@ void getFileName(char command[N]){
 				}
 				strcpy(file, " ");
 				//printf("\n\n>>>>>>>>>>>> %s - %s - %s", inputFile, inputFile2, outputFile);
-				////getchar();
+				//////getchar();
 				//resetInputFile();
 				//resetInputFile2();
 				//resetOutputFile();
