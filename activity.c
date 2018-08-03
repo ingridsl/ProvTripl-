@@ -36,7 +36,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 		case 1:
 			strcpy(command, " ");
 			printf("thisCommand->command %s", thisCommand->command);
-			////////getchar();
+			//////////getchar();
 		   	strcpy(command, thisCommand->command);
 				getFileName(command);
 
@@ -48,7 +48,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 		   		strcpy(outputFile, getOutputFile());
 				}
 				printf("\n INPUTFILE: %s, OUTPUTFILE %s\n", inputFile1, outputFile);
-				////////getchar();
+				//getchar();
 				used_files = insert_dataFile(used_files, inputFile1);
 				value = retrieveDataFileId(inputFile1, used_files);
 				sprintf(original->command_input[0],"%d", value);
@@ -68,7 +68,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -94,7 +94,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				strcpy(command, " ");
 				strcpy(command, thisCommand->command);
 				printf("COMAND QUE CHEGOU: %s", command);
-				////////getchar();
+				//////////getchar();
 				getFileName(command);
 
 
@@ -114,13 +114,15 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 					strcpy(outputFileDefault, getOutputFile());
 				}
 				outputFileDefault[strlen(outputFileDefault)]='\0';
-				printf("\n\nentrou!!! %s\n", outputFileDefault);
-				printf("\n%d-%d", (int)strlen(outputFileDefault), (int)strlen("Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"));
+				//printf("\n\nentrou!!! %s\n", outputFileDefault);
+				//printf("\n%d-%d", (int)strlen(outputFileDefault), (int)strlen("Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"));
 
-				outputFileDefault[strlen(outputFileDefault)-1]='\0';
-				printf("\n\nentrou!!! %s\n", outputFileDefault);
-				printf("\n%c-H", outputFileDefault[0]);
-				printf("\n%d-%d", (int)strlen(outputFileDefault), (int)strlen("Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"));
+				if(outputFileDefault[strlen(outputFileDefault)-1]!='q'){
+					outputFileDefault[strlen(outputFileDefault)-1]='\0';
+				}
+				//printf("\n\nentrou!!! %s\n", outputFileDefault);
+				//printf("\n%c-H", outputFileDefault[0]);
+				//printf("\n%d-%d", (int)strlen(outputFileDefault), (int)strlen("Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx"));
 
 
 				//Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx
@@ -182,7 +184,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 				}
 				printf("\n INPUTFILE: %s, OUTPUTFILE %s\n", inputFile1, outputFileDefault);
-				////////getchar();
+				//////////getchar();
 
 		    printf("\n\t:::::: COMANDO 2 :::::: \n%s \n", command);
    			printf("::::::");
@@ -194,7 +196,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -250,7 +252,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->command_input[0],"%d", value);
 
 			printf("\n INPUTFILE: %s, INPUTFILE2: %s, OUTPUTFILE %s\n", inputFile1, inputFileDefault, outputFile);
-			////////getchar();
+			//////////getchar();
 
 			printf("\n\nentrou!!! %s\n", inputFileDefault);
 			printf("\n%c-H", inputFileDefault[0]);
@@ -295,7 +297,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[4],"%d", value);
 				printf("\n>>%s", original->command_input[4]);
-				//////////getchar();
+				////////////getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -304,7 +306,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[5],"%d", value);
 				printf("\n>>%s", original->command_input[5]);
-				//////////getchar();
+				////////////getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -313,7 +315,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				value = retrieveDataFileId(inputFile, used_files);
 				sprintf(original->command_input[6],"%d", value);
 				printf("\n>>%s", original->command_input[6]);
-				//////////getchar();
+				////////////getchar();
 				//////////////////////////////////////////////////////////////////////////
 
 				buildFileName(inputFileDefault, inputFile);
@@ -338,7 +340,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 
 
 				printf("\n INPUTFILE: %s, INPUTFILE2: %s, OUTPUTFILE %s\n", inputFileDefault, inputFile1, outputFile);
-				////////getchar();
+				//////////getchar();
 				if(strstr(command, "abyss")!=NULL){
 
 					//"coverage.hist"
@@ -626,7 +628,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -684,7 +686,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -720,7 +722,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				printf("\n>> outputfile %s", outputFile);
 				strcat(outputFile, "bam");
 				printf("\n>> outputfile %s", outputFile);
-				////getchar();
+				//////getchar();
 			}
 
 
@@ -743,7 +745,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
@@ -803,7 +805,7 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 			sprintf(original->start_date, "%d-%d-%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
 			sprintf(original->start_hour,"%d:%d:%d", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-			//system(command);
+			system(command);
 
 			//GET TIME
 			t = time(NULL);
