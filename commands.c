@@ -108,7 +108,7 @@ void abyssOutput(char command[N]){
 			outputFile[z] = outputFile[z + 5];
 			outputFile[z + 5] = temp;
 		}
-		outputFile[y - 6] = '\0';
+		outputFile[y - 5] = '\0';
 		//printf("\n>>> %s", outputFile);
 		//getchar();
 	}
@@ -180,8 +180,15 @@ void getFileName(char command[N]){
 				//printf("\n\n::: input file depois %s", file);
 				//getchar();
 				final = i--;
-				//printf("\n\n>>>>>>>>>>>> %s", file);
-				if(access(file, F_OK) != -1){ // file exists
+					printf("\nfile: %s", file);
+				if(strcmp(file, "Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx") == 0 ){
+						if(access("Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx.1.ht2", F_OK) != -1 ){
+							strcpy(inputFile, file);
+						}
+						strcpy(file, " ");
+				}
+				printf("\n\n>>>>>>>>>>>> %s", file);
+				if(access(file, F_OK) != -1 ){ // file exists
 					if(strlen(inputFile)>1){
 						strcpy(inputFile2, file);
 					}
@@ -189,6 +196,7 @@ void getFileName(char command[N]){
 						strcpy(inputFile, file);
 					}
 				}else{ // file dont exist
+					printf("\nelse %s", file);
 					strcpy(outputFile, file);
 				}
 				strcpy(file, " ");

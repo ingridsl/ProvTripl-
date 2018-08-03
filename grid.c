@@ -87,11 +87,16 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       exit(1);
 
     }
+    printf("\n(%s)\n", name);
+    printf("%d - %d", (int)strlen(name), (int)strlen("file.sam"));
+    if(access(name, F_OK) != -1 ){
+      printf("file does not exist");
+    }
     // VERSÃO MONGOC
     printf("\n1.0");
   /* grab a gridfs handle in test prefixed by fs */
-  gridfs = mongoc_client_get_gridfs (client, db_name, "fs", &error);
-  assert (gridfs);
+      gridfs = mongoc_client_get_gridfs (client, db_name, "fs", &error);
+      assert (gridfs);
 
       printf("\n1.1");
 
