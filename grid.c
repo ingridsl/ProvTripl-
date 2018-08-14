@@ -79,7 +79,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       //printf("\n \n file name: %s", name);
     }
 
-    strcpy(nameExtraFile, name);
+  /*  strcpy(nameExtraFile, name);
     strcat(nameExtraFile, ".created.txt");
     FILE *fp = fopen(nameExtraFile, "w+");
     if(!fp){
@@ -91,7 +91,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
     printf("%d - %d", (int)strlen(name), (int)strlen("file.sam"));
     if(access(name, F_OK) != -1 ){
       printf("file does not exist");
-    }
+    }*/
     // VERSÃO MONGOC
     printf("\n1.0");
   /* grab a gridfs handle in test prefixed by fs */
@@ -102,17 +102,25 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
 
       stream = mongoc_stream_file_new_for_path (name, O_RDONLY, 0);
       assert (stream);
-
+      printf("\n1.1.0");
       printf("\n1.3 >>>>>>>>>>>>> %s", name);
 
       opt.filename = name;
 
+      printf("\n1.3.0");
       /* the driver generates a file_id for you */
       file = mongoc_gridfs_create_file_from_stream (gridfs, stream, &opt);
+      printf("\n1.3.1");
       assert (file);
 
+      printf("\n1.3.2");
+
       id.value_type = BSON_TYPE_INT32;
+
+      printf("\n1.3.3");
       id.value.v_int32 = 1;
+
+      printf("\n1.3.4");
 
       /* optional: the following method specifies a file_id of any
          BSON type
@@ -129,7 +137,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
 
       printf("\n\n COMEÇANDO AQUI!! 1");
     //  ////getchar();
-      iov.iov_base = (void*) buf;
+  /*    iov.iov_base = (void*) buf;
       iov.iov_len = sizeof buf;
       file = mongoc_gridfs_find_one_by_filename (gridfs, name, &error);
       assert (file);
@@ -155,7 +163,7 @@ int Convert(char fileName[N], char db_name[N], mongoc_client_t *client){
       }
       fclose(fp);
       mongoc_stream_destroy (stream);
-      mongoc_gridfs_file_destroy (file);
+      mongoc_gridfs_file_destroy (file);*/
 
       ////////////////// LIST
 
