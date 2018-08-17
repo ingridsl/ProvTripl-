@@ -718,9 +718,9 @@ activity *define_activity(int *activityNumber, dataFile *dataFileOrig, bool test
 				strcpy(inputFile1, getInputFile());
 		    strcpy(outputFile, getOutputFile());
 				printf("\n>> outputfile %s", outputFile);
-				outputFile[strlen(outputFile)-1]='.';
+				outputFile[strlen(outputFile)-1]='\0';
 				printf("\n>> outputfile %s", outputFile);
-				strcat(outputFile, "bam");
+				//strcat(outputFile, "bam");
 				printf("\n>> outputfile %s", outputFile);
 				//////getchar();
 			}
