@@ -2,5 +2,5 @@ sickle se --fastq-file SRR5181508.fastq --qual-type sanger --output-file SRR5181
 hisat2-build -p 4 Homo_sapiens.GRCh38.dna.chromosome.22.fa Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx
 hisat2 -p 2 -x Homo_sapiens.GRCh38.dna.chromosome.22.hisat2.idx -q SRR5181508_FILTERED.fastq -S file.sam
 samtools view -bS file.sam > file.bam
-samtools sort -n file.bam file_sorted.sn
+samtools sort -n file.bam -o file_sorted.sn.bam
 htseq-count -m intersection-nonempty -s no -a 10 file_sorted.sn.bam Homo_sapiens.GRCh38.88.gtf -o file.count
