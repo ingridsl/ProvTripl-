@@ -58,7 +58,12 @@ int main (){
 
   machine *machines = NULL;
   machines = insert_machine(machines, dataFiles);
+  
+  int answerModel = 0; // 0 executa todos os modelos (não recomendável para workflows grandes)
+  printf("Choose the model to run:");
+  scanf ("%d",&answerModel);
 
+  if(answerModel == 1 || answerModel == 0){
   /// NO INDEXES
   //////////////////////////// MODEL 1.0 - N COLLECTIONS - N DOCUMENTS /////////////////////////////////
   fprintf(log," \t---- MODEL 1.0 ----");
@@ -71,7 +76,7 @@ int main (){
   t = time(NULL);
   tm = *localtime(&t);
   fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-
+  }
  //////////////////////////// MODEL 1.1 - 1 COLLECTIONS - N DOCUMENTS/////////////////////////////////
 /*  fprintf(log," \t---- MODEL 1.1 ----");
  printf(" \t---- MODEL 1.1 ----");
@@ -84,6 +89,7 @@ int main (){
   tm = *localtime(&t);
   fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 */
+  if(answerModel == 2 || answerModel == 0){
   //////////////////////////// MODEL 2.0 - 1 COLLECTION - 1 DOCUMENT/////////////////////////////////
    fprintf(log," \t---- MODEL 2.0 ----");
   printf(" \t---- MODEL 2.0 ----");
@@ -95,7 +101,8 @@ int main (){
    t = time(NULL);
    tm = *localtime(&t);
    fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-
+  }
+  if(answerModel == 3 || answerModel == 0){
 
    //////////////////////////// MODEL 3.0 - REFERENCIA  /////////////////////////////////
     fprintf(log," \t---- MODEL 3.0 ----");
@@ -109,7 +116,7 @@ int main (){
     tm = *localtime(&t);
     fprintf(log,"\nEND: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-
+  }
 /*
 
       /// INDEXES
